@@ -33,13 +33,13 @@
                 <input />
             </div>
             <div>
-                <button>Connexion</button>
+                <a href="${pageContext.request.contextPath}/EnchereServlet"">Connexion</a>
                 <div>
                     <div class="connection_checkbox">
                         <input type="checkbox">
                         <label>Se souvenir de moi</label>
                     </div>
-                    <a href="#">Mot de passe oubliÃ©</a>
+                    <a href="#">Mot de passe oublié</a>
                 </div>
             </div>
         </form>

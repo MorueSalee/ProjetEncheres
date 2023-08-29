@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+  <title>Enchères</title>
   <link rel="stylesheet" href="css/index.css" />
    <link rel="stylesheet" href="${pageContext.request.contextPath}/index.css" />
   
@@ -15,15 +15,15 @@
     <ul>
       <!--  CONDITION DE HORS CONNEXION -->
           <li>
-              <a href="">S'inscrire</a>
+              <a href="${pageContext.request.contextPath}/RegisterServlet">S'inscrire</a>
           </li>
           <li>
-              <a href="">Se connecter</a>
+              <a href="${pageContext.request.contextPath}/ConnectionServlet">Se connecter</a>
           </li>
 
       <!--  CONDITION DE CONNEXION -->
           <li>
-              <a href="">EnchÃ¨res</a>
+              <a href="">Enchères</a>
           </li>
           <li>
               <a href="">Vendre un article</a>
@@ -32,11 +32,11 @@
               <a href="">Mon profil</a>
           </li>
           <li>
-              <a href="">DÃ©connexion</a>
+              <a href="">Déconnexion</a>
           </li>
       </ul>
   </nav>
-  <h2>Liste des enchÃ¨res</h2>
+  <h2>Liste des enchères</h2>
   <section class="container">
     <form class="section_search">
       <div class="filter">
@@ -45,12 +45,12 @@
           <input />
         </div>
         <div>
-          <label>CatÃ©gorie : </label>
+          <label>Catégories : </label>
           <select name="" id="">
             <option>Manteau</option>
             <option>Chaussure</option>
             <option>Bonnet</option>
-            <option>MatÃ©riel informatique</option>
+            <option>Matériel informatique</option>
           </select>
         </div>
         <div class="filter_radio">
@@ -62,15 +62,15 @@
             <div class="sous_filter">
               <div>
                 <input type="checkbox"/>
-                <label>enchÃ¨res ouvertes</label>
+                <label>enchères ouvertes</label>
               </div>
               <div>
                 <input type="checkbox"/>
-                <label>mes enchÃ¨res en cours</label>
+                <label>mes enchères en cours</label>
               </div>
               <div>
                 <input type="checkbox"/>
-                <label>mes enchÃ¨res remportÃ©es</label>
+                <label>mes enchères remportés</label>
               </div>
             </div>
           </div>
@@ -86,11 +86,11 @@
               </div>
               <div>
                 <input type="checkbox"/>
-                <label>ventes non dÃ©butÃ©es</label>
+                <label>ventes non débutés</label>
               </div>
               <div>
                 <input type="checkbox"/>
-                <label>ventes terminÃ©es</label>
+                <label>ventes terminés</label>
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
         <div>
           <h3>Titre de l'article</h3>
           <p>Prix : 210 points</p>
-          <p>Fin de l'enchÃ¨re : 10/08/2018</p>
+          <p>Fin de l'enchère : 10/08/2018</p>
           <p>Vendeur : jojo44</p>
         </div>
       </div>
@@ -115,7 +115,7 @@
         <div>
           <h3>Titre de l'article</h3>
           <p>Prix : 210 points</p>
-          <p>Fin de l'enchÃ¨re : 10/08/2018</p>
+          <p>Fin de l'enchère : 10/08/2018</p>
           <p>Vendeur : jojo44</p>
         </div>
       </div>

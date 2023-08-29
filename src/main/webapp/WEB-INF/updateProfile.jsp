@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="css/formUpdateRegister.css">
        <link rel="stylesheet" href="${pageContext.request.contextPath}/formUpdateRegister.css" />
     
-    <title>Document</title>
+    <title>Mise ‡ jour profil</title>
 </head>
 <body>
     <nav>
         <h1>ENI - Enchere</h1>
       </nav>
-      <h2>Mon profil</h2>
+      <h2>Mise ‡ jour profil</h2>
       <section id="profile_register" class="container">
         <form>
             <div class="form_profile_register">
@@ -24,11 +24,11 @@
                         <input />
                     </div>
                     <div>
-                        <label>Pr√©nom :</label>
+                        <label>PrÈnom :</label>
                         <input />
                     </div>
                     <div>
-                        <label>T√©l√©phone :</label>
+                        <label>TÈlÈphone :</label>
                         <input />
                     </div>
                     <div>
@@ -62,11 +62,6 @@
                         <input />
                     </div>
                 </div>
-            </div>
-            <!--  CONDITION D'INSCRIPTION -->
-            <div class="register_button">
-                <button>Cr√©er</button>
-                <button>Annuler</button>
             </div>
              <!--  CONDITION DE MODIFICATION PROFIL UTILISATEUR -->
             <div class="profile_button">
