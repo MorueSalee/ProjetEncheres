@@ -12,17 +12,17 @@
     <jsp:include page="nav.jsp"/>
     <h2>Connexion</h2>
     <section id="connection" class="container">
-        <form>
+        <form action="ConnectionServlet" method="post">
             <div>
-                <label>Identifiant : </label>
-                <input />
+                <label>Identifiant (pseudo) : </label>
+                <input type="text" name="pseudo"/>
             </div>
             <div>
                 <label>Mot de passe : </label>
-                <input />
+                <input type="password" name="password"/>
             </div>
             <div>
-                <a href="${pageContext.request.contextPath}/EnchereServlet"">Connexion</a>
+                <input type="submit" value="Connexion"/> 
                 <div>
                     <div class="connection_checkbox">
                         <input type="checkbox">
