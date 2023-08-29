@@ -6,36 +6,9 @@
 	<meta charset="ISO-8859-1">
   <title>Enchères</title>
   <link rel="stylesheet" href="css/index.css" />
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/index.css" />
-  
 </head>
 <body>
-  <nav>
-    <h1>ENI - Enchere</h1>
-    <ul>
-      <!--  CONDITION DE HORS CONNEXION -->
-          <li>
-              <a href="${pageContext.request.contextPath}/RegisterServlet">S'inscrire</a>
-          </li>
-          <li>
-              <a href="${pageContext.request.contextPath}/ConnectionServlet">Se connecter</a>
-          </li>
-
-      <!--  CONDITION DE CONNEXION -->
-          <li>
-              <a href="">Enchères</a>
-          </li>
-          <li>
-              <a href="">Vendre un article</a>
-          </li>
-          <li>
-              <a href="">Mon profil</a>
-          </li>
-          <li>
-              <a href="">Déconnexion</a>
-          </li>
-      </ul>
-  </nav>
+  <jsp:include page="nav.jsp"/>
   <h2>Liste des enchères</h2>
   <section class="container">
     <form class="section_search">

@@ -1,6 +1,6 @@
 package fr.formation.enchere.dal;
 
-public class ArticleVenduDAOFactory {
+public class ArticleVenduDAOFact {
 
 	public static ArticleVenduDAO getArticleVenduDAO() {
         return new ArticleVenduDAOImpl();

@@ -39,4 +39,54 @@
     <servlet-name>ConnectionServlet</servlet-name>
     <url-pattern>/ConnectionServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailSaleServlet</display-name>
+    <servlet-name>DetailSaleServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.DetailSaleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailSaleServlet</servlet-name>
+    <url-pattern>/DetailSaleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewSaleServlet</display-name>
+    <servlet-name>NewSaleServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.NewSaleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewSaleServlet</servlet-name>
+    <url-pattern>/NewSaleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProfileServlet</display-name>
+    <servlet-name>ProfileServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.ProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileServlet</servlet-name>
+    <url-pattern>/ProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateProfileServlet</display-name>
+    <servlet-name>UpdateProfileServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.UpdateProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateProfileServlet</servlet-name>
+    <url-pattern>/UpdateProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WinnerSaleServlet</display-name>
+    <servlet-name>WinnerSaleServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.WinnerSaleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WinnerSaleServlet</servlet-name>
+    <url-pattern>/WinnerSaleServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

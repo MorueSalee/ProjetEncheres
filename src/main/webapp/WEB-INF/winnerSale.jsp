@@ -5,14 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/detailSale.css">
-      <link rel="stylesheet" href="${pageContext.request.contextPath}/detailSale.css" />
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/detailSale.css" />
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <h1>ENI - Enchere</h1>
-    </nav>
+    <jsp:include page="nav.jsp"/>
     <h2>Détail vente</h2>
     <section id="detail_sale" class="container">
         <img src="" alt="">
