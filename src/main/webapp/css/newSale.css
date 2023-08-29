@@ -1,0 +1,53 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+.container {
+    width: 900px;
+    margin: auto;
+}
+
+/*****************************************/
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: grey;
+    padding: 20px 0;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    padding: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/*******************************************/
+h2 {
+    text-align: center;
+    padding: 10px 0;
+}
+/********************************************/
+
+#new_sale form {
+    display: flex;
+}
+
+#new_sale .retrait {
+    border: 1px solid grey;
+}

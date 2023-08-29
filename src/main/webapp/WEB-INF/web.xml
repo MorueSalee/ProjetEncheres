@@ -11,12 +11,32 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>TestServlet</display-name>
-    <servlet-name>TestServlet</servlet-name>
-    <servlet-class>fr.formtion.enchere.dal.util.TestServlet</servlet-class>
+    <display-name>EnchereServlet</display-name>
+    <servlet-name>EnchereServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.EnchereServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/TestServlet</url-pattern>
+    <servlet-name>EnchereServlet</servlet-name>
+    <url-pattern>/EnchereServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterServlet</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConnectionServlet</display-name>
+    <servlet-name>ConnectionServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.ConnectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConnectionServlet</servlet-name>
+    <url-pattern>/ConnectionServlet</url-pattern>
   </servlet-mapping>
 </web-app>

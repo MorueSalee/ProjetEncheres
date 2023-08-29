@@ -1,0 +1,78 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+.container {
+    width: 900px;
+    margin: auto;
+}
+
+/*****************************************/
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: grey;
+    padding: 20px 0;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    padding: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/*******************************************/
+
+h2 {
+    text-align: center;
+    padding: 10px 0;
+}
+
+/**********************************/
+
+#connection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#connection label {
+    display: block;
+    width: 150px;
+}
+
+#connection form > div {
+    display: flex;
+    padding: 10px 0;
+}
+
+#connection button {
+    padding: 15px 25px;
+    margin: 10px;
+}
+
+#connection .connection_checkbox {
+    display: flex;
+    margin: 10px 0;
+}
+
+#connection .connection_checkbox input {
+    margin-right: 10px;
+}
