@@ -21,7 +21,6 @@ import fr.formation.enchere.bo.Utilisateur;
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager manager = UtilisateurManagerSing.getInstance();
-	private ArticleVenduManager manager2 = ArticleVenduManagerSing.getInstance();
        
     /**
      * @see HttpServlet#HttpServlet()
