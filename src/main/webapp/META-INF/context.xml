@@ -1,0 +1,16 @@
+<Context>
+    <!-- Other context settings here -->
+    
+    <Resource 
+        name="jdbc/pool_cnx"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        url="jdbc:sqlserver://10.44.101.21:8080;databaseName=ProjetEncheresDDB;"
+        username="sa"
+        password="Pa$$w0rd"
+        maxActive="20"
+        maxIdle="10"
+        maxWait="-1"
+    />
+</Context>
