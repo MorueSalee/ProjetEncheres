@@ -11,9 +11,7 @@
     <title>Mise à jour profil</title>
 </head>
 <body>
-    <nav>
-        <h1>ENI - Enchere</h1>
-      </nav>
+      <jsp:include page="nav.jsp"/>
       <h2>Mise à jour profil</h2>
       <section id="profile_register" class="container">
         <form>

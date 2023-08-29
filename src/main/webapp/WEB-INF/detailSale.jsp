@@ -11,9 +11,7 @@
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <h1>ENI - Enchere</h1>
-    </nav>
+    <jsp:include page="nav.jsp"/>
     <h2>Détail vente</h2>
     <section id="detail_sale" class="container">
         <img src="" alt="">

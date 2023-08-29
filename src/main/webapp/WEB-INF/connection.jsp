@@ -6,21 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/connection.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/connection.css" />
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <h1>ENI - Enchere</h1>
-        <ul>
-          <li>
-            <a href="">S'inscrire</a>
-          </li>
-          <li>
-            <a href="">Se connecter</a>
-          </li>
-        </ul>
-    </nav>
+    <jsp:include page="nav.jsp"/>
     <h2>Connexion</h2>
     <section id="connection" class="container">
         <form>

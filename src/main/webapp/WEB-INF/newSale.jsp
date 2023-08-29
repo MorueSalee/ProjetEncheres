@@ -11,9 +11,7 @@
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <h1>ENI - Enchere</h1>
-      </nav>
+      <jsp:include page="nav.jsp"/>
       <h2>Nouvelle vente</h2>
     <section id="new_sale" class="container">
         <form>
