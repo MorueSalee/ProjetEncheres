@@ -16,6 +16,20 @@ public class ArticleVendu {
 	
 	public ArticleVendu() {
 	}
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Integer noUtilisateur,
+			Integer noCategorie) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Integer noUtilisateur,
@@ -126,6 +140,14 @@ public class ArticleVendu {
 
 	public void setEtatVente(String etatVente) {
 		this.etatVente = etatVente;
+	}
+
+	@Override
+	public String toString() {
+		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
+				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", prixInitial="
+				+ prixInitial + ", prixVente=" + prixVente + ", noUtilisateur=" + noUtilisateur + ", noCategorie="
+				+ noCategorie + ", etatVente=" + etatVente + "]";
 	}
 	
 	
