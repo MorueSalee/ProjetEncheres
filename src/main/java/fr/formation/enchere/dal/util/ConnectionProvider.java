@@ -23,6 +23,7 @@ public class ConnectionProvider {
 			context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");
 		} catch (NamingException e) {
+			e.printStackTrace();
 			// pas possible d'accéder à la configuration WEB, on va donc utilisé le
 			// settings.properties
 			try {
@@ -42,11 +43,9 @@ public class ConnectionProvider {
 
 	public static Connection getConnection() throws SQLException {
 		if(dataSource!=null) { // nous somme en web
-			System.out.println("yeah");
 			return ConnectionProvider.dataSource.getConnection();
 		}
 		else { // nous ne somme pas en web
-			System.out.println("prout");
 			return DriverManager.getConnection(urldb, userdb, passworddb);
 		}
 	}
