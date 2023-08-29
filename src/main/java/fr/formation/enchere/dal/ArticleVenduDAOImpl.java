@@ -92,6 +92,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			pStmt.setInt(6, article.getPrixVente());
 			pStmt.setInt(7, article.getNoUtilisateur());
 			pStmt.setInt(8, article.getNoCategorie());
+			pStmt.setInt(9, article.getNoArticle());
 			
 	        pStmt.executeUpdate();
 	    } catch (SQLException e) {

@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <nav>
-    <h1><a href="${pageContext.request.contextPath}/EnchereServlet">ENI - Enchere</a></h1>
+    <h1><a href="${pageContext.request.contextPath}/EnchereServlet">ENI - Enchere  
+    <c:if test="${user != null}">
+		<p>Bonjour ${utilisateur.nom}</p>
+	</c:if></a></h1>
     <ul>
       <!--  CONDITION DE HORS CONNEXION -->
           <li>

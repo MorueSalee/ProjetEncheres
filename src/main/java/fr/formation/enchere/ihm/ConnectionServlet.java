@@ -44,6 +44,7 @@ public class ConnectionServlet extends HttpServlet {
 		if(utilisateur==null) {
 			request.setAttribute("message", "utilisteur inconnu");
 			request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
+			System.out.println("nop");
 		}
 		else {
 			// On met l'utilisateur en session
@@ -56,7 +57,7 @@ public class ConnectionServlet extends HttpServlet {
 			if(urlPattern==null) {
 				urlPattern="/";
 			}
-			
+			System.out.println("hello");
 			request.getRequestDispatcher(urlPattern).forward(request, response);
 		}
 	}
