@@ -73,5 +73,33 @@ private UtilisateurDAO dao = UtilisateurDAOFact.getUtilisateurDAO();
 		}
 	    return result;
 	}
+	
+	public Utilisateur findById(Integer id) {
+		Utilisateur utilisateur = null;
+		try {
+			utilisateur = dao.findById(id);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+	    return utilisateur;
+	}
+	
+	public void update(Utilisateur utilisateur) {
+		try {
+			dao.update(utilisateur);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void delete(Integer id) {
+		try {
+			dao.delete(id);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 }

@@ -6,9 +6,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
+import fr.formation.enchere.bll.ArticleVenduManager;
+import fr.formation.enchere.bll.ArticleVenduManagerSing;
 import fr.formation.enchere.bll.UtilisateurManager;
 import fr.formation.enchere.bll.UtilisateurManagerSing;
+import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Utilisateur;
 
 /**
@@ -17,6 +21,7 @@ import fr.formation.enchere.bo.Utilisateur;
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager manager = UtilisateurManagerSing.getInstance();
+	private ArticleVenduManager manager2 = ArticleVenduManagerSing.getInstance();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -30,6 +35,7 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
 	}
 
@@ -52,11 +58,11 @@ public class RegisterServlet extends HttpServlet {
 		} else if (motDePasse == null || motDePasse.isBlank()) {
 			request.setAttribute("message", "Le mot de passe doit être rempli");
 		} else {
-			manager.addUtilisateur(new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 250, false));
+			manager.addUtilisateur(new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0, false));
 			request.setAttribute("message", "Inscription OK");
 		}
 
-		request.getRequestDispatcher("/WEB-INF/record.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 
 }

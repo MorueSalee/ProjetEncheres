@@ -14,56 +14,56 @@
       <jsp:include page="nav.jsp"/>
       <h2>S'inscrire</h2>
       <section id="profile_register" class="container">
-        <form>
+        <form action="RegisterServlet"  method="post">
             <div class="form_profile_register">
                 <div class="form_left">
                     <div>
                         <label>Pseudo :</label>
-                        <input />
+                        <input type="text" name="pseudo"/>
                     </div>
                     <div>
                         <label>Prénom :</label>
-                        <input />
+                        <input type="text" name="prenom"/>
                     </div>
                     <div>
                         <label>Téléphone :</label>
-                        <input />
+                        <input type="text" name="telephone"/>
                     </div>
                     <div>
                         <label>Code postal :</label>
-                        <input />
+                        <input type="text" name="codePostal"/>
                     </div>
                     <div>
                         <label>Mot de passe :</label>
-                        <input />
+                        <input type="text" name="motDePasse" />
                     </div>
                 </div>
                 <div class="form_right">
                     <div>
                         <label>Nom :</label>
-                        <input />
+                        <input type="text" name="nom"/>
                     </div>
                     <div>
                         <label>Email :</label>
-                        <input />
+                        <input type="text" name="email"/>
                     </div>
                     <div>
                         <label>Rue :</label>
-                        <input />
+                        <input type="text" name="rue"/>
                     </div>
                     <div>
                         <label>Ville :</label>
-                        <input />
+                        <input type="text" name="ville"/>
                     </div>
                     <div>
                         <label>Confirmation :</label>
-                        <input />
+                        <input type="password"/>
                     </div>
                 </div>
             </div>
             <!--  CONDITION D'INSCRIPTION -->
             <div class="register_button">
-                <a href="${pageContext.request.contextPath}/EnchereServlet">Créer</a>
+                <input type="submit" value="Inscription"/> 
                 <a href="${pageContext.request.contextPath}/ConnectionServlet">Annuler</a>
             </div>
         </form>

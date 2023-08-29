@@ -16,6 +16,7 @@ import fr.formation.enchere.dal.util.ConnectionProvider;
  */
 public class EnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,13 +29,7 @@ public class EnchereServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		try(Connection cnx = ConnectionProvider.getConnection()) {
-			System.out.println(cnx.isClosed());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
