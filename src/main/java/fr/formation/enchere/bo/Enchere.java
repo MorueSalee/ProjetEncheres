@@ -1,4 +1,4 @@
-package fr.formtion.enchere.bo;
+package fr.formation.enchere.bo;
 
 import java.time.LocalDate;
 

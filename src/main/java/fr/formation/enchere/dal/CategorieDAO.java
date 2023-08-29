@@ -1,6 +1,6 @@
-package fr.formtion.enchere.dal;
+package fr.formation.enchere.dal;
 
-import fr.formtion.enchere.bo.Categorie;
+import fr.formation.enchere.bo.Categorie;
 
 public interface CategorieDAO {
 	

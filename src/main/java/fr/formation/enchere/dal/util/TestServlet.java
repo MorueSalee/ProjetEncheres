@@ -1,4 +1,4 @@
-package fr.formtion.enchere.dal.util;
+package fr.formation.enchere.dal.util;
 
 import java.io.IOException;
 import java.sql.Connection;

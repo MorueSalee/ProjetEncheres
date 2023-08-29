@@ -1,6 +1,6 @@
-package fr.formtion.enchere.dal;
+package fr.formation.enchere.dal;
 
-import fr.formtion.enchere.bo.Retrait;
+import fr.formation.enchere.bo.Retrait;
 
 public interface RetraitDAO {
 

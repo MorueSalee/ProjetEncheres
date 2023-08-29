@@ -1,6 +1,6 @@
-package fr.formtion.enchere.dal;
+package fr.formation.enchere.dal;
 
-import fr.formtion.enchere.bo.Utilisateur;
+import fr.formation.enchere.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 

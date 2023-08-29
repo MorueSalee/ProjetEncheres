@@ -1,6 +1,6 @@
-package fr.formtion.enchere.dal;
+package fr.formation.enchere.dal;
 
-import fr.formtion.enchere.bo.Enchere;
+import fr.formation.enchere.bo.Enchere;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 

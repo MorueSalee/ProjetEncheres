@@ -1,8 +1,8 @@
-package fr.formtion.enchere.dal;
+package fr.formation.enchere.dal;
 
 import java.util.List;
 
-import fr.formtion.enchere.bo.ArticleVendu;
+import fr.formation.enchere.bo.ArticleVendu;
 
 public interface ArticleVenduDAO {
 	

@@ -1,4 +1,4 @@
-package fr.formtion.enchere.dal;
+package fr.formation.enchere.dal;
 
 public class ArticleVenduDAOFactory {
 

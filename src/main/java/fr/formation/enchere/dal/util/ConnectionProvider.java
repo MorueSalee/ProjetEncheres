@@ -1,4 +1,4 @@
-package fr.formtion.enchere.dal.util;
+package fr.formation.enchere.dal.util;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -42,9 +42,11 @@ public class ConnectionProvider {
 
 	public static Connection getConnection() throws SQLException {
 		if(dataSource!=null) { // nous somme en web
+			System.out.println("yeah");
 			return ConnectionProvider.dataSource.getConnection();
 		}
 		else { // nous ne somme pas en web
+			System.out.println("prout");
 			return DriverManager.getConnection(urldb, userdb, passworddb);
 		}
 	}
