@@ -1,7 +1,6 @@
 package fr.formation.enchere.ihm;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,6 +9,7 @@ import java.io.IOException;
 import fr.formation.enchere.bll.UtilisateurManager;
 import fr.formation.enchere.bll.UtilisateurManagerSing;
 import fr.formation.enchere.bo.Utilisateur;
+import fr.formation.enchere.dal.DALException;
 
 /**
  * Servlet implementation class ConnectionServlet
@@ -37,29 +37,34 @@ public class ConnectionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pseudo = request.getParameter("pseudo");
-		String motDePasse = request.getParameter("motDePasse");
-		
-		Utilisateur utilisateur = manager.check(pseudo, motDePasse);
-		if(utilisateur==null) {
-			request.setAttribute("message", "utilisteur inconnu");
-			request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
-			System.out.println("nop");
-		}
-		else {
-			// On met l'utilisateur en session
-			request.getSession().setAttribute("utilisateur", utilisateur);
+	    String identifiant = request.getParameter("identifiant");
+	    String motDePasse = request.getParameter("motDePasse");
 
-			// On appelle l'url de la servlet initialisement appelée
-			String urlPattern = (String) request.getSession().getAttribute("urlPattern");
+	    try {
+	        Utilisateur utilisateur = manager.check(identifiant, motDePasse);
+	        if (utilisateur == null) {
+	            request.setAttribute("message", "Utilisateur inconnu");
+	            request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
+	            System.out.println("Utilisateur inconnu");
+	        } else {
+	        	// On met l'utilisateur en session
+				request.getSession().setAttribute("utilisateur", utilisateur);
 
-			// Si pas de servlet initialement appelée on va sur l'url racine (ou il y a généralement le menu
-			if(urlPattern==null) {
-				urlPattern="/";
-			}
-			System.out.println("hello");
-			request.getRequestDispatcher(urlPattern).forward(request, response);
-		}
+				// On appelle l'url de la servlet initialisement appelée
+				String urlPattern = (String) request.getSession().getAttribute("urlPattern");
+
+				// Si pas de servlet initialement appelée on va sur l'url racine (ou il y a généralement le menu
+				if(urlPattern==null) {
+					urlPattern="/EnchereServlet";
+				}
+				
+				request.getRequestDispatcher(urlPattern).forward(request, response);
+	        }
+	    } catch (DALException e) {
+	        // Gestion de l'exception
+	        e.printStackTrace();
+	    }
 	}
+
 
 }

@@ -14,12 +14,12 @@
     <section id="connection" class="container">
         <form action="ConnectionServlet" method="post">
             <div>
-                <label>Identifiant (pseudo) : </label>
-                <input type="text" name="pseudo"/>
+                <label>Identifiant : </label>
+                <input type="text" name="identifiant"/>
             </div>
             <div>
                 <label>Mot de passe : </label>
-                <input type="password" name="password"/>
+                <input type="password" name="motDePasse"/>
             </div>
             <div>
                 <input type="submit" value="Connexion"/> 
@@ -32,6 +32,7 @@
                 </div>
             </div>
         </form>
+        <p>${message}</p>
     </section>
 </body>
 </html>

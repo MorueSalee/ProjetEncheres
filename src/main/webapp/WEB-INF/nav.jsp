@@ -4,18 +4,20 @@
 <!DOCTYPE html>
 <nav>
     <h1><a href="${pageContext.request.contextPath}/EnchereServlet">ENI - Enchere  
-    <c:if test="${user != null}">
-		<p>Bonjour ${utilisateur.nom}</p>
+    <c:if test="${utilisateur != null}">
+		<p>Bonjour ${utilisateur.pseudo}</p>
 	</c:if></a></h1>
     <ul>
       <!--  CONDITION DE HORS CONNEXION -->
+      <c:if test="${utilisateur == null}">
           <li>
               <a href="${pageContext.request.contextPath}/RegisterServlet">S'inscrire</a>
           </li>
           <li>
               <a href="${pageContext.request.contextPath}/ConnectionServlet">Se connecter</a>
           </li>
-
+        </c:if>
+		<c:if test="${utilisateur != null}">
       <!--  CONDITION DE CONNEXION -->
           <li>
               <a href="${pageContext.request.contextPath}/EnchereServlet">Enchères</a>
@@ -29,5 +31,6 @@
           <li>
               <a href="${pageContext.request.contextPath}/LogoutServlet">Déconnexion</a>
           </li>
+          </c:if>
       </ul>
 </nav>

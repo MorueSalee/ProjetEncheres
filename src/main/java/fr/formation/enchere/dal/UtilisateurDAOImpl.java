@@ -14,7 +14,7 @@ import fr.formation.enchere.dal.util.ConnectionProvider;
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	final String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=?;";
-	final String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * FROM UTILISATEURS WHERE pseudo=? AND mot_de_passe=?;";
+	final String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ?;";
 	final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo=?;";
 	final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
     final String INSERT = "INSERT INTO UTILISATEURS(" +
@@ -133,14 +133,16 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public List<Utilisateur> findByLoginAndPassword(String pseudo, String motDePasse) throws DALException {
+	public List<Utilisateur> findByLoginAndPassword(String identifiant, String motDePasse) throws DALException {
 		List<Utilisateur> results = new ArrayList<Utilisateur>();
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_LOGIN_AND_PASSWORD);
-			stmt.setString(1, pseudo);
-			stmt.setString(2, motDePasse);
+			stmt.setString(1, identifiant);
+			stmt.setString(2, identifiant);
+			stmt.setString(3, motDePasse);
 			ResultSet rs = stmt.executeQuery();
+			System.out.println(rs);
 			while(rs.next()) {
 				if (getUtilisateur(rs) != null) {
                     results.add(getUtilisateur(rs));

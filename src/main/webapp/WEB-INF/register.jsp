@@ -57,7 +57,7 @@
                     </div>
                     <div>
                         <label>Confirmation :</label>
-                        <input type="password"/>
+                        <input type="password" name="motDePasse2"/>
                     </div>
                 </div>
             </div>
@@ -66,6 +66,7 @@
                 <input type="submit" value="Inscription"/> 
                 <a href="${pageContext.request.contextPath}/ConnectionServlet">Annuler</a>
             </div>
+            <p>${message}</p>
         </form>
       </section>
 </body>
