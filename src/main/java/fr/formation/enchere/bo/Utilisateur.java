@@ -1,5 +1,8 @@
 package fr.formation.enchere.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utilisateur {
 	
 	private Integer noUtilisateur;
@@ -14,6 +17,9 @@ public class Utilisateur {
 	private String motDePasse;
 	private Integer credit;
 	private Boolean administrateur;
+	private List<ArticleVendu> listeArticlesVendus = new ArrayList<>();
+    private List<ArticleVendu> listeArticlesAchetes = new ArrayList<>();
+    private List<Enchere> encheres = new ArrayList<>();
 	
 	public Utilisateur() {
 	}
@@ -31,6 +37,23 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
+		this.credit = credit;
+		this.administrateur = administrateur;
+	}
+	
+	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email,
+			String telephone, String rue, String codePostal, String ville, Integer credit,
+			Boolean administrateur) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
@@ -148,15 +171,40 @@ public class Utilisateur {
 	public void setAdministrateur(Boolean administrateur) {
 		this.administrateur = administrateur;
 	}
+	
+	
+
+	public List<ArticleVendu> getListeArticlesVendus() {
+		return listeArticlesVendus;
+	}
+
+	public void setListeArticlesVendus(List<ArticleVendu> listeArticlesVendus) {
+		this.listeArticlesVendus = listeArticlesVendus;
+	}
+
+	public List<ArticleVendu> getListeArticlesAchetes() {
+		return listeArticlesAchetes;
+	}
+
+	public void setListeArticlesAchetes(List<ArticleVendu> listeArticlesAchetes) {
+		this.listeArticlesAchetes = listeArticlesAchetes;
+	}
+
+	public List<Enchere> getEncheres() {
+		return encheres;
+	}
+
+	public void setEncheres(List<Enchere> encheres) {
+		this.encheres = encheres;
+	}
 
 	@Override
 	public String toString() {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
-				+ ", administrateur=" + administrateur + "]";
+				+ ", administrateur=" + administrateur + ", listeArticlesVendus=" + listeArticlesVendus
+				+ ", listeArticlesAchetes=" + listeArticlesAchetes + ", encheres=" + encheres + "]";
 	}
-	
-	
 
 }

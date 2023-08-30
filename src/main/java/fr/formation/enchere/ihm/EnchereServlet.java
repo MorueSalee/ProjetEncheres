@@ -9,13 +9,19 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import fr.formation.enchere.bll.ArticleVenduManager;
+import fr.formation.enchere.bll.ArticleVenduManagerSing;
+import fr.formation.enchere.dal.DALException;
 import fr.formation.enchere.dal.util.ConnectionProvider;
+import fr.formation.enchere.ihm.model.ArticleVenduModel;
 
 /**
  * Servlet implementation class EnchereServlet
  */
 public class EnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private ArticleVenduManager articleManager = ArticleVenduManagerSing.getInstance();
 	
        
     /**
@@ -30,6 +36,15 @@ public class EnchereServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		ArticleVenduModel articleModel = new ArticleVenduModel();
+		
+		try {
+			articleModel.setListArticle(articleManager.getAll());
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("articleModel", articleModel);
 		
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}

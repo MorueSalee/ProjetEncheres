@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +22,10 @@
         <div>
           <label>Catégories : </label>
           <select name="" id="">
-            <option>Manteau</option>
-            <option>Chaussure</option>
-            <option>Bonnet</option>
-            <option>Matériel informatique</option>
+            <option>Informatique</option>
+            <option>Ameublement</option>
+            <option>Vêtement</option>
+            <option>Sport&Loisirs</option>
           </select>
         </div>
         <div class="filter_radio">
@@ -74,24 +76,18 @@
   </section>
   <section class="container">
     <div class="grid_article">
-      <div class="card_article">
-        <img src="" alt="">
-        <div>
-          <h3>Titre de l'article</h3>
-          <p>Prix : 210 points</p>
-          <p>Fin de l'enchère : 10/08/2018</p>
-          <p>Vendeur : jojo44</p>
-        </div>
-      </div>
-      <div class="card_article">
-        <img src="" alt="">
-        <div>
-          <h3>Titre de l'article</h3>
-          <p>Prix : 210 points</p>
-          <p>Fin de l'enchère : 10/08/2018</p>
-          <p>Vendeur : jojo44</p>
-        </div>
-      </div>
+    	<c:forEach items="${articleModel.listArticle}" var="article">
+	      <div class="card_article">
+	        <img src="" alt="">
+	        <div>
+	          <h3>${article.nomArticle}</h3>
+	          <p>Prix : ${article.prixVente}</p>
+	          <fmt:parseDate value="${article.dateFinEncheres}" pattern="yyyy-MM-dd" var="st" type="both"/>
+	          <p>Fin de l'enchère : <fmt:formatDate pattern="dd/MM/yyyy" value="${st}" /></p>
+	          <p>Vendeur : ${article.utilisateur.pseudo}</p>
+	        </div>
+	      </div>
+      	</c:forEach>
     </div>
   </section>
 </body>

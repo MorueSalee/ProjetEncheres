@@ -1,6 +1,8 @@
 package fr.formation.enchere.bo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArticleVendu {
 	private Integer noArticle;
@@ -10,16 +12,17 @@ public class ArticleVendu {
 	private LocalDate dateFinEncheres;
 	private Integer prixInitial;
 	private Integer prixVente;
-	private Integer noUtilisateur;
-	private Integer noCategorie;
+	private Utilisateur utilisateur;
+	private Categorie categorie;
+	private List<Enchere> encheres = new ArrayList<Enchere>();
 	private String etatVente;
 	
 	public ArticleVendu() {
 	}
 	
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Integer noUtilisateur,
-			Integer noCategorie) {
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie,
+			List<Enchere> encheres, String etatVente) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -27,13 +30,15 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.encheres = encheres;
+		this.etatVente = etatVente;
 	}
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Integer noUtilisateur,
-			Integer noCategorie) {
+			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Utilisateur utilisateur,
+			Categorie categorie, String etatVente) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -42,23 +47,8 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
-	}
-
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Integer noUtilisateur,
-			Integer noCategorie, String etatVente) {
-		super();
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 		this.etatVente = etatVente;
 	}
 
@@ -118,20 +108,28 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public Integer getNoUtilisateur() {
-		return noUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNoUtilisateur(Integer noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public Integer getNoCategorie() {
-		return noCategorie;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setNoCategorie(Integer noCategorie) {
-		this.noCategorie = noCategorie;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public List<Enchere> getEncheres() {
+		return encheres;
+	}
+
+	public void setEncheres(List<Enchere> encheres) {
+		this.encheres = encheres;
 	}
 
 	public String getEtatVente() {
@@ -146,10 +144,8 @@ public class ArticleVendu {
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", prixInitial="
-				+ prixInitial + ", prixVente=" + prixVente + ", noUtilisateur=" + noUtilisateur + ", noCategorie="
-				+ noCategorie + ", etatVente=" + etatVente + "]";
+				+ prixInitial + ", prixVente=" + prixVente + ", utilisateur=" + utilisateur + ", categorie=" + categorie
+				+ ", encheres=" + encheres + ", etatVente=" + etatVente + "]";
 	}
-	
-	
-	
+
 }

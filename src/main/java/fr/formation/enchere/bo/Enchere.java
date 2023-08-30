@@ -5,22 +5,30 @@ import java.time.LocalDate;
 public class Enchere {
 	
 	private Integer noEnchere;
-	private Integer noUtilisateur;
-	private Integer noArticle;
+	private Utilisateur utilisateur;
+	private ArticleVendu articleVendu;
 	private LocalDate dateEnchere;
 	private Integer montantEnchere;
 
 	public Enchere() {
 	}
 
-	public Enchere(Integer noEnchere, Integer noUtilisateur, Integer noArticle, LocalDate dateEnchere,
-			Integer montantEncher) {
+	public Enchere(Utilisateur utilisateur, ArticleVendu articleVendu, LocalDate dateEnchere, Integer montantEnchere) {
+		super();
+		this.utilisateur = utilisateur;
+		this.articleVendu = articleVendu;
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+	}
+
+	public Enchere(Integer noEnchere, Utilisateur utilisateur, ArticleVendu articleVendu, LocalDate dateEnchere,
+			Integer montantEnchere) {
 		super();
 		this.noEnchere = noEnchere;
-		this.noUtilisateur = noUtilisateur;
-		this.noArticle = noArticle;
+		this.utilisateur = utilisateur;
+		this.articleVendu = articleVendu;
 		this.dateEnchere = dateEnchere;
-		this.montantEnchere = montantEncher;
+		this.montantEnchere = montantEnchere;
 	}
 
 	public Integer getNoEnchere() {
@@ -31,20 +39,20 @@ public class Enchere {
 		this.noEnchere = noEnchere;
 	}
 
-	public Integer getNoUtilisateur() {
-		return noUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNoUtilisateur(Integer noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public Integer getNoArticle() {
-		return noArticle;
+	public ArticleVendu getArticleVendu() {
+		return articleVendu;
 	}
 
-	public void setNoArticle(Integer noArticle) {
-		this.noArticle = noArticle;
+	public void setArticleVendu(ArticleVendu articleVendu) {
+		this.articleVendu = articleVendu;
 	}
 
 	public LocalDate getDateEnchere() {
@@ -65,10 +73,8 @@ public class Enchere {
 
 	@Override
 	public String toString() {
-		return "Enchere [noEnchere=" + noEnchere + ", noUtilisateur=" + noUtilisateur + ", noArticle=" + noArticle
+		return "Enchere [noEnchere=" + noEnchere + ", utilisateur=" + utilisateur + ", articleVendu=" + articleVendu
 				+ ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + "]";
 	}
-	
-	
 
 }

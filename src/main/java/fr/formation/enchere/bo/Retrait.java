@@ -2,7 +2,7 @@ package fr.formation.enchere.bo;
 
 public class Retrait {
 	
-	private Integer noArticle;
+	private ArticleVendu articleVendu;
 	private String rue;
 	private String codePostal;
 	private String ville;
@@ -10,20 +10,20 @@ public class Retrait {
 	public Retrait() {
 	}
 
-	public Retrait(Integer noArticle, String rue, String codePostal, String ville) {
+	public Retrait(ArticleVendu articleVendu, String rue, String codePostal, String ville) {
 		super();
-		this.noArticle = noArticle;
+		this.articleVendu = articleVendu;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
 
-	public Integer getNoArticle() {
-		return noArticle;
+	public ArticleVendu getArticleVendu() {
+		return articleVendu;
 	}
 
-	public void setNoArticle(Integer noArticle) {
-		this.noArticle = noArticle;
+	public void setArticleVendu(ArticleVendu articleVendu) {
+		this.articleVendu = articleVendu;
 	}
 
 	public String getRue() {
@@ -52,10 +52,8 @@ public class Retrait {
 
 	@Override
 	public String toString() {
-		return "Retrait [noArticle=" + noArticle + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville
-				+ "]";
+		return "Retrait [articleVendu=" + articleVendu + ", rue=" + rue + ", codePostal=" + codePostal + ", ville="
+				+ ville + "]";
 	}
-	
-	
 
 }

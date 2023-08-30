@@ -1,7 +1,5 @@
 package fr.formation.enchere.dal;
 
-import fr.formation.enchere.bo.Categorie;
-
 public interface CategorieDAO {
 	
 	//public void insert(Categorie article) throws DALException;

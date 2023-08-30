@@ -11,31 +11,19 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 
 private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 	
-	public void add(ArticleVendu article) {
-		try {
+	public void add(ArticleVendu article) throws DALException {
 			dao.insert(article);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
-	public List<ArticleVendu> getAll() {
-		try {
-			List<ArticleVendu> result = dao.getAll();
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+	public List<ArticleVendu> getAll() throws DALException {
+		List<ArticleVendu> result = dao.getAll();
+		
+		return result;
+}
 
 	@Override
-	public void update(ArticleVendu article) {
-		try {
-			dao.update(article);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void update(ArticleVendu article) throws DALException {
+		dao.update(article);
 	}
 }
