@@ -2,7 +2,7 @@ package fr.formation.enchere.dal;
 
 import fr.formation.enchere.bo.Enchere;
 
-public class EnchereDAOJdbcImpl implements EnchereDAO {
+public class EnchereDAOImpl implements EnchereDAO {
 
 	@Override
 	public void insert(Enchere article) {

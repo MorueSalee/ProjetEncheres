@@ -11,7 +11,7 @@ public class TestDAL {
 		
 		ArticleVenduDAO articleVenduDAO = ArticleVenduDAOFact.getArticleVenduDAO();
 		
-		ArticleVendu a1 = new ArticleVendu(1, "a", "a", LocalDate.of(2023, 8, 28), LocalDate.of(2023, 8, 30), 8, 8, 1, 1);
+		//ArticleVendu a1 = new ArticleVendu(1, "a", "a", LocalDate.of(2023, 8, 28), LocalDate.of(2023, 8, 30), 8, 8, 1, 1);
 		
 		try {
 			List<ArticleVendu> articles = articleVenduDAO.getAll();

@@ -1,7 +1,5 @@
 package fr.formation.enchere.dal;
 
-import fr.formation.enchere.bo.Retrait;
-
 public interface RetraitDAO {
 
 	//public void insert(Retrait article) throws DALException;
