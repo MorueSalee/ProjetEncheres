@@ -16,7 +16,7 @@
     <section id="profile" class="container">
         <div>
             <p>Nom : </p>
-            <p>MorueSalée</p>
+            <p>${sessionScope.utilisateur.email}</p>
         </div>
         <div>
             <p>Prénom : </p>

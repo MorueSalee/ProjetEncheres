@@ -11,7 +11,7 @@ public interface UtilisateurDAO {
 	//public void getAll() throws DALException;
 	public void delete(Integer id) throws DALException;
 	public void update(Utilisateur article) throws DALException;
-	public List<Utilisateur> findByLoginAndPassword(String pseudo, String motDePasse) throws DALException;
+	public List<Utilisateur> findByLoginAndPassword(String identifiant, String motDePasse) throws DALException;
 	public List<Utilisateur> findByPseudo(String pseudo) throws DALException;
 	public List<Utilisateur> findByEmail(String email) throws DALException;
 }

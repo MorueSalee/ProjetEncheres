@@ -1,11 +1,12 @@
 package fr.formation.enchere.bll;
 
 import fr.formation.enchere.bo.Utilisateur;
+import fr.formation.enchere.dal.DALException;
 
 public interface UtilisateurManager {
-	public void addUtilisateur(Utilisateur utilisateur);
-	public Utilisateur check(String login, String password);
-	public Utilisateur findById(Integer id);
-	public void update(Utilisateur utilisateur);
-	public void delete(Integer id);
+	public void addUtilisateur(Utilisateur utilisateur) throws DALException, IllegalArgumentException;
+	public Utilisateur check(String identifiant, String password) throws DALException;
+	public Utilisateur findById(Integer id) throws DALException;
+	public void update(Utilisateur utilisateur) throws DALException;
+	public void delete(Integer id) throws DALException;
 }
