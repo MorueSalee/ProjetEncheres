@@ -5,18 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.naming.java.javaURLContextFactory;
+
+import fr.formation.enchere.bo.ArticleVendu;
+import fr.formation.enchere.bo.Categorie;
+import fr.formation.enchere.bo.Enchere;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.util.ConnectionProvider;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
-	final String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=?;";
-	final String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ?;";
-	final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo=?;";
-	final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
+	final String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
+	final String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
+	final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo=? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
+	final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email=? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
     final String INSERT = "INSERT INTO UTILISATEURS(" +
             "pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) " +
             "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -25,7 +31,34 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
     final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
     
+    private ArticleVendu getArticle(ResultSet rs) throws SQLException {
+    	Integer noArticle = rs.getInt("no_article");
+        String nomArticle = rs.getString("nom_article");
+        String description = rs.getString("description");
+        LocalDate dateDebutEncheres = rs.getDate("date_debut_encheres").toLocalDate();
+        LocalDate dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
+        Integer prixInitial = rs.getInt("prix_initial");
+        Integer prixVente = rs.getInt("prix_vente");
+        Utilisateur utilisateur = getUtilisateur(rs);
+        Categorie categorie = getCategorie(rs);
+        String etatVente = rs.getString("etat_vente");
+
+        ArticleVendu a = new ArticleVendu(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, utilisateur, categorie, etatVente);
+        
+        return a;
+    }
+    
+    private Enchere getEnchere(ResultSet rs) throws SQLException {
+    	Integer noEnchere = rs.getInt("no_enchere");
+    	LocalDate dateEnchere = rs.getDate("date_enchere").toLocalDate();
+    	Integer montantEnchere = rs.getInt("montant_enchere");
+    	
+    	Enchere enchere = new Enchere(noEnchere, dateEnchere, montantEnchere);
+    	return enchere;
+    }
+    
     private Utilisateur getUtilisateur(ResultSet rs) throws SQLException {
+    	Integer noUtilisateur = rs.getInt("no_utilisateur");
         String pseudo = rs.getString("pseudo");
         String nom = rs.getString("nom");
         String prenom = rs.getString("prenom");
@@ -37,8 +70,16 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         String motDePasse = rs.getString("mot_de_passe");
         Integer credit = rs.getInt("credit");
         Boolean administrateur = rs.getBoolean("administrateur");
-
-        Utilisateur u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+        
+        List<ArticleVendu> lstArticlesVendus = getArticle(rs);
+        List<ArticleVendu> lstArticlesAchetes = getArticle(rs);
+        List<Enchere> lstEncheres = getEnchere(rs);
+         
+        Utilisateur u = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur, lstArticlesVendus, lstArticlesAchetes, lstEncheres );
+       
+        
+        
+       
         
         return u;
     }
@@ -84,7 +125,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				utilisateur = getUtilisateur(rs);
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +182,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(2, identifiant);
 			stmt.setString(3, motDePasse);
 			ResultSet rs = stmt.executeQuery();
-			System.out.println(rs);
 			while(rs.next()) {
 				if (getUtilisateur(rs) != null) {
                     results.add(getUtilisateur(rs));

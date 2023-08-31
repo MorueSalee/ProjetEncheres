@@ -99,4 +99,14 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteProfileServlet</display-name>
+    <servlet-name>DeleteProfileServlet</servlet-name>
+    <servlet-class>fr.formation.enchere.ihm.DeleteProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteProfileServlet</servlet-name>
+    <url-pattern>/DeleteProfileServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

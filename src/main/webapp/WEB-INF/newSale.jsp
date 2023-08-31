@@ -14,16 +14,16 @@
       <jsp:include page="nav.jsp"/>
       <h2>Nouvelle vente</h2>
     <section id="new_sale" class="container">
-        <form>
+        <form action="NewSaleServlet"  method="post">
             <img src="" alt=""/>
             <div>
                 <div>
                     <label>Article :</label>
-                    <input type="text"/>
+                    <input type="text" name="nomArticle"/>
                 </div>
                 <div>
                     <label>Description :</label>
-                    <textarea type=""></textarea>
+                    <textarea type="description"></textarea>
                 </div>
                 <div>
                     <label>Categories :</label>
@@ -36,17 +36,17 @@
                     <input type="file">
                 </div>
                 <div>
-                    <label>Mise Ã  prix :</label>
-                    <input type="number">
+                    <label>Mise à prix :</label>
+                    <input type="number" name="prixInitial">
                 </div>
                 <div>
-                    <label>DÃ©but de l'enchÃ¨re :</label>
-                    <input type="date"/>
+                    <label>Début de l'enchère :</label>
+                    <input type="date" name="dateDebutEncheres"/>
 
                 </div>
                 <div>
-                    <label>Fin de l'enchÃ¨re :</label>
-                    <input type="date"/>
+                    <label>Fin de l'enchère :</label>
+                    <input type="date" name="dateFinEncheres"/>
                 </div>
                 <div class="retrait">
                     <h4>Retrait</h4>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div>
-                    <button>Enregister</button>
+                    <input type="submit" value="Enregistrer">
                     <button>Annuler</button>
                     <button>Annuler la vente</button>
                 </div>

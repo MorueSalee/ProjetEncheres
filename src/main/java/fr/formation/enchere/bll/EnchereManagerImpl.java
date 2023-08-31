@@ -8,8 +8,15 @@ import fr.formation.enchere.dal.EnchereDAOFact;
 public class EnchereManagerImpl implements EnchereManager {
 
 private EnchereDAO dao = EnchereDAOFact.getEnchereDAO();
-	
-	public void addEnchere(Enchere enchere) throws DALException {
-		//dao.insert(enchere);
+
+	@Override
+	public void add(Enchere enchere) throws DALException {
+		dao.insert(enchere);
 	}
+	
+	@Override
+	public void update(Enchere enchere) throws DALException {
+		dao.update(enchere);
+	}
+		
 }

@@ -45,7 +45,6 @@ public class ConnectionServlet extends HttpServlet {
 	        if (utilisateur == null) {
 	            request.setAttribute("message", "Utilisateur inconnu");
 	            request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
-	            System.out.println("Utilisateur inconnu");
 	        } else {
 	        	// On met l'utilisateur en session
 				request.getSession().setAttribute("utilisateur", utilisateur);

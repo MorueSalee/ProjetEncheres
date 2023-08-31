@@ -28,7 +28,6 @@ public class TestDAL {
             sb.append(art.toString());
             sb.append("\n");
         }
-        System.out.println(sb.toString());
     }
 
 }
