@@ -8,8 +8,21 @@ import fr.formation.enchere.dal.DALException;
 public class CategorieManagerImpl implements CategorieManager {
 
 private CategorieDAO dao = CategorieDAOFact.getCategorieDAO();
-	
-	public void addCategorie(Categorie categorie) throws DALException {
-		//dao.insert(categorie);
+
+	@Override
+	public void add(Categorie categorie) throws DALException {
+		dao.insert(categorie);		
 	}
+
+	@Override
+	public Categorie getById(Integer noCategorie) throws DALException {
+		return dao.getById(noCategorie);
+	}
+
+	@Override
+	public Categorie getByName(String libelle) throws DALException {
+		return dao.getByName(libelle);
+	}
+	
+	
 }

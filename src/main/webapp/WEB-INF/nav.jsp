@@ -3,10 +3,15 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <nav>
-    <h1><a href="${pageContext.request.contextPath}/EnchereServlet">ENI - Enchere  
-    <c:if test="${utilisateur != null}">
-		<p>Bonjour ${utilisateur.pseudo}</p>
-	</c:if></a></h1>
+    <h1>
+    	<a href="${pageContext.request.contextPath}/EnchereServlet">
+    		<img src="img/seagalsteve.jpg" alt="Logo de mon site">
+    		<p>Enchère Seagal Steve</p>
+		</a>
+		<c:if test="${utilisateur != null}">
+			<p>Bonjour ${utilisateur.pseudo}</p>
+		</c:if>
+	</h1>
     <ul>
       <!--  CONDITION DE HORS CONNEXION -->
       <c:if test="${utilisateur == null}">

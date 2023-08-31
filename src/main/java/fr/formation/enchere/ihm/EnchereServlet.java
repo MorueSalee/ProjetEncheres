@@ -1,18 +1,14 @@
 package fr.formation.enchere.ihm;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 import fr.formation.enchere.bll.ArticleVenduManager;
 import fr.formation.enchere.bll.ArticleVenduManagerSing;
 import fr.formation.enchere.dal.DALException;
-import fr.formation.enchere.dal.util.ConnectionProvider;
 import fr.formation.enchere.ihm.model.ArticleVenduModel;
 
 /**

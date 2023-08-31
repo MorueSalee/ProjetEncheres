@@ -2,28 +2,18 @@ package fr.formation.enchere.bo;
 
 public class Retrait {
 	
-	private ArticleVendu articleVendu;
 	private String rue;
 	private String codePostal;
 	private String ville;
 	
 	public Retrait() {
 	}
-
-	public Retrait(ArticleVendu articleVendu, String rue, String codePostal, String ville) {
+	
+	public Retrait(String rue, String codePostal, String ville) {
 		super();
-		this.articleVendu = articleVendu;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-	}
-
-	public ArticleVendu getArticleVendu() {
-		return articleVendu;
-	}
-
-	public void setArticleVendu(ArticleVendu articleVendu) {
-		this.articleVendu = articleVendu;
 	}
 
 	public String getRue() {
@@ -52,8 +42,7 @@ public class Retrait {
 
 	@Override
 	public String toString() {
-		return "Retrait [articleVendu=" + articleVendu + ", rue=" + rue + ", codePostal=" + codePostal + ", ville="
-				+ ville + "]";
+		return "Retrait [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + "]";
 	}
 
 }

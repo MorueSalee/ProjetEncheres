@@ -16,35 +16,35 @@
     <section id="profile" class="container">
         <div>
             <p>Nom : </p>
-            <p>${sessionScope.utilisateur.email}</p>
+            <p>${sessionScope.utilisateur.nom}</p>
         </div>
         <div>
-            <p>Prénom : </p>
-            <p>MorueSalée</p>
+            <p>Pr�nom : </p>
+            <p>${sessionScope.utilisateur.prenom}</p>
         </div>
         <div>
             <p>Email : </p>
-            <p>MorueSalée</p>
+            <p>${sessionScope.utilisateur.email}</p>
         </div>
         <div>
             <p>Téléphone : </p>
-            <p>MorueSalée</p>
+            <p>${sessionScope.utilisateur.telephone}</p>
         </div>
         <div>
             <p>Rue : </p>
-            <p>MorueSalée</p>
+            <p>${sessionScope.utilisateur.rue}</p>
         </div>
         <div>
             <p>Code postale : </p>
-            <p>MorueSalée</p>
+            <p>${sessionScope.utilisateur.codePostal}</p>
         </div>
         <div>
             <p>Ville : </p>
-            <p>MorueSalée</p>
+            <p>${sessionScope.utilisateur.ville}</p>
         </div>
         <!-- CONDITION SI C'EST NOTRE PROFIL UTILISATEUR -->
         <div class="button_update_profile">
-            <button>Modifier</button>
+            <a href="${pageContext.request.contextPath}/UpdateProfileServlet">Modifier</button>
         </div>
     </section>
 </body>

@@ -5,28 +5,21 @@ import java.time.LocalDate;
 public class Enchere {
 	
 	private Integer noEnchere;
-	private Utilisateur utilisateur;
-	private ArticleVendu articleVendu;
 	private LocalDate dateEnchere;
 	private Integer montantEnchere;
 
 	public Enchere() {
 	}
-
-	public Enchere(Utilisateur utilisateur, ArticleVendu articleVendu, LocalDate dateEnchere, Integer montantEnchere) {
+	
+	public Enchere(Integer noEnchere, LocalDate dateEnchere, Integer montantEnchere) {
 		super();
-		this.utilisateur = utilisateur;
-		this.articleVendu = articleVendu;
+		this.noEnchere = noEnchere;
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
 	}
 
-	public Enchere(Integer noEnchere, Utilisateur utilisateur, ArticleVendu articleVendu, LocalDate dateEnchere,
-			Integer montantEnchere) {
+	public Enchere(LocalDate dateEnchere, Integer montantEnchere) {
 		super();
-		this.noEnchere = noEnchere;
-		this.utilisateur = utilisateur;
-		this.articleVendu = articleVendu;
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
 	}
@@ -37,22 +30,6 @@ public class Enchere {
 
 	public void setNoEnchere(Integer noEnchere) {
 		this.noEnchere = noEnchere;
-	}
-
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public ArticleVendu getArticleVendu() {
-		return articleVendu;
-	}
-
-	public void setArticleVendu(ArticleVendu articleVendu) {
-		this.articleVendu = articleVendu;
 	}
 
 	public LocalDate getDateEnchere() {
@@ -73,8 +50,8 @@ public class Enchere {
 
 	@Override
 	public String toString() {
-		return "Enchere [noEnchere=" + noEnchere + ", utilisateur=" + utilisateur + ", articleVendu=" + articleVendu
-				+ ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + "]";
+		return "Enchere [noEnchere=" + noEnchere + ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere
+				+ "]";
 	}
 
 }
