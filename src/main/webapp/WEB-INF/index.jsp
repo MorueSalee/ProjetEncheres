@@ -17,61 +17,64 @@
       <div class="filter">
         <div >
           <label>Filtres :</label>
-          <input />
+          <input type="text" name="nomArticle"/>
         </div>
         <div>
           <label>Catégories : </label>
-          <select name="" id="">
+          <select name="categorie" id="">
+          	<option>Toutes</option>
             <option>Informatique</option>
             <option>Ameublement</option>
             <option>Vêtement</option>
             <option>Sport&Loisirs</option>
           </select>
         </div>
-        <div class="filter_radio">
-          <div>
-            <div>
-              <input type="radio" id="" name="filter_radio">
-              <label>Achats</label>
-            </div>
-            <div class="sous_filter">
-              <div>
-                <input type="checkbox"/>
-                <label>enchères ouvertes</label>
-              </div>
-              <div>
-                <input type="checkbox"/>
-                <label>mes enchères en cours</label>
-              </div>
-              <div>
-                <input type="checkbox"/>
-                <label>mes enchères remportés</label>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div>
-              <input type="radio" id="" name="filter_radio">
-              <label>Mes ventes</label>
-            </div>
-            <div class="sous_filter">
-              <div>
-                <input type="checkbox"/>
-                <label>mes ventes en cours</label>
-              </div>
-              <div>
-                <input type="checkbox"/>
-                <label>ventes non débutés</label>
-              </div>
-              <div>
-                <input type="checkbox"/>
-                <label>ventes terminés</label>
-              </div>
-            </div>
-          </div>
-       </div>
+        <c:if test="${utilisateur != null}">
+	        <div class="filter_radio">
+	          <div>
+	            <div>
+	              <input type="radio" id="achats_radio" name="filter_radio" checked>
+	              <label for="achats_radio">Achats</label>
+	            </div>
+	            <div class="sous_filter">
+	              <div>
+	                <input type="checkbox" id="ench_open" checked/>
+	                <label for="ench_open">enchères ouvertes</label>
+	              </div>
+	              <div>
+	                <input type="checkbox" id="ench_current"/>
+	                <label for="ench_current">mes enchères en cours</label>
+	              </div>
+	              <div>
+	                <input type="checkbox" id="ench_won"/>
+	                <label for="ench_won">mes enchères remportées</label>
+	              </div>
+	            </div>
+	          </div>
+	          <div>
+	            <div>
+	              <input type="radio" id="ventes_radio" name="filter_radio">
+	              <label for="ventes_radio">Mes ventes</label>
+	            </div>
+	            <div class="sous_filter">
+	              <div>
+	                <input type="checkbox" id="vente_ongoing" disabled="disabled" checked/>
+	                <label for="vente_ongoing">mes ventes en cours</label>
+	              </div>
+	              <div>
+	                <input type="checkbox" id="vente_not_started" disabled="disabled"/>
+	                <label for="vente_not_started">ventes non débutées</label>
+	              </div>
+	              <div>
+	                <input type="checkbox" id="vente_completed" disabled="disabled"/>
+	                <label for="vente_completed">ventes terminées</label>
+	              </div>
+	            </div>
+	          </div>
+	       </div>
+      </c:if>
       </div>
-      <button>Rechercher</button>
+      <input type="submit" name="btnRechercher" value="Rechercher">
     </form>
   </section>
   <section class="container">
@@ -90,5 +93,7 @@
       	</c:forEach>
     </div>
   </section>
+  
 </body>
 </html>
+<script src="js/indexRadioSwitch.js"></script>
