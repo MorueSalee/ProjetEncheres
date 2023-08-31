@@ -20,6 +20,22 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
             "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
     final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, " +
             "prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ?, etat_vente = ? WHERE no_article = ?";
+    final String SELECT_BY_ID = "SELECT * FROM ARTICLES_VENDUS " +
+			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
+			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
+			"WHERE no_article = ?";
+    final String SELECT_BY_NAME = "SELECT * FROM ARTICLES_VENDUS " +
+			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
+			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
+			"WHERE nom_article = ?";
+    final String SELECT_BY_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS " +
+			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
+			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
+			"WHERE no_categorie = ?";
+    final String SELECT_BY_NAME_AND_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS " +
+			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
+			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
+			"WHERE nom_article = ? AND no_categorie = ?";
 
     private ArticleVendu getArticle(ResultSet rs) throws SQLException {
     	Integer noArticle = rs.getInt("no_article");
@@ -136,6 +152,89 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	        throw new DALException((e.getMessage()));
 	    }
 		
+	}
+
+	@Override
+	public ArticleVendu getById(Integer id) throws DALException {		
+		ArticleVendu article = null;
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT_BY_ID);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			article = getArticle(rs);
+			article.setNoArticle(rs.getInt("no_article"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return article;
+	}
+
+	@Override
+	public List<ArticleVendu> getByName(String name) throws DALException {
+		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT_BY_NAME);
+			stmt.setString(1, name);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				ArticleVendu article = getArticle(rs);
+				article.setNoArticle(rs.getInt("no_article"));
+				results.add(article);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return results;
+	}
+
+	@Override
+	public List<ArticleVendu> getByCategorie(Categorie categorie) throws DALException {
+		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT_BY_CATEGORIE);
+			stmt.setInt(1, categorie.getNoCategorie());
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				ArticleVendu article = getArticle(rs);
+				article.setNoArticle(rs.getInt("no_article"));
+				results.add(article);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return results;
+	}
+
+	@Override
+	public List<ArticleVendu> getByNameAndCategorie(String name, Categorie categorie) throws DALException {
+List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT_BY_NAME_AND_CATEGORIE);
+			stmt.setString(1, name);
+			stmt.setInt(2, categorie.getNoCategorie());
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				ArticleVendu article = getArticle(rs);
+				article.setNoArticle(rs.getInt("no_article"));
+				results.add(article);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return results;
 	}
 
 }
