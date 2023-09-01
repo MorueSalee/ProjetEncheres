@@ -44,7 +44,7 @@
 #register .seagal img {
 	position: absolute;
 	bottom: 0;
-	right: 20px;
+	right: 0;
 	display: block;
 	width: 60%;
 	opacity: 0.3;
@@ -82,13 +82,16 @@
 	font-weight: bold;
 	background: #3d404b;
 	border-radius: 10px;
+	border: 1px solid grey;
 }
 
 #register label {
 	font-size: 15px;
 	position: relative;
 	top: 8px;
-	left: 10px;
+	left: 5px;
+	background: linear-gradient(to bottom, rgb(39, 42, 55) 55%, #3d404b 45%);
+	padding: 0 5px;
 }
 
 #register .register_button {
