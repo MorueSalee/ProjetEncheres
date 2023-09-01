@@ -43,8 +43,8 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 	}
 
 	@Override
-	public List<ArticleVendu> getByNameAndCategorie(String name, Categorie categorie) throws DALException {
-		List<ArticleVendu> result = dao.getByNameAndCategorie(name, categorie);;
+	public List<ArticleVendu> getByNameAndCategorie(String name, String libelle) throws DALException {
+		List<ArticleVendu> result = dao.getByNameAndCategorie(name, libelle);
 		
 		return result;
 	}
@@ -52,6 +52,13 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 	@Override
 	public ArticleVendu getById(Integer noArticle) throws DALException {
 		ArticleVendu result = dao.getById(noArticle);;
+		
+		return result;
+	}
+	
+	@Override
+	public List<ArticleVendu> getByCategorieLibelle(String libelle) throws DALException {
+		List<ArticleVendu> result = dao.getByCategorieLibelle(libelle);;
 		
 		return result;
 	}

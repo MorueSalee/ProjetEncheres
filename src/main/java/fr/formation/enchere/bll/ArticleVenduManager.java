@@ -13,5 +13,6 @@ public interface ArticleVenduManager {
 	public ArticleVendu getById(Integer noArticle) throws DALException;
 	public List<ArticleVendu> getByName(String name) throws DALException;
 	public List<ArticleVendu> getByCategorie(Categorie categorie) throws DALException;
-	public List<ArticleVendu> getByNameAndCategorie(String name, Categorie categorie) throws DALException;
+	public List<ArticleVendu> getByNameAndCategorie(String name, String libelle) throws DALException;
+	public List<ArticleVendu> getByCategorieLibelle(String libelle) throws DALException;
 }

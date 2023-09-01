@@ -2,16 +2,33 @@ package fr.formation.enchere.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+
 import fr.formation.enchere.bo.Enchere;
 import fr.formation.enchere.dal.util.ConnectionProvider;
 
 public class EnchereDAOImpl implements EnchereDAO {
 	
-	final String INSERT = "INSERT INTO ENCHERES(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES(?, ?, ?, ?);";
-	final String UPDATE = "UPDATE ENCHERES SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur=? AND no_article=?";
+	final String INSERT = """
+			INSERT INTO ENCHERES(no_utilisateur, no_article, date_enchere, montant_enchere) 
+			VALUES(?, ?, ?, ?);
+			""";
+	final String UPDATE = """
+			UPDATE ENCHERES SET date_enchere = ?, montant_enchere = ? 
+			WHERE no_utilisateur=? AND no_article=?;
+			""";
 	
+	public static Enchere getEnchere(ResultSet rs) throws SQLException {
+    	Integer noEnchere = rs.getInt("no_enchere");
+    	LocalDate dateEnchere = rs.getDate("date_enchere").toLocalDate();
+    	Integer montantEnchere = rs.getInt("montant_enchere");
+    	
+    	Enchere enchere = new Enchere(noEnchere, dateEnchere, montantEnchere);
+    	return enchere;
+    }
 	
 	@Override
 	public void insert(Enchere enchere) throws DALException {

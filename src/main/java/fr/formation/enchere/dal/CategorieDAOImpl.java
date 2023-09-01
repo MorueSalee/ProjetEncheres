@@ -11,10 +11,24 @@ import fr.formation.enchere.dal.util.ConnectionProvider;
 
 public class CategorieDAOImpl implements CategorieDAO {
 
-	final String SELECT_BY_ID = "SELECT * FROM CATEGORIES WHERE no_categorie=?;";
-	final String SELECT_BY_NAME = "SELECT * FROM CATEGORIES WHERE libelle=?;";
-	final String INSERT = "INSERT INTO CATEGORIES(libelle) VALUES(?);";
+	final String SELECT_BY_ID = """
+			SELECT * FROM CATEGORIES WHERE no_categorie=?;
+			""";
+	final String SELECT_BY_NAME = """
+			SELECT * FROM CATEGORIES WHERE libelle=?;
+			""";
+	final String INSERT = """
+			INSERT INTO CATEGORIES(libelle) VALUES(?);
+			""";
 	
+	public static Categorie getCategorie(ResultSet rs) throws SQLException {
+    	Integer noCategorie = rs.getInt("no_categorie");
+    	String libelle = rs.getString("libelle");
+    	
+    	Categorie c = new  Categorie(noCategorie, libelle); 
+    	
+    	return c;
+    }
 	
 	@Override
 	public void insert(Categorie categorie) throws DALException {
@@ -46,9 +60,9 @@ public class CategorieDAOImpl implements CategorieDAO {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				Integer noCategorie = rs.getInt("no_categorie");
-				String libelle = rs.getString("libelle");
-				categorie = new Categorie(noCategorie, libelle);
+				if (getCategorie(rs) != null) {
+					categorie = getCategorie(rs);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,10 +81,9 @@ public class CategorieDAOImpl implements CategorieDAO {
 			stmt.setString(1, libelle);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				Integer noCategorie = rs.getInt("no_categorie");
-				String libelleRs = rs.getString("libelle");
-				
-				categorie = new Categorie(noCategorie, libelleRs);
+				if (getCategorie(rs) != null) {
+					categorie = getCategorie(rs);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

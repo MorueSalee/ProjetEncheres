@@ -56,23 +56,31 @@ public class EnchereServlet extends HttpServlet {
 		if (request.getParameter("btnRechercher") != null) {
 			//Recherche par nom d'article
 			if (request.getParameter("nomArticle") != null) {
-				articleModel.setListArticle(articleManager.getByName(request.getParameter("nomArticle")));
+				try {
+					articleModel.setListArticle(articleManager.getByName(request.getParameter("nomArticle")));
+				} catch (DALException e) {
+					e.printStackTrace();
+				}
 			//Recherche par catégorie
 			} else if (request.getParameter("categorie") != "Toutes") {
-				articleModel.setListArticle(articleManager.getByCategorie(request.getParameter("nomArticle")));
+				try {
+					articleModel.setListArticle(articleManager.getByCategorieLibelle(request.getParameter("categorie")));
+				} catch (DALException e) {
+					e.printStackTrace();
+				}
 			//Recherche par nom et catégorie
 			} else if (request.getParameter("nomArticle") != null && request.getParameter("categorie") != null) {
-				
+				try {
+					articleModel.setListArticle(articleManager.getByNameAndCategorie(request.getParameter("nomArticle"), request.getParameter("categorie")));
+				} catch (DALException e) {
+					e.printStackTrace();
+				}
 			}		
-			
-			try {
-				manager.addTask(task);
-			} catch (TaskException e) {
-				message = bundle.getString(e.getMessage());
-			}
 		}
-
-		doGet(request, response);
+			
+		request.setAttribute("articleModel", articleModel);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		//doGet(request, response);
 	}
-
+		
 }
