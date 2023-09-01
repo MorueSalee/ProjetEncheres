@@ -1,0 +1,137 @@
+
+#register {
+	height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+
+#register h2 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+#register .body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#register .d-flex {
+	display: flex;
+	border-bottom: 1px solid #626262;
+}
+
+#register .d-flex:nth-last-child() {
+	border: none;
+}
+
+#register .d-flex div {
+	padding: 0 10px;
+}
+
+#register .form_register .position {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	width: 500px;
+}
+
+
+#register .seagal img {
+	position: absolute;
+	bottom: 0;
+	right: 20px;
+	display: block;
+	width: 60%;
+	opacity: 0.3;
+	z-index: -1;
+}
+
+
+#register .seagal p {
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 110px;
+	position: relative;
+	left: 100px;
+}
+
+#register form {
+	width: 60%;
+}
+
+#register .seagal {
+	  width: 40%;
+	  height: 100%;
+	  display: flex;
+	  align-items: center;
+	  justify-content: end;
+	  padding-bottom: 50px;
+}
+
+
+#register input {
+	border: none;
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background: #3d404b;
+	border-radius: 10px;
+}
+
+#register label {
+	font-size: 15px;
+	position: relative;
+	top: 8px;
+	left: 10px;
+}
+
+#register .register_button {
+	padding: 20px 5px;
+}
+
+#register .btn_register {
+	background-color: #1d8ef3;
+	border-radius: 25px;
+	width: 200px;
+	margin-right: 10px;
+}
+
+#register .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+#register .title i {
+  position: relative;
+  top: 29px;
+  right: 15px;
+}
+
+#register .obligatory {
+	padding: 5px;
+	font-style: italic;
+	font-size: 12px;
+}
+
+
+#register .error {
+	color: red;
+	font-size: 16px;
+}
+
+#register .seagal i {
+	position: relative;
+	bottom: 5px;
+}
+
+#register .seagal i:last-child {
+	position: relative;
+	top: 5px;
+}
+

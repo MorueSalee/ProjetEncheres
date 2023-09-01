@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <link rel="stylesheet" href="css/nav.css" />
+            <link rel="stylesheet" href="css/all.css" />
+        
+
 <!DOCTYPE html>
 <nav>
     <h1>
     	<a href="${pageContext.request.contextPath}/EnchereServlet">
-    		<img src="img/seagalsteve.jpg" alt="Logo de mon site">
-    		<p>Enchère Seagal Steve</p>
+    		<p>Enchère Seagal</p>
 		</a>
 		<c:if test="${utilisateur != null}">
 			<p>Bonjour ${utilisateur.pseudo}</p>

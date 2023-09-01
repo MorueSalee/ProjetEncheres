@@ -1,0 +1,16 @@
+nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px 0;
+}
+
+nav ul {
+	display: flex;
+	justify-content: space-around;
+	
+}
+
+nav ul li {
+	padding: 0 10px;
+}

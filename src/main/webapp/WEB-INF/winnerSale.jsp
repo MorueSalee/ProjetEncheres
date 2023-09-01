@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/detailSale.css" />
+    <link rel="stylesheet" href="css/winnerSale.css" />
+    <link rel="stylesheet" href="css/all.css" />
     <title>Document</title>
 </head>
 <body>
