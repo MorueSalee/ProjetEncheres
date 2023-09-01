@@ -15,7 +15,7 @@
   <jsp:include page="nav.jsp"/>
   <h2 class="text-3xl font-bold underline">Liste des enchères</h2>
   <section class="container">
-    <form class="section_search">
+    <form action="EnchereServlet" method="post" class="section_search">
       <div class="filter">
         <div >
           <label>Filtres :</label>

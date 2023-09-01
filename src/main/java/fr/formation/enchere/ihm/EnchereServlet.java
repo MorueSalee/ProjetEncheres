@@ -51,13 +51,15 @@ public class EnchereServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticleVenduModel articleModel = new ArticleVenduModel();
-		
+		System.out.println("sdfds");
 		//Bouton rechercher
 		if (request.getParameter("btnRechercher") != null) {
+			
 			//Recherche par nom d'article
 			if (request.getParameter("nomArticle") != null) {
 				try {
 					articleModel.setListArticle(articleManager.getByName(request.getParameter("nomArticle")));
+					
 				} catch (DALException e) {
 					e.printStackTrace();
 				}

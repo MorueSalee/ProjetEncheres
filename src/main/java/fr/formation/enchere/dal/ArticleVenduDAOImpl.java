@@ -124,14 +124,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			
 			while(rs.next()) {
 				
-				System.out.println("------");
-				if (results.size() != 0) {
-					System.out.println(results.get(results.size()-1).getNoArticle());
-				}
-				
-				System.out.println(rs.getInt("no_article"));
-				System.out.println("------");
-				
 				if (getArticle(rs) != null) {
 					if (results.size() != 0 && rs.getInt("no_article") != results.get(results.size()-1).getNoArticle()) {
 						article = null;
@@ -140,7 +132,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						article = getArticle(rs);
 						article.setNoArticle(rs.getInt("no_article"));
 						results.add(article);
-						System.out.println(article.toString());
 					}
 					if (rs.getInt("no_enchere") != 0) {
 						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
@@ -199,7 +190,9 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						article = getArticle(rs);
 						article.setNoArticle(rs.getInt("no_article"));
 					}
-					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					if (rs.getInt("no_enchere") != 0) {
+						article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
 					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
 					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
 					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
@@ -224,15 +217,21 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				if (getArticle(rs) != null) {
+					if (results.size() != 0 && rs.getInt("no_article") != results.get(results.size()-1).getNoArticle()) {
+						article = null;
+					}
 					if (article == null) {
 						article = getArticle(rs);
 						article.setNoArticle(rs.getInt("no_article"));
+						results.add(article);
 					}
-					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
-					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
-					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
-					results.add(article);
+					if (rs.getInt("no_enchere") != 0) {
+						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					
+					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
+					results.get(results.size() - 1).addRetrait(RetraitDAOImpl.getRetrait(rs));
 				}
 			}
 		} catch (Exception e) {
@@ -254,15 +253,20 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				if (getArticle(rs) != null) {
+					if (results.size() != 0 && rs.getInt("no_article") != results.get(results.size()-1).getNoArticle()) {
+						article = null;
+					}
 					if (article == null) {
 						article = getArticle(rs);
 						article.setNoArticle(rs.getInt("no_article"));
+						results.add(article);
 					}
-					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
-					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
-					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
-					results.add(article);
+					if (rs.getInt("no_enchere") != 0) {
+						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
+					results.get(results.size() - 1).addRetrait(RetraitDAOImpl.getRetrait(rs));
 				}
 			}
 		} catch (Exception e) {
@@ -285,15 +289,20 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				if (getArticle(rs) != null) {
+					if (results.size() != 0 && rs.getInt("no_article") != results.get(results.size()-1).getNoArticle()) {
+						article = null;
+					}
 					if (article == null) {
 						article = getArticle(rs);
 						article.setNoArticle(rs.getInt("no_article"));
+						results.add(article);
 					}
-					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
-					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
-					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
-					results.add(article);
+					if (rs.getInt("no_enchere") != 0) {
+						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
+					results.get(results.size() - 1).addRetrait(RetraitDAOImpl.getRetrait(rs));
 				}
 			}
 		} catch (Exception e) {
@@ -315,15 +324,20 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				if (getArticle(rs) != null) {
+					if (results.size() != 0 && rs.getInt("no_article") != results.get(results.size()-1).getNoArticle()) {
+						article = null;
+					}
 					if (article == null) {
 						article = getArticle(rs);
 						article.setNoArticle(rs.getInt("no_article"));
+						results.add(article);
 					}
-					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
-					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
-					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
-					results.add(article);
+					if (rs.getInt("no_enchere") != 0) {
+						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
+					results.get(results.size() - 1).addRetrait(RetraitDAOImpl.getRetrait(rs));
 				}
 			}
 		} catch (Exception e) {
