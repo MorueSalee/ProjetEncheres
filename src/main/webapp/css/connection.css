@@ -28,20 +28,22 @@
 
 
 #connection form > div input {
-	border: none;
 	padding: 10px;
 	color: white;
 	font-size: 15px;
 	font-weight: bold;
 	background: #3d404b;
 	border-radius: 10px;
+	border: 1px solid grey;
 }
 
 #connection form > div label {
 	font-size: 15px;
 	position: relative;
 	top: 8px;
-	left: 10px;
+	left: 5px;
+	background: linear-gradient(to bottom, rgb(39, 42, 55) 55%, #3d404b 45%);
+	padding: 0 5px;
 }
 
 #connection .btn_connection {
