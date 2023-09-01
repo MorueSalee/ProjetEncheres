@@ -7,37 +7,70 @@ import java.util.List;
 
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
-import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.util.ConnectionProvider;
+import fr.formation.enchere.dal.util.TestServlet;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
-	final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS " +
-			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
-			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;";
-    final String INSERT = "INSERT INTO ARTICLES_VENDUS(" +
-            "nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) " +
-            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
-    final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, " +
-            "prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ?, etat_vente = ? WHERE no_article = ?";
-    final String SELECT_BY_ID = "SELECT * FROM ARTICLES_VENDUS " +
-			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
-			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
-			"WHERE no_article = ?";
-    final String SELECT_BY_NAME = "SELECT * FROM ARTICLES_VENDUS " +
-			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
-			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
-			"WHERE nom_article = ?";
-    final String SELECT_BY_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS " +
-			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
-			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
-			"WHERE no_categorie = ?";
-    final String SELECT_BY_NAME_AND_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS " +
-			"INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
-			"INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie;" +
-			"WHERE nom_article = ? AND no_categorie = ?";
+	final String SELECT_ALL = """
+			SELECT * FROM ARTICLES_VENDUS
+			INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur
+			INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
+			INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
+			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article;
+			""";
+    final String INSERT = """
+    		INSERT INTO ARTICLES_VENDUS
+    		(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente)
+    		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+    		""";
+    final String UPDATE = """
+    		UPDATE ARTICLES_VENDUS
+    		SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, etat_vente=?
+    		WHERE no_article = ?;
+    		""";
+    final String SELECT_BY_ID = """
+    		SELECT * FROM ARTICLES_VENDUS
+    		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur
+    		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
+    		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
+			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
+    		WHERE no_article = ?;
+    		""";
+    final String SELECT_BY_NAME = """
+    		SELECT * FROM ARTICLES_VENDUS
+    		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur
+    		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
+    		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
+			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
+    		WHERE nom_article = ?;
+    		""";
+    final String SELECT_BY_CATEGORIE = """
+    		SELECT * FROM ARTICLES_VENDUS
+    		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur
+    		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
+    		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
+			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
+    		WHERE no_categorie = ?;
+    		""";
+    final String SELECT_BY_NAME_AND_CATEGORIE = """
+    		SELECT * FROM ARTICLES_VENDUS
+    		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur
+    		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
+    		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
+			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
+    		WHERE nom_article = ? AND libelle = ?;
+    		""";
+    final String SELECT_BY_CATEGORIE_LIBELLE = """
+    		SELECT * FROM ARTICLES_VENDUS
+    		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur
+    		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
+    		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
+			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
+    		WHERE libelle = ?;
+    		""";
 
-    private ArticleVendu getArticle(ResultSet rs) throws SQLException {
+    public static ArticleVendu getArticle(ResultSet rs) throws SQLException {
     	Integer noArticle = rs.getInt("no_article");
         String nomArticle = rs.getString("nom_article");
         String description = rs.getString("description");
@@ -45,40 +78,11 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
         LocalDate dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
         Integer prixInitial = rs.getInt("prix_initial");
         Integer prixVente = rs.getInt("prix_vente");
-        Utilisateur utilisateur = getUtilisateur(rs);
-        Categorie categorie = getCategorie(rs);
         String etatVente = rs.getString("etat_vente");
 
-        ArticleVendu a = new ArticleVendu(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, utilisateur, categorie, etatVente);
+        ArticleVendu a = new ArticleVendu(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, etatVente);
         
         return a;
-    }
-    
-    private Utilisateur getUtilisateur(ResultSet rs) throws SQLException {
-    	Integer noUtilisateur = rs.getInt("no_utilisateur");
-        String pseudo = rs.getString("pseudo");
-        String nom = rs.getString("nom");
-        String prenom = rs.getString("prenom");
-        String email = rs.getString("email");
-        String telephone = rs.getString("telephone");
-        String rue = rs.getString("rue");
-        String codePostal = rs.getString("code_postal");
-        String ville = rs.getString("ville");
-        Integer credit = rs.getInt("credit");
-        Boolean administrateur = rs.getBoolean("administrateur");
-
-        Utilisateur u = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit, administrateur);
-        
-        return u;
-    }
-    
-    private Categorie getCategorie(ResultSet rs) throws SQLException {
-    	Integer noCategorie = rs.getInt("no_categorie");
-    	String libelle = rs.getString("libelle");
-    	
-    	Categorie c = new  Categorie(noCategorie, libelle); 
-    	
-    	return c;
     }
     
 	@Override
@@ -111,16 +115,42 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	@Override
 	public List<ArticleVendu> getAll() throws DALException {
-
-		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		List<ArticleVendu> results = new ArrayList<>();
+		ArticleVendu article = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_ALL);
 			ResultSet rs = stmt.executeQuery();
+			
 			while(rs.next()) {
-				ArticleVendu article = getArticle(rs);
-				article.setNoArticle(rs.getInt("no_article"));
-				results.add(article);
+				
+				System.out.println("------");
+				if (results.size() != 0) {
+					System.out.println(results.get(results.size()-1).getNoArticle());
+				}
+				
+				System.out.println(rs.getInt("no_article"));
+				System.out.println("------");
+				
+				if (getArticle(rs) != null) {
+					if (results.size() != 0 && rs.getInt("no_article") != results.get(results.size()-1).getNoArticle()) {
+						article = null;
+					}
+					if (article == null) {
+						article = getArticle(rs);
+						article.setNoArticle(rs.getInt("no_article"));
+						results.add(article);
+						System.out.println(article.toString());
+					}
+					if (rs.getInt("no_enchere") != 0) {
+						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
+					results.get(results.size() - 1).addRetrait(RetraitDAOImpl.getRetrait(rs));
+
+				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,8 +193,18 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			
-			article = getArticle(rs);
-			article.setNoArticle(rs.getInt("no_article"));
+			while(rs.next()) {
+				if (getArticle(rs) != null) {
+					if (article == null) {
+						article = getArticle(rs);
+						article.setNoArticle(rs.getInt("no_article"));
+					}
+					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
+					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException(e.getMessage());
@@ -176,15 +216,24 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	@Override
 	public List<ArticleVendu> getByName(String name) throws DALException {
 		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		ArticleVendu article = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_NAME);
 			stmt.setString(1, name);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				ArticleVendu article = getArticle(rs);
-				article.setNoArticle(rs.getInt("no_article"));
-				results.add(article);
+				if (getArticle(rs) != null) {
+					if (article == null) {
+						article = getArticle(rs);
+						article.setNoArticle(rs.getInt("no_article"));
+					}
+					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
+					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
+					results.add(article);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -197,15 +246,24 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	@Override
 	public List<ArticleVendu> getByCategorie(Categorie categorie) throws DALException {
 		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		ArticleVendu article = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_CATEGORIE);
 			stmt.setInt(1, categorie.getNoCategorie());
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				ArticleVendu article = getArticle(rs);
-				article.setNoArticle(rs.getInt("no_article"));
-				results.add(article);
+				if (getArticle(rs) != null) {
+					if (article == null) {
+						article = getArticle(rs);
+						article.setNoArticle(rs.getInt("no_article"));
+					}
+					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
+					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
+					results.add(article);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -216,18 +274,57 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> getByNameAndCategorie(String name, Categorie categorie) throws DALException {
-List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+	public List<ArticleVendu> getByNameAndCategorie(String name, String libelle) throws DALException {
+		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		ArticleVendu article = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_NAME_AND_CATEGORIE);
 			stmt.setString(1, name);
-			stmt.setInt(2, categorie.getNoCategorie());
+			stmt.setString(2, libelle);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				ArticleVendu article = getArticle(rs);
-				article.setNoArticle(rs.getInt("no_article"));
-				results.add(article);
+				if (getArticle(rs) != null) {
+					if (article == null) {
+						article = getArticle(rs);
+						article.setNoArticle(rs.getInt("no_article"));
+					}
+					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
+					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
+					results.add(article);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return results;
+	}
+	
+	@Override
+	public List<ArticleVendu> getByCategorieLibelle(String libelle) throws DALException {
+		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
+		ArticleVendu article = null;
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT_BY_CATEGORIE_LIBELLE);
+			stmt.setString(1, libelle);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				if (getArticle(rs) != null) {
+					if (article == null) {
+						article = getArticle(rs);
+						article.setNoArticle(rs.getInt("no_article"));
+					}
+					article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
+					article.addCategorie(CategorieDAOImpl.getCategorie(rs));
+					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
+					results.add(article);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

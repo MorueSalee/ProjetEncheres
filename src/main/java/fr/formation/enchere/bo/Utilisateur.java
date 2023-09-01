@@ -18,12 +18,11 @@ public class Utilisateur {
 	private Integer credit;
 	private Boolean administrateur;
 	private List<ArticleVendu> listeArticlesVendus = new ArrayList<>();
-    private List<ArticleVendu> listeArticlesAchetes = new ArrayList<>();
-    private List<Enchere> encheres = new ArrayList<>();
+    private List<Enchere> listeEncheres = new ArrayList<>();
 	
 	public Utilisateur() {
 	}
-	
+
 	public Utilisateur(String pseudo, String nom, String prenom, String email,
 			String telephone, String rue, String codePostal, String ville, String motDePasse, Integer credit,
 			Boolean administrateur) {
@@ -173,29 +172,20 @@ public class Utilisateur {
 	}
 	
 	
-
-	public List<ArticleVendu> getListeArticlesVendus() {
+	public List<ArticleVendu> getListeArticles() {
 		return listeArticlesVendus;
 	}
 
-	public void setListeArticlesVendus(List<ArticleVendu> listeArticlesVendus) {
-		this.listeArticlesVendus = listeArticlesVendus;
+	public void setListeArticles(List<ArticleVendu> listeArticles) {
+		this.listeArticlesVendus = listeArticles;
 	}
 
-	public List<ArticleVendu> getListeArticlesAchetes() {
-		return listeArticlesAchetes;
+	public List<Enchere> getListeEncheres() {
+		return listeEncheres;
 	}
 
-	public void setListeArticlesAchetes(List<ArticleVendu> listeArticlesAchetes) {
-		this.listeArticlesAchetes = listeArticlesAchetes;
-	}
-
-	public List<Enchere> getEncheres() {
-		return encheres;
-	}
-
-	public void setEncheres(List<Enchere> encheres) {
-		this.encheres = encheres;
+	public void setListeEncheres(List<Enchere> listeEncheres) {
+		this.listeEncheres = listeEncheres;
 	}
 
 	@Override
@@ -204,7 +194,17 @@ public class Utilisateur {
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + ", listeArticlesVendus=" + listeArticlesVendus
-				+ ", listeArticlesAchetes=" + listeArticlesAchetes + ", encheres=" + encheres + "]";
+				+ ", listeArticlesAchetes=" + ", encheres=" + listeEncheres + "]";
+	}
+	
+	public void addEnchere(Enchere e) {
+		listeEncheres.add(e);
+		e.setUtilisateur(this);
+	}
+	
+	public void addArticle(ArticleVendu a) {
+		listeArticlesVendus.add(a);
+		a.setUtilisateur(this);
 	}
 
 }

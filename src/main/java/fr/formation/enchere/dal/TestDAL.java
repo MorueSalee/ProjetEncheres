@@ -1,6 +1,5 @@
 package fr.formation.enchere.dal;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import fr.formation.enchere.bo.ArticleVendu;

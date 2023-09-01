@@ -1,7 +1,5 @@
 package fr.formation.enchere.bll;
 
-import java.util.List;
-
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
 import fr.formation.enchere.dal.UtilisateurDAO;
@@ -25,33 +23,26 @@ private UtilisateurDAO dao = UtilisateurDAOFact.getUtilisateurDAO();
 	}
 	
 	public Utilisateur check(String identifiant, String motDePasse) throws DALException {
-	    List<Utilisateur> users;
-		users = dao.findByLoginAndPassword(identifiant, motDePasse);
-		if (!users.isEmpty()) {
-	        return users.get(0);
-	    }
 		
-	    return null;
+		return dao.findByLoginAndPassword(identifiant, motDePasse);
 	}
 	
 	private boolean isPseudoUnique(String pseudo) throws DALException {
 	    // Vérifier si le pseudo est unique dans la base de données
-	    List<Utilisateur> usersWithPseudo;
-	    Boolean result = false;
-		usersWithPseudo = dao.findByPseudo(pseudo);
-		result = usersWithPseudo.isEmpty();
+		if (dao.findByPseudo(pseudo) == null) {
+			return true;
+		}
 		
-	    return result;
+	    return false;
 	}
 	
 	private boolean isEmailUnique(String email) throws DALException {
 	    // Vérifier si l'email est unique dans la base de données
-	    List<Utilisateur> usersWithEmail;
-	    Boolean result = false;
-		usersWithEmail = dao.findByEmail(email);
-		result = usersWithEmail.isEmpty();
+	    if (dao.findByEmail(email) == null) {
+			return true;
+		}
 		
-	    return result;
+	    return false;
 	}
 	
 	public Utilisateur findById(Integer id) throws DALException {
