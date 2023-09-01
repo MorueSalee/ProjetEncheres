@@ -5,34 +5,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/connection.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <title>Document</title>
 </head>
 <body>
     <jsp:include page="nav.jsp"/>
-    <h2>Connexion</h2>
     <section id="connection" class="container">
         <form action="ConnectionServlet" method="post">
+        	<h2>Login.</h2>
             <div>
-                <label>Identifiant : </label>
+            	<div class="title">
+	                <label>Identifiant</label>
+					 <i class="fa-solid fa-address-card"></i>
+				 </div>
                 <input type="text" name="identifiant"/>
             </div>
             <div>
-                <label>Mot de passe : </label>
+            	<div class="title">
+                	<label>Mot de passe</label>
+                	<i class="fa-solid fa-lock"></i>
+                </div>
                 <input type="password" name="motDePasse"/>
             </div>
             <div>
-                <input type="submit" value="Connexion"/> 
-                <div>
+                <div class="remember">
                     <div class="connection_checkbox">
                         <input type="checkbox">
-                        <label>Se souvenir de moi</label>
+                        <a>Se souvenir de moi</label>
                     </div>
                     <a href="#">Mot de passe oublié</a>
                 </div>
+				<input class="btn_connection" type="submit" value="Connexion"/> 
             </div>
         </form>
         <p>${message}</p>
+        <p class="replique">
+        	<i class="fa-solid fa-quote-left"></i>
+        	Ils ont pas voulu de moi en enfer, c'est pas faute d'avoir essayé
+	        <i class="fa-solid fa-quote-right"></i>
+        </p>
+        <img src="img/steven_seagal_debout.png" />
     </section>
 </body>
 </html>

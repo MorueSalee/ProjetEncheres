@@ -5,69 +5,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/formUpdateRegister.css">
-       <link rel="stylesheet" href="${pageContext.request.contextPath}/formUpdateRegister.css" />
-    
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <title>S'inscrire</title>
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
+      
+      <section id="register" class="container">
       <h2>S'inscrire</h2>
-      <section id="profile_register" class="container">
+      <div class="body">
         <form action="RegisterServlet"  method="post">
-            <div class="form_profile_register">
-                <div class="form_left">
-                    <div>
-                        <label>Pseudo :</label>
-                        <input type="text" name="pseudo"/>
-                    </div>
-                    <div>
-                        <label>Prénom :</label>
-                        <input type="text" name="prenom"/>
-                    </div>
-                    <div>
-                        <label>Téléphone :</label>
-                        <input type="text" name="telephone"/>
-                    </div>
-                    <div>
-                        <label>Code postal :</label>
-                        <input type="text" name="codePostal"/>
-                    </div>
-                    <div>
-                        <label>Mot de passe :</label>
-                        <input type="text" name="motDePasse" />
-                    </div>
-                </div>
-                <div class="form_right">
-                    <div>
-                        <label>Nom :</label>
-                        <input type="text" name="nom"/>
-                    </div>
-                    <div>
-                        <label>Email :</label>
-                        <input type="text" name="email"/>
-                    </div>
-                    <div>
-                        <label>Rue :</label>
-                        <input type="text" name="rue"/>
-                    </div>
-                    <div>
-                        <label>Ville :</label>
-                        <input type="text" name="ville"/>
-                    </div>
-                    <div>
-                        <label>Confirmation :</label>
-                        <input type="password" name="motDePasse2"/>
-                    </div>
-                </div>
+            <div class="form_register">
+               <div class="d-flex position">
+               		<div class="title">
+	                   <label>Pseudo *</label>
+	                   <i class="fa-solid fa-id-card-clip"></i>
+	                </div>
+	                <input type="text" name="pseudo"/>
+               </div>
+               <div class="d-flex">
+	               <div class="position">
+	               		<div class="title">
+	                   		<label>Prénom</label>
+	                   		<i class="fa-solid fa-user"></i>
+	                   	</div>
+	                   <input type="text" name="prenom"/>
+	               </div>
+	               <div class="position">
+	               		<div class="title">
+		                   <label>Nom</label>
+		                   <i class="fa-solid fa-id-card-clip"></i>
+	                   </div>
+	                   <input type="text" name="nom"/>
+	               </div>
+	           </div>
+	           <div class="d-flex">
+	               <div class="position">
+	               		<div class="title">
+		                   <label>Téléphone</label>
+		                   <i class="fa-solid fa-phone"></i>
+	                   </div>
+	                   <input type="text" name="telephone"/>
+	               </div>
+	               <div class="position">
+	               		<div class="title">
+		                   <label>Email *</label>
+		                   <i class="fa-solid fa-envelope"></i>
+	                   </div>
+	                   <input type="text" name="email"/>
+	               </div>
+               </div>
+               <div class="d-flex">
+	               <div class="position">
+	               		<div class="title">
+	                   		<label>Rue</label>
+	                   		<i class="fa-solid fa-street-view"></i>
+	                   </div>
+	                   <input type="text" name="rue"/>
+	               </div>
+	               <div class="position">
+	               		<div class="title">
+	                   		<label>Ville</label>
+	                   		<i class="fa-solid fa-city"></i>
+	                   </div>
+	                   <input type="text" name="ville"/>
+	               </div>
+	               <div class="position">
+	               		<div class="title">
+	                   		<label>Code postal</label>
+	                   		<i class="fa-solid fa-building"></i>
+	                   </div>
+	                   <input type="text" name="codePostal"/>
+	               </div>
+	           </div>
+	           <div class="d-flex">
+	               <div class="position">
+	               		<div class="title">
+	                   		<label>Mot de passe *</label>
+	                   		<i class="fa-solid fa-lock"></i>
+	                   	</div>
+	                   <input type="password" name="motDePasse" />
+	               </div>
+					<div class="position">
+						<div class="title">
+	                   		<label>Confirmation *</label>
+	                   		<i class="fa-solid fa-lock"></i>
+	                   </div>
+	                   <input type="password" name="motDePasse2"/>
+	               </div>
+	           </div>
             </div>
+            <p class="obligatory">* Champs obligatoire</p>
             <!--  CONDITION D'INSCRIPTION -->
             <div class="register_button">
-                <input type="submit" value="Inscription"/> 
+                <input class="btn_register" type="submit" value="Inscription"/> 
                 <a href="${pageContext.request.contextPath}/ConnectionServlet">Annuler</a>
             </div>
-            <p>${message}</p>
+            <p class="error">${message}</p>
         </form>
-      </section>
+        <div class="seagal">
+	        <p>
+	        <i class="fa-solid fa-quote-left"></i>
+	        Mon contact à Washington dit qu'on n'a pas affaire à un élève mais qu'on a affaire au professeur.
+	        <i class="fa-solid fa-quote-right"></i>
+	        </p>
+	        <img src="img/bg_seagal.png" />
+        </div>
+       </div>
+     </section>
 </body>
 </html>

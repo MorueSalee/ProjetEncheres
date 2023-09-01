@@ -8,6 +8,8 @@
 	<meta charset="ISO-8859-1">
   <title>Enchères</title>
   <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/all.css" />
+  
 </head>
 <body>
   <jsp:include page="nav.jsp"/>
