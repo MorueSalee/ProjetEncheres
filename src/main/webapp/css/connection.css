@@ -1,78 +1,101 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-ul li {
-    list-style: none;
-}
-
-.container {
-    width: 900px;
-    margin: auto;
-}
-
-/*****************************************/
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    background-color: grey;
-    padding: 20px 0;
-    color: white;
-}
-
-nav ul {
-    display: flex;
-    align-items: center;
-}
-
-nav ul li {
-    padding: 0 10px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-/*******************************************/
-
-h2 {
-    text-align: center;
-    padding: 10px 0;
-}
-
-/**********************************/
-
 #connection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	min-height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-#connection label {
-    display: block;
-    width: 150px;
+#connection h2 {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
 }
 
 #connection form > div {
-    display: flex;
-    padding: 10px 0;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	width: 500px;
 }
 
-#connection button {
-    padding: 15px 25px;
-    margin: 10px;
+#connection form > div:last-child {
+	background: none;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+}
+
+
+#connection form > div input {
+	border: none;
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background: #3d404b;
+	border-radius: 10px;
+}
+
+#connection form > div label {
+	font-size: 15px;
+	position: relative;
+	top: 8px;
+	left: 10px;
+}
+
+#connection .btn_connection {
+	background-color: #1d8ef3;
+	border-radius: 25px;
+	width: 200px;
+}
+
+#connection .remember {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	width: 100%;
 }
 
 #connection .connection_checkbox {
-    display: flex;
-    margin: 10px 0;
+	display: flex;
 }
 
-#connection .connection_checkbox input {
-    margin-right: 10px;
+#connection .remember a {
+	text-decoration: underline;
+	padding: 5px;
 }
+
+#connection .title {
+	display: flex;
+	justify-content: space-between;
+}
+
+#connection .title i {
+	position: relative;
+	top: 27px;
+	right: 15px;
+
+}
+
+#connection img {
+	position: absolute;
+	left: 50px;
+	bottom: -40px;
+	opacity: 0.7;
+}
+
+#connection .replique {
+	position: absolute;
+	bottom: 50px;
+	left: 275px;
+	font-size: 20px;
+	font-weight: bold;
+	width: 278px;
+	z-index: 1;
+}
+
+
+
+

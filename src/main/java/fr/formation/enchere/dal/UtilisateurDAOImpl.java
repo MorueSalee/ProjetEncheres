@@ -19,10 +19,10 @@ import fr.formation.enchere.dal.util.ConnectionProvider;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
-	final String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
-	final String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
-	final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo=? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
-	final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email=? INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur;";
+	final String SELECT_BY_ID = "SELECT * FROM UTILISATEURS INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur WHERE no_utilisateur=?;";
+	final String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * FROM UTILISATEURS INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ?;";
+	final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur WHERE pseudo=?;";
+	final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur WHERE email=?;";
     final String INSERT = "INSERT INTO UTILISATEURS(" +
             "pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) " +
             "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
