@@ -12,26 +12,26 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	final String SELECT_BY_ID = """
 			SELECT * FROM UTILISATEURS 
-			INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
-			INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
+			LEFT JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
+			LEFT JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
 			WHERE UTILISATEURS.no_utilisateur=?;
 			""";
 	final String SELECT_BY_LOGIN_AND_PASSWORD = """
 			SELECT * FROM UTILISATEURS 
-			INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
-			INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
+			LEFT JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
+			LEFT JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
 			WHERE (UTILISATEURS.pseudo = ? OR UTILISATEURS.email = ?) AND UTILISATEURS.mot_de_passe = ?;
 			""";
 	final String SELECT_BY_PSEUDO = """
 			SELECT * FROM UTILISATEURS 
-			INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
-			INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
+			LEFT JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
+			LEFT JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
 			WHERE UTILISATEURS.pseudo=?;
 			""";
 	final String SELECT_BY_EMAIL = """
 			SELECT * FROM UTILISATEURS 
-			INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
-			INNER JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
+			LEFT JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur 
+			LEFT JOIN ENCHERES ON UTILISATEURS.no_utilisateur = ENCHERES.no_utilisateur 
 			WHERE UTILISATEURS.email=?;
 			""";
     final String INSERT = """
@@ -165,7 +165,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur findByLoginAndPassword(String identifiant, String motDePasse) throws DALException {
-		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_LOGIN_AND_PASSWORD);
@@ -174,13 +174,18 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(3, motDePasse);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
+				System.out.println(rs.getInt("no_utilisateur"));
 				if (getUtilisateur(rs) != null) {
 					if (utilisateur == null) {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					}
-					utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					if (rs.getInt("no_enchere") != 0) {
+						utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					if (rs.getInt("no_article") != 0) {
+						utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					}
                 }
 			}
 		} catch (Exception e) {
@@ -193,7 +198,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur findByPseudo(String pseudo) throws DALException {
-		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_PSEUDO);
@@ -219,7 +224,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur findByEmail(String email) throws DALException {
-		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_EMAIL);

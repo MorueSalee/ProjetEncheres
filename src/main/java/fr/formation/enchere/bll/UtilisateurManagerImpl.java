@@ -23,7 +23,6 @@ private UtilisateurDAO dao = UtilisateurDAOFact.getUtilisateurDAO();
 	}
 	
 	public Utilisateur check(String identifiant, String motDePasse) throws DALException {
-		
 		return dao.findByLoginAndPassword(identifiant, motDePasse);
 	}
 	
