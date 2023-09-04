@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,42 +13,41 @@
     <title>Document</title>
 </head>
 <body>
+
     <jsp:include page="nav.jsp"/>
     <h2>Détail vente</h2>
     <section id="detail_sale" class="container">
+    	<c:url value="/detailSaleServlet" var="detailUrl">
+    		<c:param name="noArticle" value="${param.noArticle}" />
+		</c:url>
         <img src="" alt="">
         <div class="body_detail">
-            <p>PC</p>
+            <p>${currentArticle.nomArticle}</p>
             <div>
-                <p>Description</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elementum scelerisque convallis. Curabitur purus eros, tristique vel mauris sed, auctor commodo sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam placerat, risus non luctus sodales, augue mauris venenatis erat, ac interdum dolor elit vel eros. Duis arcu diam, ullamcorper sit amet libero et, imperdiet maximus lectus.
-                </p>
+                <p>${currentArticle.description}</p>
             </div>
             <div>
-                <p>Catégorie :</p>
-                <p>Informatique</p>
+                <p>${currentArticle.categorie.libelle}</p>
             </div>
             <div>
-                <p>Meilleure offre : </p>
-                <p>210 pts par bob</p>
+                ${currentArticle.prixVente}
             </div>
             <div>
-                <p>Fin de l'enchère : </p>
-                <p>28/08/2008</p>
+                ${currentArticle.dateDebutEncheres}
             </div>
             <div>
-                <p>Retrait : </p>
-                <p>10 allée des alouettes, 44800 Saint Herblain</p>
+                ${currentArticle.dateFinEncheres}
             </div>
             <div>
-                <p>Vendeur : </p>
-                <p>jojo44</p>
+                ${currentArticle.retrait.rue}
             </div>
-            <form>
+            <div>
+                ${currentArticle.utilisateur.pseudo}
+            </div>
+            <form action="${pageContext.request.contextPath}/creditenchere?id=${param.id}" method="post">
                 <p>Ma proposition : </p>
-                <input type="number">
-                <button>Enchérir</button>
+                <input type="number" value="${currentArticle.prixVente}" name="proposition">
+                <input type="submit" value="Ench�rir"  />
             </form>
         </div>
     </section>

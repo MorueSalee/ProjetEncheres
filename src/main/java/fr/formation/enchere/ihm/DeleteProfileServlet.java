@@ -38,6 +38,11 @@ public class DeleteProfileServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
+		if (utilisateur == null) {
+	        response.sendRedirect(request.getContextPath() + "/EnchereServlet");
+	        return;
+	    }
+		
 		try {
 			manager.delete(utilisateur.getNoUtilisateur());
 			RequestDispatcher rd = request.getRequestDispatcher("/logout");

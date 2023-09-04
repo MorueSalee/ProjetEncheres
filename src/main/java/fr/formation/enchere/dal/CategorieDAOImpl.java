@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.dal.util.ConnectionProvider;
@@ -20,6 +22,8 @@ public class CategorieDAOImpl implements CategorieDAO {
 	final String INSERT = """
 			INSERT INTO CATEGORIES(libelle) VALUES(?);
 			""";
+	
+	final String SELECT_ALL = "SELECT * FROM CATEGORIES";
 	
 	public static Categorie getCategorie(ResultSet rs) throws SQLException {
     	Integer noCategorie = rs.getInt("no_categorie");
@@ -91,6 +95,28 @@ public class CategorieDAOImpl implements CategorieDAO {
 		}
 		
 		return categorie;
+	}
+
+	@Override
+	public List<Categorie> getAll() throws DALException {
+		List<Categorie> categories = new ArrayList<Categorie>();
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement statement = cnx.prepareStatement(SELECT_ALL);
+
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				Categorie categorie = new Categorie();
+				categorie.setNoCategorie(rs.getInt("no_categorie"));
+				categorie.setLibelle(rs.getString("libelle"));
+				categories.add(categorie);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return categories;
 	}
 
 }

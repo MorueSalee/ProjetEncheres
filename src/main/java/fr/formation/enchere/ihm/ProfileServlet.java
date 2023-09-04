@@ -34,10 +34,13 @@ public class ProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			HttpSession session = request.getSession();
 	
-			// recuperation d'un utilisateur
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+					    		    
+		    if (utilisateur == null) {
+		        response.sendRedirect(request.getContextPath() + "/EnchereServlet");
+		        return;
+		    }
 	
-			// parametrage d'un utilisateur
 			request.setAttribute("utilisateur", utilisateur);
 	
 			// envoi a la page monProfil.jsp			

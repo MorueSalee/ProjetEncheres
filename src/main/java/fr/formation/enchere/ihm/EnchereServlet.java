@@ -35,11 +35,14 @@ public class EnchereServlet extends HttpServlet {
 		ArticleVenduModel articleModel = new ArticleVenduModel();
 		
 		//Affiche les encheres
-		try {
-			articleModel.setListArticle(articleManager.getAll());
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
+		
+			try {
+				articleModel.setListArticle(articleManager.getAll());
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		
 		request.setAttribute("articleModel", articleModel);
 		

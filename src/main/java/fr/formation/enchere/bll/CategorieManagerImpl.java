@@ -1,5 +1,7 @@
 package fr.formation.enchere.bll;
 
+import java.util.List;
+
 import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.dal.CategorieDAO;
 import fr.formation.enchere.dal.CategorieDAOFact;
@@ -23,6 +25,12 @@ private CategorieDAO dao = CategorieDAOFact.getCategorieDAO();
 	public Categorie getByName(String libelle) throws DALException {
 		return dao.getByName(libelle);
 	}
+
+
+	public List<Categorie> selectAllCategories() throws DALException {
+		return dao.getAll();
+	}
+	
 	
 	
 }
