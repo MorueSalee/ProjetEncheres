@@ -82,6 +82,7 @@
   <section class="container">
     <div class="grid_article">
     	<c:forEach items="${articleModel.listArticle}" var="article">
+    	<a href="DetailSaleServlet?noArticle=${article.noArticle}">
 	      <div class="card_article">
 	        <img src="" alt="">
 	        <div>
@@ -92,6 +93,7 @@
 	          <p>Vendeur : ${article.utilisateur.pseudo}</p>
 	        </div>
 	      </div>
+	      </a>
       	</c:forEach>
     </div>
   </section>

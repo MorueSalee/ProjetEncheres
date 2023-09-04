@@ -36,6 +36,11 @@ public class UpdateProfileServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		
+		if (utilisateur == null) {
+	        response.sendRedirect(request.getContextPath() + "/EnchereServlet");
+	        return;
+	    }
 
 		request.setAttribute("utilisateur", utilisateur);
 

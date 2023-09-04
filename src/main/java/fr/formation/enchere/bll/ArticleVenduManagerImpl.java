@@ -1,6 +1,10 @@
 package fr.formation.enchere.bll;
 
+
+import java.time.LocalDate;
+
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +21,13 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 	
 	public void add(ArticleVendu article) throws DALException {
-			dao.insert(article);
+	    LocalDate now = LocalDate.now();
+	    if (article.getDateDebutEncheres().equals(now)) {
+	        article.setEtatVente("En cours");
+	    } else {
+	        article.setEtatVente("Créée");
+	    }
+	    dao.insert(article);
 	}
 
 	@Override

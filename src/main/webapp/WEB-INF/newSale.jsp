@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +25,19 @@
                 </div>
                 <div>
                     <label>Description :</label>
-                    <textarea type="description"></textarea>
+                    <textarea type="description" name="description"></textarea>
                 </div>
-                <div>
-                    <label>Categories :</label>
-                    <select>
-                        <option>0</option>
-                    </select>
-                </div>
+                <div> 
+                
+		          	<p>${categorie.libelle}</p>
+		          
+		          <label for="categorie">Catégorie :</label>
+		          <select name="categorie" class="input" id="categorie">
+		          	<c:forEach items="${categories}" var="categorie" >
+		          		<option value="${categorie.noCategorie}">${categorie.libelle}</option>
+		          	</c:forEach>
+		          </select>
+		        </div>
                 <div>
                     <label>Photo de l'article :</label>
                     <input type="file">
@@ -52,15 +59,15 @@
                     <h4>Retrait</h4>
                     <div>
                         <label>Rue :</label>
-                        <input type="text"/>
+                        <input type="text" value="${sessionScope.utilisateur.rue}"/>
                     </div>
                     <div>
                         <label>Code postale :</label>
-                        <input type="text"/>
+                        <input type="text" value="${sessionScope.utilisateur.codePostal}"/>
                     </div>
                     <div>
                         <label>Ville :</label>
-                        <input type="text"/>
+                        <input type="text" value="${sessionScope.utilisateur.ville}"/>
                     </div>
                 </div>
                 <div>

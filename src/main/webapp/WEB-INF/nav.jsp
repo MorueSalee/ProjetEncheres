@@ -12,7 +12,8 @@
     		<p>Enchère Seagal</p>
 		</a>
 		<c:if test="${utilisateur != null}">
-			<p>Bonjour ${utilisateur.pseudo}</p>
+			<div>Bonjour ${utilisateur.pseudo}</div>
+			<div>Vous avez <span>${utilisateur.credit}</span> crédit(s)</div>
 		</c:if>
 	</h1>
     <ul>

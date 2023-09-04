@@ -113,8 +113,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					}
-					utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					if (rs.getInt("no_enchere") != 0) {
+						utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					if (rs.getInt("no_article") != 0) {
+						utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -209,8 +213,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					}
-					utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					if (rs.getInt("no_enchere") != 0) {
+						utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					if (rs.getInt("no_article") != 0) {
+						utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					}
                 }
 			}
 		} catch (Exception e) {
@@ -235,8 +243,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					}
-					utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					if (rs.getInt("no_enchere") != 0) {
+						utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					}
+					if (rs.getInt("no_article") != 0) {
+						utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					}
                 }
 			}
 		} catch (Exception e) {

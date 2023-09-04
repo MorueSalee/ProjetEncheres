@@ -35,7 +35,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
     		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
 			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
-    		WHERE no_article = ?;
+    		WHERE ARTICLES_VENDUS.no_article = ?;
     		""";
     final String SELECT_BY_NAME = """
     		SELECT * FROM ARTICLES_VENDUS
