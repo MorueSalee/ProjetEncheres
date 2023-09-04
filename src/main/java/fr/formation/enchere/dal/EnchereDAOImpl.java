@@ -25,8 +25,9 @@ public class EnchereDAOImpl implements EnchereDAO {
     	Integer noEnchere = rs.getInt("no_enchere");
     	LocalDate dateEnchere = rs.getDate("date_enchere").toLocalDate();
     	Integer montantEnchere = rs.getInt("montant_enchere");
+    	Integer noUtilisateur = rs.getInt("no_utilisateur");
     	
-    	Enchere enchere = new Enchere(noEnchere, dateEnchere, montantEnchere);
+    	Enchere enchere = new Enchere(noEnchere, dateEnchere, montantEnchere, noUtilisateur);
     	return enchere;
     }
 	

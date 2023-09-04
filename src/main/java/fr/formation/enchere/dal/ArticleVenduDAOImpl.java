@@ -43,7 +43,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
     		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
 			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
-    		WHERE nom_article = ?;
+    		WHERE ARTICLES_VENDUS.nom_article LIKE ?;
     		""";
     final String SELECT_BY_CATEGORIE = """
     		SELECT * FROM ARTICLES_VENDUS
@@ -51,7 +51,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
     		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
 			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
-    		WHERE no_categorie = ?;
+    		WHERE ARTICLES_VENDUS.no_categorie = ?;
     		""";
     final String SELECT_BY_NAME_AND_CATEGORIE = """
     		SELECT * FROM ARTICLES_VENDUS
@@ -59,7 +59,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
     		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
 			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
-    		WHERE nom_article = ? AND libelle = ?;
+    		WHERE ARTICLES_VENDUS.nom_article LIKE ? AND CATEGORIES.libelle = ?;
     		""";
     final String SELECT_BY_CATEGORIE_LIBELLE = """
     		SELECT * FROM ARTICLES_VENDUS
@@ -67,7 +67,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
     		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
 			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
-    		WHERE libelle = ?;
+    		WHERE CATEGORIES.libelle = ?;
     		""";
 
     public static ArticleVendu getArticle(ResultSet rs) throws SQLException {
@@ -121,9 +121,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_ALL);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while(rs.next()) {
-				
 				if (getArticle(rs) != null) {
 					if (results.size() != 0 && rs.getInt("no_article") != results.get(results.size()-1).getNoArticle()) {
 						article = null;
@@ -210,10 +209,9 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	public List<ArticleVendu> getByName(String name) throws DALException {
 		List<ArticleVendu> results = new ArrayList<ArticleVendu>();
 		ArticleVendu article = null;
-		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_NAME);
-			stmt.setString(1, name);
+			stmt.setString(1, "%" + name + "%");
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				if (getArticle(rs) != null) {
@@ -284,7 +282,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_NAME_AND_CATEGORIE);
-			stmt.setString(1, name);
+			stmt.setString(1, "%" + name + "%");
 			stmt.setString(2, libelle);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
