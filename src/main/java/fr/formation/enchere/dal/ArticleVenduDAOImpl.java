@@ -8,7 +8,6 @@ import java.util.List;
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.dal.util.ConnectionProvider;
-import fr.formation.enchere.dal.util.TestServlet;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 

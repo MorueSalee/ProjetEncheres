@@ -172,6 +172,10 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 			queryResult = queryResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
 			
 			result = Stream.concat(result.stream(), queryResult.stream()).toList();
+		} else {
+			
+			result = searchOffline(name, libelle);
+			
 		}
 		
 		return result;
