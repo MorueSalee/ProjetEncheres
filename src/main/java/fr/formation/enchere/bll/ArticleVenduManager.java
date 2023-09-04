@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
+import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
 
 public interface ArticleVenduManager {
@@ -15,4 +16,6 @@ public interface ArticleVenduManager {
 	public List<ArticleVendu> getByCategorie(Categorie categorie) throws DALException;
 	public List<ArticleVendu> getByNameAndCategorie(String name, String libelle) throws DALException;
 	public List<ArticleVendu> getByCategorieLibelle(String libelle) throws DALException;
+	public List<ArticleVendu> searchOffline(String name, String libelle) throws DALException;
+	public List<ArticleVendu> searchOnline(String name, String libelle, List<String> checkBoxFilter, Utilisateur utilisateur) throws DALException;
 }

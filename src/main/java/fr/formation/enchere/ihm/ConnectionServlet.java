@@ -44,12 +44,9 @@ public class ConnectionServlet extends HttpServlet {
 	    try {
 	        Utilisateur utilisateur = manager.check(identifiant, motDePasse);
 	        if (utilisateur == null) {
-	        	System.out.println("Utilisateur inconnu");
 	            request.setAttribute("message", "Utilisateur inconnu");
 	            request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
 	        } else {
-	        	System.out.println("Utilisateur reconnu");
-
 	        	// On met l'utilisateur en session
 				request.getSession().setAttribute("utilisateur", utilisateur);
 
