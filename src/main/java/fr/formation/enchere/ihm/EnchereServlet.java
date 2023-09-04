@@ -4,10 +4,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import fr.formation.enchere.bll.ArticleVenduManager;
 import fr.formation.enchere.bll.ArticleVenduManagerSing;
+import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
 import fr.formation.enchere.ihm.model.ArticleVenduModel;
 
@@ -51,33 +57,34 @@ public class EnchereServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticleVenduModel articleModel = new ArticleVenduModel();
-		System.out.println("sdfds");
+		HttpSession session = request.getSession();
+		
 		//Bouton rechercher
 		if (request.getParameter("btnRechercher") != null) {
 			
-			//Recherche par nom d'article
-			if (request.getParameter("nomArticle") != null) {
+			if (session.getAttribute("utilisateur") != null) {
+				
+				Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+				
 				try {
-					articleModel.setListArticle(articleManager.getByName(request.getParameter("nomArticle")));
 					
+					List<String> lstCheckBoxFilter = new ArrayList<>();
+					for (int i = 0; i <= 6; i++) {
+						lstCheckBoxFilter.add(request.getParameter(String.valueOf(i)));						
+					}
+					
+					articleModel.setListArticle(articleManager.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur));
+				
 				} catch (DALException e) {
 					e.printStackTrace();
 				}
-			//Recherche par catégorie
-			} else if (request.getParameter("categorie") != "Toutes") {
+			} else {
 				try {
-					articleModel.setListArticle(articleManager.getByCategorieLibelle(request.getParameter("categorie")));
+					articleModel.setListArticle(articleManager.searchOffline(request.getParameter("nomArticle"), request.getParameter("categorie")));
 				} catch (DALException e) {
 					e.printStackTrace();
 				}
-			//Recherche par nom et catégorie
-			} else if (request.getParameter("nomArticle") != null && request.getParameter("categorie") != null) {
-				try {
-					articleModel.setListArticle(articleManager.getByNameAndCategorie(request.getParameter("nomArticle"), request.getParameter("categorie")));
-				} catch (DALException e) {
-					e.printStackTrace();
-				}
-			}		
+			}
 		}
 			
 		request.setAttribute("articleModel", articleModel);

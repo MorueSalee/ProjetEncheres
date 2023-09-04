@@ -174,7 +174,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(3, motDePasse);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs.getInt("no_utilisateur"));
 				if (getUtilisateur(rs) != null) {
 					if (utilisateur == null) {
 						utilisateur = getUtilisateur(rs);

@@ -24,7 +24,7 @@
         <div>
           <label>Catégories : </label>
           <select name="categorie" id="">
-          	<option>Toutes</option>
+          	<option value="Toutes">Toutes</option>
             <option>Informatique</option>
             <option>Ameublement</option>
             <option>Vêtement</option>
@@ -40,15 +40,15 @@
 	            </div>
 	            <div class="sous_filter">
 	              <div>
-	                <input type="checkbox" id="ench_open" checked/>
+	                <input type="checkbox" id="ench_open" name="1" value="1"/>
 	                <label for="ench_open">enchères ouvertes</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="ench_current"/>
+	                <input type="checkbox" id="ench_current" name="2" value="2"/>
 	                <label for="ench_current">mes enchères en cours</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="ench_won"/>
+	                <input type="checkbox" id="ench_won" name="3" value="3"/>
 	                <label for="ench_won">mes enchères remportées</label>
 	              </div>
 	            </div>
@@ -60,15 +60,15 @@
 	            </div>
 	            <div class="sous_filter">
 	              <div>
-	                <input type="checkbox" id="vente_ongoing" disabled="disabled" checked/>
+	                <input type="checkbox" id="vente_ongoing" disabled="disabled"  name="4" value="4"/>
 	                <label for="vente_ongoing">mes ventes en cours</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="vente_not_started" disabled="disabled"/>
+	                <input type="checkbox" id="vente_not_started" disabled="disabled" name ="5" value="5"/>
 	                <label for="vente_not_started">ventes non débutées</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="vente_completed" disabled="disabled"/>
+	                <input type="checkbox" id="vente_completed" disabled="disabled" name="6" value="6"/>
 	                <label for="vente_completed">ventes terminées</label>
 	              </div>
 	            </div>
