@@ -30,35 +30,50 @@
         	<img src="img/panpan_steven_seagal.png" alt="">
         </div>
         <div class="body_detail">
-            <p>${currentArticle.nomArticle}</p>
+        	<div>
+        		<p>Nom article:</p>
+            	<p>${currentArticle.nomArticle}</p>
+            </div>
             <div>
+            	<p>Description:</p>
                 <p>${currentArticle.description}</p>
             </div>
             <div>
+                <p>Libelle:</p>
                 <p>${currentArticle.categorie.libelle}</p>
             </div>
             <div>
+                <p>Prix vente:</p>
                 <p>${currentArticle.prixVente}</p>
             </div>
             <div>
+                <p>Date début:</p>
                 <p>${currentArticle.dateDebutEncheres}</p>
             </div>
             <div>
+                <p>Date fin:</p>
                 <p>${currentArticle.dateFinEncheres}</p>
             </div>
             <div>
+                <p>Rue:</p>
                 <p>${currentArticle.retrait.rue}</p>
             </div>
             <div>
+                <p>Pseudo (vendeur):</p>
                 <p>${currentArticle.utilisateur.pseudo}</p>
             </div>
             <c:choose>
 			    <c:when test="${utilisateur != null}">
 			        <form action="<%=request.getContextPath()%>/DetailSaleServlet?noArticle=${noArticle}" method="post">
-	                <p>Ma proposition : </p>
-	                <input type="number" value="${currentArticle.prixVente}" name="montant">
-	                <input type="submit" value="Enchérir" name="encherir"/>
-	            </form>
+			            <div class="encherir">   
+			                <div class="title">
+			                	<label>Ma proposition : </label>
+			                	<i class="fa-solid fa-dollar-sign"></i>
+			                </div>
+			                <input  type="number" value="${currentArticle.prixVente}" name="montant">
+		                </div>
+		                <input class="btn_encherir" type="submit" value="Enchérir" name="encherir"/>
+	            	</form>
 			    </c:when>    
 			    <c:otherwise>
 			        <p class="noconnect">Vous devez être connecté pour enchérir</p>

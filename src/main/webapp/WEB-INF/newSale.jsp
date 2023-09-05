@@ -14,66 +14,91 @@
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
-      <h2>Nouvelle vente</h2>
+      
     <section id="new_sale" class="container">
+    	<h2>Nouvelle vente</h2>
         <form action="NewSaleServlet"  method="post">
             <img src="" alt=""/>
-            <div>
-                <div>
-                    <label>Article :</label>
+            <div class="body_new_sale">
+                <div class="position">
+                	<div class="title">
+                    	<label>Article :</label>
+                    	<i class="fa-solid fa-newspaper"></i>
+                    </div>
                     <input type="text" name="nomArticle" required/>
                 </div>
-                <div>
-                    <label>Description :</label>
+                <div class="position">
+                	<div class="title">
+                    	<label>Description :</label>
+                    	<i class="fa-solid fa-file"></i>
+                    </div>
                     <textarea type="description" name="description" required></textarea>
                 </div>
-                <div> 
-                
-		          	<p>${categorie.libelle}</p>
-		          
-		          <label for="categorie">Catégorie :</label>
+                <div class="position">
+		          <div class="title">
+		          	<label for="categorie">Catégorie :</label>
+		          </div>
 		          <select name="categorie" class="input" id="categorie">
 		          	<c:forEach items="${categories}" var="categorie" >
 		          		<option value="${categorie.noCategorie}">${categorie.libelle}</option>
 		          	</c:forEach>
 		          </select>
 		        </div>
-                <div>
-                    <label>Photo de l'article :</label>
+                <div class="position">
+                	<div class="title">
+                    	<label>Photo de l'article :</label>
+                    	<i class="fa-solid fa-image"></i>
+                    </div>
                     <input type="file" >
                 </div>
-                <div>
-                    <label>Mise à prix :</label>
+                <div class="position">
+                	<div class="title">
+                    	<label>Mise à prix :</label>
+                    	<i class="fa-solid fa-dollar-sign"></i>
+                    </div>
                     <input type="number" name="prixInitial" required>
                 </div>
-                <div>
-                    <label>Début de l'enchère :</label>
+                <div class="position">
+                	<div class="title">
+                    	<label>Début de l'enchère :</label>
+                    	<i class="fa-solid fa-flag-checkered"></i>
+                    </div>
                     <input type="date" name="dateDebutEncheres" required/>
 
                 </div>
-                <div>
-                    <label>Fin de l'enchère :</label>
+                <div class="position">
+                	<div class="title">
+                    	<label>Fin de l'enchère :</label>
+                    	<i class="fa-solid fa-hourglass-end"></i>
+                    </div>
                     <input type="date" name="dateFinEncheres" required/>
                 </div>
                 <div class="retrait">
                     <h4>Retrait</h4>
-                    <div>
-                        <label>Rue :</label>
+                    <div class="position">
+                    	<div class="title">
+                        	<label>Rue :</label>
+                        	<i class="fa-solid fa-street-view"></i>
+                        </div>
                         <input type="text" value="${sessionScope.utilisateur.rue}" name="rue"/>
                     </div>
-                    <div>
-                        <label>Code postale :</label>
+                    <div class="position">
+                    	<div class="title">
+                        	<label>Code postale :</label>
+                        	<i class="fa-solid fa-building"></i>
+                        </div>
                         <input type="text" value="${sessionScope.utilisateur.codePostal}" name="codePostale"/>
                     </div>
-                    <div>
-                        <label>Ville :</label>
+                    <div class="position">
+                    	<div class="title">
+                        	<label>Ville :</label>
+                        	<i class="fa-solid fa-city"></i>
+                        </div>
                         <input type="text" value="${sessionScope.utilisateur.ville}" name="ville"/>
                     </div>
                 </div>
-                <div>
-                    <input type="submit" value="Enregistrer">
-                    <button>Annuler</button>
-                    <button>Annuler la vente</button>
+                <div >
+                    <input class="btn_new_sale" type="submit" value="Enregistrer">
                 </div>
             </div>
         </form>
