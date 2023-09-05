@@ -66,6 +66,26 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.etatVente = etatVente;
 	}
+	
+	
+
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie,
+			Retrait retrait) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.etatVente = etatVente;
+		this.retrait = retrait;
+	}
+
+
 
 	public Integer getNoArticle() {
 		return noArticle;

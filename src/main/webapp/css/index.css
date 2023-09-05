@@ -1,1 +1,104 @@
+#lst_enchere h2 {
+	text-align: center;
+	padding: 20px 0;
+}
+
+#lst_enchere .section_search, #lst_enchere .filter {
+	display: flex;
+}
+
+#lst_enchere .section_search {
+	margin-top: 50px;
+	align-items: center;
+}
+
+#lst_enchere .title {
+	display: flex;
+	justify-content: space-between;
+}
+
+#lst_enchere .title label {
+	font-size: 15px;
+	position: relative;
+	top: 8px;
+	left: 5px;
+	background: linear-gradient(to bottom, rgb(39, 42, 55) 55%, #3d404b 45%);
+	padding: 0 5px;
+}
+
+#lst_enchere .title i {
+	position: relative;
+	top: 27px;
+	right: 15px;
+}
+
+#lst_enchere > form .filter > div {
+	margin: 10px 20px 10px 0;
+}
+
+#lst_enchere > form .filter > div input, 
+#lst_enchere > form .filter > div select {
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background: #3d404b;
+	border-radius: 10px;
+	border: 2px solid gray;
+	
+}
+
+#lst_enchere .search {
+	background-color: #1d8ef3;
+	border-radius: 25px;
+	width: 200px;
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: 2px solid gray;
+}
+
+
+#all_article {
+	margin: 20px auto;
+}
+
+
+.grid_article {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-column-gap: 30px;
+	grid-row-gap: 30px;
+} 
+
+
+.grid_article > a {
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background: #3d404b;
+	border-radius: 10px;
+	border: 2px solid gray;
+	transition: 0.3s;
+}
+
+.grid_article > a:hover {
+	background: #5b6071;
+	border: 2px solid #aeaeae;
+}
+
+.grid_article .card_article {
+	padding: 20px;
+}
+
+.grid_article .card_article h3 {
+	text-align: center;
+}
+
+.grid_article .card_article span {
+	font-weight: normal;
+}
 

@@ -17,6 +17,7 @@ import fr.formation.enchere.bll.CategorieManager;
 import fr.formation.enchere.bll.CategorieManagerSing;
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
+import fr.formation.enchere.bo.Retrait;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
 
@@ -68,38 +69,37 @@ public class NewSaleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		ArticleVendu article = new ArticleVendu();
-		
+
 		// recuperation d'un utilisateur
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
-		String nomArticle = request.getParameter("nomArticle");
-	    String description = request.getParameter("description");
-	    DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate dateDebutEncheres =(LocalDate.parse(request.getParameter("dateDebutEncheres"),dtf2));
-		LocalDate dateFinEncheres=(LocalDate.parse(request.getParameter("dateFinEncheres"),dtf2));
-	    Integer prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
-	    Integer prixVente =    Integer.parseInt(request.getParameter("prixInitial"));
-	    Integer categorieId = Integer.parseInt(request.getParameter("categorie"));
-	    
 	    Categorie categorie;
 		try {
+			// Article
+			String nomArticle = request.getParameter("nomArticle");
+		    String description = request.getParameter("description");
+		    DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate dateDebutEncheres =(LocalDate.parse(request.getParameter("dateDebutEncheres"),dtf2));
+			LocalDate dateFinEncheres=(LocalDate.parse(request.getParameter("dateFinEncheres"),dtf2));
+		    Integer prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
+		    Integer prixVente =    Integer.parseInt(request.getParameter("prixInitial"));
+		    Integer categorieId = Integer.parseInt(request.getParameter("categorie"));
+		    
+		    // Retrait
+		    String rue = request.getParameter("rue");
+		    String ville = request.getParameter("ville");
+		    String codePostale = request.getParameter("codePostale");
+		    
 			categorie = manager2.getById(categorieId);
 			
-			article.setNomArticle(nomArticle);
-		    article.setDescription(description);
-		    article.setDateDebutEncheres(dateDebutEncheres);
-		    article.setDateFinEncheres(dateFinEncheres);
-		    article.setPrixInitial(prixInitial);
-		    article.setUtilisateur(utilisateur);
-		    article.setPrixVente(prixVente);
-		    article.setCategorie(categorie);
+			Retrait retrait = new Retrait(rue, ville, codePostale);
+			ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,prixVente, utilisateur, categorie, retrait);
 		    
 		    manager.add(article);
 			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 		} catch (DALException e) {
+			request.setAttribute("message", "Veuillez remplir tout les champs !");
 			request.getRequestDispatcher("/WEB-INF/newSale.jsp").forward(request, response);
-			e.printStackTrace();
 		}
 	    
 	}

@@ -1,5 +1,6 @@
 package fr.formation.enchere.dal;
 
+import fr.formation.enchere.bll.exception.BusinessException;
 import fr.formation.enchere.bo.Utilisateur;
 
 public interface UtilisateurDAO {

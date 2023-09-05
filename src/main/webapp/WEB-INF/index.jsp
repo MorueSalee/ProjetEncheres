@@ -13,23 +13,28 @@
 </head>
 <body>
   <jsp:include page="nav.jsp"/>
-  <h2 class="text-3xl font-bold underline">Liste des enchères</h2>
-  <section class="container">
+  <section id="lst_enchere" class="container">
+  	<h2 >Liste des enchères</h2>
     <form action="EnchereServlet" method="post" class="section_search">
       <div class="filter">
-        <div >
-          <label>Filtres :</label>
+        <div>
+        	<div class="title">
+          		<label>Recherche :</label>
+          		<i class="fa-solid fa-magnifying-glass"></i>
+          	</div>
           <input type="text" name="nomArticle"/>
         </div>
         <div>
-          <label>Catégories : </label>
-          <select name="categorie" id="">
-          	<option value="Toutes">Toutes</option>
-            <option>Informatique</option>
-            <option>Ameublement</option>
-            <option>Vêtement</option>
-            <option>Sport&Loisirs</option>
-          </select>
+	        <div class="title">
+	          <label>Catégories : </label>
+	        </div>
+	        <select name="categorie" id="">
+	          	<option value="Toutes">Toutes</option>
+	            <option>Informatique</option>
+	            <option>Ameublement</option>
+	            <option>Vêtement</option>
+	            <option>Sport&Loisirs</option>
+	        </select>
         </div>
         <c:if test="${utilisateur != null}">
 	        <div class="filter_radio">
@@ -76,10 +81,10 @@
 	       </div>
       </c:if>
       </div>
-      <input type="submit" name="btnRechercher" value="Rechercher">
+      <input class="search" type="submit" name="btnRechercher" value="Rechercher">
     </form>
   </section>
-  <section class="container">
+  <section id="all_article" class="container">
     <div class="grid_article">
     	<c:forEach items="${articleModel.listArticle}" var="article">
     	<a href="DetailSaleServlet?noArticle=${article.noArticle}">
@@ -87,10 +92,10 @@
 	        <img src="" alt="">
 	        <div>
 	          <h3>${article.nomArticle}</h3>
-	          <p>Prix : ${article.prixVente}</p>
+	          <p><span>Prix:</span> ${article.prixVente}</p>
 	          <fmt:parseDate value="${article.dateFinEncheres}" pattern="yyyy-MM-dd" var="st" type="both"/>
-	          <p>Fin de l'enchère : <fmt:formatDate pattern="dd/MM/yyyy" value="${st}" /></p>
-	          <p>Vendeur : ${article.utilisateur.pseudo}</p>
+	          <p><span>Fin de l'enchère:</span> <fmt:formatDate pattern="dd/MM/yyyy" value="${st}" /></p>
+	          <p><span>Vendeur:</span> ${article.utilisateur.pseudo}</p>
 	        </div>
 	      </div>
 	      </a>

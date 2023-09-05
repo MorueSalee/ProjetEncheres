@@ -1,5 +1,6 @@
 package fr.formation.enchere.dal;
 
+import java.security.interfaces.RSAKey;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
+import fr.formation.enchere.bo.Retrait;
 import fr.formation.enchere.dal.util.ConnectionProvider;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
@@ -86,31 +88,42 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     
 	@Override
 	public void insert(ArticleVendu article) throws DALException {
-		try (Connection con = ConnectionProvider.getConnection()){
-			PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-			stmt.setString(1, article.getNomArticle());
-			stmt.setString(2, article.getDescription());
-			stmt.setDate(3, java.sql.Date.valueOf(article.getDateDebutEncheres()));
-			stmt.setDate(4, java.sql.Date.valueOf(article.getDateFinEncheres()));
-			stmt.setInt(5, article.getPrixInitial());
-			stmt.setInt(6, article.getPrixVente());
-			stmt.setInt(7, article.getUtilisateur().getNoUtilisateur());
-			stmt.setInt(8, article.getCategorie().getNoCategorie());
-			stmt.setString(9, article.getEtatVente());
-			
-			int nb = stmt.executeUpdate();
-			if(nb>0) {
-				ResultSet rs= stmt.getGeneratedKeys();
-				if(rs.next()) {
-					article.setNoArticle(rs.getInt(1));
-				}
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-			throw new DALException(e.getMessage());
-		}
+	    try (Connection con = ConnectionProvider.getConnection()) {
+	        PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+	        stmt.setString(1, article.getNomArticle());
+	        stmt.setString(2, article.getDescription());
+	        stmt.setDate(3, java.sql.Date.valueOf(article.getDateDebutEncheres()));
+	        stmt.setDate(4, java.sql.Date.valueOf(article.getDateFinEncheres()));
+	        stmt.setInt(5, article.getPrixInitial());
+	        stmt.setInt(6, article.getPrixVente());
+	        stmt.setInt(7, article.getUtilisateur().getNoUtilisateur());
+	        stmt.setInt(8, article.getCategorie().getNoCategorie());
+	        stmt.setString(9, article.getEtatVente());
+
+	        int affectedRows = stmt.executeUpdate();
+	        if (affectedRows == 0) {
+	            throw new SQLException("L'insertion a échoué, aucune ligne affectée.");
+	        }
+
+	        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+	            if (generatedKeys.next()) {
+	                article.setNoArticle(generatedKeys.getInt(1));
+
+	                Retrait retrait = new Retrait();
+	               
+	                retrait.setRue(article.getRetrait().getRue());
+	                retrait.setVille(article.getRetrait().getVille());
+	                retrait.setCodePostal(article.getRetrait().getCodePostal());
+
+	                RetraitDAOFact.getRetraitDAO().insert(article.getNoArticle(), retrait);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new DALException(e.getMessage());
+	    }
 	}
+
 
 	@Override
 	public List<ArticleVendu> getAll() throws DALException {

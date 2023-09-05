@@ -21,11 +21,11 @@
             <div>
                 <div>
                     <label>Article :</label>
-                    <input type="text" name="nomArticle"/>
+                    <input type="text" name="nomArticle" required/>
                 </div>
                 <div>
                     <label>Description :</label>
-                    <textarea type="description" name="description"></textarea>
+                    <textarea type="description" name="description" required></textarea>
                 </div>
                 <div> 
                 
@@ -40,34 +40,34 @@
 		        </div>
                 <div>
                     <label>Photo de l'article :</label>
-                    <input type="file">
+                    <input type="file" >
                 </div>
                 <div>
                     <label>Mise à prix :</label>
-                    <input type="number" name="prixInitial">
+                    <input type="number" name="prixInitial" required>
                 </div>
                 <div>
                     <label>Début de l'enchère :</label>
-                    <input type="date" name="dateDebutEncheres"/>
+                    <input type="date" name="dateDebutEncheres" required/>
 
                 </div>
                 <div>
                     <label>Fin de l'enchère :</label>
-                    <input type="date" name="dateFinEncheres"/>
+                    <input type="date" name="dateFinEncheres" required/>
                 </div>
                 <div class="retrait">
                     <h4>Retrait</h4>
                     <div>
                         <label>Rue :</label>
-                        <input type="text" value="${sessionScope.utilisateur.rue}"/>
+                        <input type="text" value="${sessionScope.utilisateur.rue}" name="rue"/>
                     </div>
                     <div>
                         <label>Code postale :</label>
-                        <input type="text" value="${sessionScope.utilisateur.codePostal}"/>
+                        <input type="text" value="${sessionScope.utilisateur.codePostal}" name="codePostale"/>
                     </div>
                     <div>
                         <label>Ville :</label>
-                        <input type="text" value="${sessionScope.utilisateur.ville}"/>
+                        <input type="text" value="${sessionScope.utilisateur.ville}" name="ville"/>
                     </div>
                 </div>
                 <div>

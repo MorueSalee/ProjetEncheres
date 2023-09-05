@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import fr.formation.enchere.bll.UtilisateurManager;
 import fr.formation.enchere.bll.UtilisateurManagerSing;
+import fr.formation.enchere.bll.exception.BusinessException;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
 
@@ -42,29 +43,38 @@ public class ConnectionServlet extends HttpServlet {
 	    String motDePasse = request.getParameter("motDePasse");
 
 	    try {
-	        Utilisateur utilisateur = manager.check(identifiant, motDePasse);
+	        Utilisateur utilisateur = null; 
+
+	        try {
+	            utilisateur = manager.check(identifiant, motDePasse);
+	        } catch (BusinessException e) {
+	            e.printStackTrace();
+	            request.setAttribute("message", "Erreur lors de la vérification de l'utilisateur");
+	            request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
+	            return;
+	        }
+
 	        if (utilisateur == null) {
 	            request.setAttribute("message", "Utilisateur inconnu");
 	            request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
 	        } else {
-	        	// On met l'utilisateur en session
-				request.getSession().setAttribute("utilisateur", utilisateur);
+	            request.getSession().setAttribute("utilisateur", utilisateur);
 
-				// On appelle l'url de la servlet initialisement appelée
-				String urlPattern = (String) request.getSession().getAttribute("urlPattern");
+	            String urlPattern = (String) request.getSession().getAttribute("urlPattern");
 
-				// Si pas de servlet initialement appelée on va sur l'url racine (ou il y a généralement le menu
-				if(urlPattern==null) {
-					urlPattern="/EnchereServlet";
-				}
-				
-				request.getRequestDispatcher(urlPattern).forward(request, response);
+	            if (urlPattern == null) {
+	                urlPattern = "/EnchereServlet";
+	            }
+
+	            request.getRequestDispatcher(urlPattern).forward(request, response);
 	        }
 	    } catch (DALException e) {
-	        // Gestion de l'exception
 	        e.printStackTrace();
+	        request.setAttribute("message", "Erreur dans l'accès aux données");
+	        request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
 	    }
 	}
+
 
 
 }
