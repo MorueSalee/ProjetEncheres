@@ -39,6 +39,7 @@
 	display: flex;
 	justify-content: start;
 	left: 0;
+	z-index: -1;
 }
 
 #detail_sale .panpan_seagal img {
