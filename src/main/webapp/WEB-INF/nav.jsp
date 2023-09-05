@@ -42,13 +42,23 @@
           </c:if>
       </ul>
 </nav>
-
-<c:if test="${utilisateur != null}">
+	
 	<div class="bottom_bar">
-		<div><i class="fa-solid fa-circle"></i>
-		 <a href="${pageContext.request.contextPath}/ProfileServlet">${utilisateur.pseudo}</a>
-		</div>
-		<div><span>${utilisateur.credit}</span> crédit(s)</div>
+	<c:choose>
+	    <c:when test="${utilisateur != null}">
+			<div class="connecter">
+			<i class="fa-solid fa-circle"></i>
+			 	<a href="${pageContext.request.contextPath}/ProfileServlet">${utilisateur.pseudo}</a>
+			</div>
+			<div><span>${utilisateur.credit}</span> crédit(s)</div>
+	    </c:when>    
+	    <c:otherwise>
+	        <div class="deconnecter">
+	        	<i class="fa-solid fa-circle"></i>
+			 	<a href="${pageContext.request.contextPath}/ConnectionServlet">Vous êtes déconnecté</a>
+			</div>
+	    </c:otherwise>
+	</c:choose>
 	</div>
-</c:if>
+
 

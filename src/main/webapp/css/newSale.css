@@ -1,0 +1,64 @@
+#new_sale {
+	padding: 50px 0;
+}
+
+#new_sale .body_new_sale {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+} 
+
+#new_sale h2 {
+	text-align: center;
+}
+
+#new_sale .title {
+	display: flex;
+	justify-content: space-between;
+}
+
+#new_sale label {
+  font-size: 15px;
+  position: relative;
+  top: 8px;
+  left: 5px;
+  background: linear-gradient(to bottom, rgb(39, 42, 55) 55%, #3d404b 45%);
+  padding: 0 5px;
+}
+
+#new_sale .title i {
+  position: relative;
+  top: 29px;
+  right: 15px;
+}
+
+#new_sale input, #new_sale select, #new_sale textarea {
+  border: none;
+  padding: 10px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  background: #3d404b;
+  border-radius: 10px;
+  border: 2px solid gray;
+}
+
+#new_sale .position {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 500px;
+}
+
+
+#new_sale .btn_new_sale {
+  background-color: #1d8ef3;
+  border-radius: 25px;
+  width: 200px;
+  padding: 10px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid gray;
+}
