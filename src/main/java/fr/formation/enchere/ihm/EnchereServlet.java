@@ -1,11 +1,5 @@
 package fr.formation.enchere.ihm;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +12,11 @@ import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
 import fr.formation.enchere.ihm.model.ArticleVenduModel;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class EnchereServlet

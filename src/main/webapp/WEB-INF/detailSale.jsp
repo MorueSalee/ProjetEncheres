@@ -46,10 +46,10 @@
             </div>
             <c:choose>
 			    <c:when test="${utilisateur != null}">
-			        <form action="<%=request.getContextPath()%>/detailArticle/${article.noArticle}" method="post">
+			        <form action="<%=request.getContextPath()%>/DetailSaleServlet?noArticle=${noArticle}" method="post">
 	                <p>Ma proposition : </p>
-	                <input type="number" value="${currentArticle.prixVente}" name="proposition">
-	                <input type="submit" value="Enchérir"  />
+	                <input type="number" value="${currentArticle.prixVente}" name="montant">
+	                <input type="submit" value="Enchérir" name="encherir"/>
 	            </form>
 			    </c:when>    
 			    <c:otherwise>

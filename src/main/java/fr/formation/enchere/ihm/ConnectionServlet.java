@@ -62,16 +62,9 @@ public class ConnectionServlet extends HttpServlet {
 	        } else {
 	            request.getSession().setAttribute("utilisateur", utilisateur);
 
-	            String urlPattern = (String) request.getSession().getAttribute("urlPattern");
-
-	            if (urlPattern == null) {
-	                urlPattern = "/EnchereServlet";
-	            }
-
-	            request.getRequestDispatcher(urlPattern).forward(request, response);
-
+	            response.sendRedirect("EnchereServlet");
 	        }
-	        //4563543
+	        
 	    } catch (DALException e) {
 	        e.printStackTrace();
 	        request.setAttribute("message", "Erreur dans l'accès aux données");
