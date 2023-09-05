@@ -8,11 +8,13 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import fr.formation.enchere.bll.ArticleVenduManager;
 import fr.formation.enchere.bll.ArticleVenduManagerSing;
+import fr.formation.enchere.bll.CategorieManager;
+import fr.formation.enchere.bll.CategorieManagerSing;
+import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
 import fr.formation.enchere.ihm.model.ArticleVenduModel;
@@ -24,6 +26,7 @@ public class EnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ArticleVenduManager articleManager = ArticleVenduManagerSing.getInstance();
+	private CategorieManager categorieManager = CategorieManagerSing.getInstance();
 	
        
     /**
@@ -39,11 +42,22 @@ public class EnchereServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		ArticleVenduModel articleModel = new ArticleVenduModel();
+		String libelle = "Toutes";
+		Integer radioFilter = 1; 
 		
+		List<Categorie> lstCategories;
+		try {
+			lstCategories = categorieManager.selectAllCategories();
+			request.setAttribute("lstCategories", lstCategories);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+
 		//Affiche les encheres
 		
 			try {
-				articleModel.setListArticle(articleManager.getAll());
+				articleModel.setListArticle(articleManager.searchOffline(request.getParameter("nomArticle"), libelle));
 			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -51,6 +65,8 @@ public class EnchereServlet extends HttpServlet {
 		
 		
 		request.setAttribute("articleModel", articleModel);
+		request.setAttribute("radioFilter", radioFilter);
+		request.setAttribute("searchCategorie", libelle);
 		
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
@@ -65,19 +81,41 @@ public class EnchereServlet extends HttpServlet {
 		//Bouton rechercher
 		if (request.getParameter("btnRechercher") != null) {
 			
+			request.setAttribute("searchName", request.getParameter("nomArticle"));
+			request.setAttribute("searchCategorie", request.getParameter("categorie"));
+			
+			List<Categorie> lstCategories;
+			try {
+				lstCategories = categorieManager.selectAllCategories();
+				request.setAttribute("lstCategories", lstCategories);
+			} catch (DALException e) {
+				e.printStackTrace();
+			}
+			
 			if (session.getAttribute("utilisateur") != null) {
 				
 				Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 				
 				try {
-					
 					List<String> lstCheckBoxFilter = new ArrayList<>();
+					
 					for (int i = 0; i <= 6; i++) {
 						lstCheckBoxFilter.add(request.getParameter(String.valueOf(i)));						
 					}
 					
-					articleModel.setListArticle(articleManager.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur));
-				
+					request.setAttribute("lstCheckBoxFilter", lstCheckBoxFilter);
+					request.setAttribute("radioFilter", request.getParameter("filter_radio"));
+					
+					if (request.getParameter("filter_radio").equals("1")) {
+						
+						articleModel.setListArticle(articleManager.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur, 1));
+					
+					} else {
+
+						articleModel.setListArticle(articleManager.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur, 2));
+					
+					}
+
 				} catch (DALException e) {
 					e.printStackTrace();
 				}
@@ -92,7 +130,6 @@ public class EnchereServlet extends HttpServlet {
 			
 		request.setAttribute("articleModel", articleModel);
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-		//doGet(request, response);
 	}
 		
 }

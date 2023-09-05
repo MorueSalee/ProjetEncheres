@@ -17,5 +17,5 @@ public interface ArticleVenduManager {
 	public List<ArticleVendu> getByNameAndCategorie(String name, String libelle) throws DALException;
 	public List<ArticleVendu> getByCategorieLibelle(String libelle) throws DALException;
 	public List<ArticleVendu> searchOffline(String name, String libelle) throws DALException;
-	public List<ArticleVendu> searchOnline(String name, String libelle, List<String> checkBoxFilter, Utilisateur utilisateur) throws DALException;
+	public List<ArticleVendu> searchOnline(String name, String libelle, List<String> checkBoxFilter, Utilisateur utilisateur, Integer radioFilter) throws DALException;
 }

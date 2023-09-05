@@ -55,8 +55,10 @@ public class ConnectionServlet extends HttpServlet {
 	        }
 
 	        if (utilisateur == null) {
+	        	
 	            request.setAttribute("message", "Utilisateur inconnu");
 	            request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
+	            
 	        } else {
 	            request.getSession().setAttribute("utilisateur", utilisateur);
 
@@ -67,7 +69,9 @@ public class ConnectionServlet extends HttpServlet {
 	            }
 
 	            request.getRequestDispatcher(urlPattern).forward(request, response);
+
 	        }
+	        //4563543
 	    } catch (DALException e) {
 	        e.printStackTrace();
 	        request.setAttribute("message", "Erreur dans l'accès aux données");
