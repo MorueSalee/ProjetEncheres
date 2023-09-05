@@ -36,16 +36,8 @@ public class DetailSaleServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         
-        Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-        
-        if (utilisateur == null) {
-	        response.sendRedirect(request.getContextPath() + "/EnchereServlet");
-	        return;
-	    }
-        
         String noArticleParam = request.getParameter("noArticle");
-        
-        
+
         try {
             Integer noArticle = Integer.parseInt(noArticleParam);
             ArticleVendu currentArticle = manager.getById(noArticle);

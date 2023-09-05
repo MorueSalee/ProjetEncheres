@@ -20,14 +20,14 @@
 	                <label>Identifiant</label>
 					 <i class="fa-solid fa-address-card"></i>
 				 </div>
-                <input type="text" name="identifiant"/>
+                <input type="text" name="identifiant" required/>
             </div>
             <div>
             	<div class="title">
                 	<label>Mot de passe</label>
                 	<i class="fa-solid fa-lock"></i>
                 </div>
-                <input type="password" name="motDePasse"/>
+                <input type="password" name="motDePasse" required/>
             </div>
             <div>
                 <div class="remember">

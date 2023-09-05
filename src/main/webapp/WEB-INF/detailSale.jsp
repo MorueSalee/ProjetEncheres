@@ -44,11 +44,19 @@
             <div>
                 ${currentArticle.utilisateur.pseudo}
             </div>
-            <form action="${pageContext.request.contextPath}/creditenchere?id=${param.id}" method="post">
-                <p>Ma proposition : </p>
-                <input type="number" value="${currentArticle.prixVente}" name="proposition">
-                <input type="submit" value="Enchérir"  />
-            </form>
+            <c:choose>
+			    <c:when test="${utilisateur != null}">
+			        <form action="<%=request.getContextPath()%>/detailArticle/${article.noArticle}" method="post">
+	                <p>Ma proposition : </p>
+	                <input type="number" value="${currentArticle.prixVente}" name="proposition">
+	                <input type="submit" value="Enchérir"  />
+	            </form>
+			    </c:when>    
+			    <c:otherwise>
+			        <p>Vous devez être connecté pour enchérir</p>
+			    </c:otherwise>
+			</c:choose>
+			            
         </div>
     </section>
 </body>

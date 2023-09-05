@@ -23,7 +23,7 @@
 	                   <label>Pseudo *</label>
 	                   <i class="fa-solid fa-id-card-clip"></i>
 	                </div>
-	                <input type="text" name="pseudo"/>
+	                <input type="text" name="pseudo" required/>
                </div>
                <div class="d-flex">
 	               <div class="position">
@@ -54,7 +54,7 @@
 		                   <label>Email *</label>
 		                   <i class="fa-solid fa-envelope"></i>
 	                   </div>
-	                   <input type="text" name="email"/>
+	                   <input type="text" name="email" required/>
 	               </div>
                </div>
                <div class="d-flex">
@@ -86,14 +86,14 @@
 	                   		<label>Mot de passe *</label>
 	                   		<i class="fa-solid fa-lock"></i>
 	                   	</div>
-	                   <input type="password" name="motDePasse" />
+	                   <input type="password" name="motDePasse" required />
 	               </div>
 					<div class="position">
 						<div class="title">
 	                   		<label>Confirmation *</label>
 	                   		<i class="fa-solid fa-lock"></i>
 	                   </div>
-	                   <input type="password" name="motDePasse2"/>
+	                   <input type="password" name="motDePasse2" required/>
 	               </div>
 	           </div>
             </div>
