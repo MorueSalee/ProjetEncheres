@@ -15,12 +15,20 @@
 <body>
 
     <jsp:include page="nav.jsp"/>
-    <h2>DÃ©tail vente</h2>
+    
     <section id="detail_sale" class="container">
+    	<h2>Détail vente</h2>
     	<c:url value="/detailSaleServlet" var="detailUrl">
     		<c:param name="noArticle" value="${param.noArticle}" />
 		</c:url>
-        <img src="" alt="">
+		<div class="panpan_seagal">
+        	<p class="replique">
+	        	<i class="fa-solid fa-quote-left"></i>
+	        	Je vais sortir mon porte-feuille très lentement de ma poche, j'ai plein de liquide. A moins que... vous acceptez les cartes de crédit ?
+	        	<i class="fa-solid fa-quote-right"></i>
+        	</p>
+        	<img src="img/panpan_steven_seagal.png" alt="">
+        </div>
         <div class="body_detail">
             <p>${currentArticle.nomArticle}</p>
             <div>
@@ -30,19 +38,19 @@
                 <p>${currentArticle.categorie.libelle}</p>
             </div>
             <div>
-                ${currentArticle.prixVente}
+                <p>${currentArticle.prixVente}</p>
             </div>
             <div>
-                ${currentArticle.dateDebutEncheres}
+                <p>${currentArticle.dateDebutEncheres}</p>
             </div>
             <div>
-                ${currentArticle.dateFinEncheres}
+                <p>${currentArticle.dateFinEncheres}</p>
             </div>
             <div>
-                ${currentArticle.retrait.rue}
+                <p>${currentArticle.retrait.rue}</p>
             </div>
             <div>
-                ${currentArticle.utilisateur.pseudo}
+                <p>${currentArticle.utilisateur.pseudo}</p>
             </div>
             <c:choose>
 			    <c:when test="${utilisateur != null}">
@@ -53,11 +61,12 @@
 	            </form>
 			    </c:when>    
 			    <c:otherwise>
-			        <p>Vous devez être connecté pour enchérir</p>
+			        <p class="noconnect">Vous devez être connecté pour enchérir</p>
 			    </c:otherwise>
 			</c:choose>
 			            
         </div>
+        
     </section>
 </body>
 </html>

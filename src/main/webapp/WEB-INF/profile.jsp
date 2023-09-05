@@ -12,40 +12,43 @@
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
-    <h2>Profil</h2>
+    
     <section id="profile" class="container">
-        <div>
-            <p>Nom : </p>
-            <p>${sessionScope.utilisateur.nom}</p>
+    <h2>Profil</h2>
+	    <div class="body">
+	        <div>
+	            <p>Nom:</p>
+	            <p>${sessionScope.utilisateur.nom}</p>
+	        </div>
+	        <div>
+	            <p>Prénom:</p>
+	            <p>${sessionScope.utilisateur.prenom}</p>
+	        </div>
+	        <div>
+	            <p>Email:</p>
+	            <p>${sessionScope.utilisateur.email}</p>
+	        </div>
+	        <div>
+	            <p>Téléphone:</p>
+	            <p>${sessionScope.utilisateur.telephone}</p>
+	        </div>
+	        <div>
+	            <p>Rue:</p>
+	            <p>${sessionScope.utilisateur.rue}</p>
+	        </div>
+	        <div>
+	            <p>Code postale:</p>
+	            <p>${sessionScope.utilisateur.codePostal}</p>
+	        </div>
+	        <div>
+	            <p>Ville:</p>
+	            <p>${sessionScope.utilisateur.ville}</p>
+	        </div>
         </div>
-        <div>
-            <p>Prénom : </p>
-            <p>${sessionScope.utilisateur.prenom}</p>
-        </div>
-        <div>
-            <p>Email : </p>
-            <p>${sessionScope.utilisateur.email}</p>
-        </div>
-        <div>
-            <p>TÃ©lÃ©phone : </p>
-            <p>${sessionScope.utilisateur.telephone}</p>
-        </div>
-        <div>
-            <p>Rue : </p>
-            <p>${sessionScope.utilisateur.rue}</p>
-        </div>
-        <div>
-            <p>Code postale : </p>
-            <p>${sessionScope.utilisateur.codePostal}</p>
-        </div>
-        <div>
-            <p>Ville : </p>
-            <p>${sessionScope.utilisateur.ville}</p>
-        </div>
-        <!-- CONDITION SI C'EST NOTRE PROFIL UTILISATEUR -->
-        <div class="button_update_profile">
+       	<div class="button_update_profile">
             <a href="${pageContext.request.contextPath}/UpdateProfileServlet">Modifier</button>
         </div>
+        <img src="img/regarde_de_braise_steven.png" alt="Image par défault"/>
     </section>
 </body>
 </html>

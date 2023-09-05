@@ -17,6 +17,18 @@
 	justify-content: space-between;
 }
 
+#lst_enchere .filter_radio {
+	display: flex;
+}
+
+#lst_enchere .filter_radio > div {
+	margin: 0 10px;
+}
+
+#lst_enchere .filter_radio .sous_filter {
+	padding-left: 10px;
+}
+
 #lst_enchere .title label {
 	font-size: 15px;
 	position: relative;
@@ -60,9 +72,16 @@
 	border: 2px solid gray;
 }
 
+#lst_enchere img {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0.3;
+}
 
 #all_article {
-	margin: 20px auto;
+	margin: 20px auto 50px auto;
 }
 
 
