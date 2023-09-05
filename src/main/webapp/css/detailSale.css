@@ -1,0 +1,62 @@
+#detail_sale h2 {
+	text-align: center;
+}
+
+#detail_sale {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+	justify-content: center;
+	height: 80vh;
+}
+
+#detail_sale .noconnect {
+	color: orange;
+}
+
+#detail_sale .body_detail {
+	padding: 40px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background: #3d404b;
+	border-radius: 10px;
+	border: 2px solid gray;
+	transition: 0.3s;
+	width: 500px;
+}
+
+#detail_sale .panpan_seagal {
+	position: fixed;
+	bottom: 0;
+	width: 40%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	padding-bottom: 50px;
+	display: flex;
+	justify-content: start;
+	left: 0;
+}
+
+#detail_sale .panpan_seagal img {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: block;
+	width: 100%;
+	opacity: 0.5;
+	z-index: -1;
+}
+
+#detail_sale .panpan_seagal p {
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 50px;
+	position: relative;
+	width: 300px;
+}
+
+

@@ -13,10 +13,7 @@
     	<a href="${pageContext.request.contextPath}/EnchereServlet">
     		<p>Enchère Seagal</p>
 		</a>
-		<c:if test="${utilisateur != null}">
-			<div>Bonjour ${utilisateur.pseudo}</div>
-			<div>Vous avez <span>${utilisateur.credit}</span> crédit(s)</div>
-		</c:if>
+		
 	</h1>
     <ul>
       <!--  CONDITION DE HORS CONNEXION -->
@@ -45,3 +42,13 @@
           </c:if>
       </ul>
 </nav>
+
+<c:if test="${utilisateur != null}">
+	<div class="bottom_bar">
+		<div><i class="fa-solid fa-circle"></i>
+		 <a href="${pageContext.request.contextPath}/ProfileServlet">${utilisateur.pseudo}</a>
+		</div>
+		<div><span>${utilisateur.credit}</span> crédit(s)</div>
+	</div>
+</c:if>
+
