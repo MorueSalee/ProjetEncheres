@@ -44,8 +44,10 @@ public class ConnectionServlet extends HttpServlet {
 	    try {
 	        Utilisateur utilisateur = manager.check(identifiant, motDePasse);
 	        if (utilisateur == null) {
+	        	
 	            request.setAttribute("message", "Utilisateur inconnu");
 	            request.getRequestDispatcher("/WEB-INF/connection.jsp").forward(request, response);
+	            
 	        } else {
 	        	// On met l'utilisateur en session
 				request.getSession().setAttribute("utilisateur", utilisateur);
@@ -54,12 +56,15 @@ public class ConnectionServlet extends HttpServlet {
 				String urlPattern = (String) request.getSession().getAttribute("urlPattern");
 
 				// Si pas de servlet initialement appelée on va sur l'url racine (ou il y a généralement le menu
-				if(urlPattern==null) {
-					urlPattern="/EnchereServlet";
+				if (urlPattern == null) {
+					
+					urlPattern = "/EnchereServlet";
+					
 				}
 				
 				request.getRequestDispatcher(urlPattern).forward(request, response);
 	        }
+	        //4563543
 	    } catch (DALException e) {
 	        // Gestion de l'exception
 	        e.printStackTrace();

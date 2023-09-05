@@ -24,51 +24,49 @@
         <div>
           <label>Catégories : </label>
           <select name="categorie" id="">
-          	<option value="Toutes">Toutes</option>
-            <option>Informatique</option>
-            <option>Ameublement</option>
-            <option>Vêtement</option>
-            <option>Sport&Loisirs</option>
+            <c:forEach items="${lstCategories}" var="categorie" >
+          		<option <c:if test="${searchCategorie == categorie.libelle}">selected</c:if>>${categorie.libelle}</option>
+          	</c:forEach>
           </select>
         </div>
         <c:if test="${utilisateur != null}">
 	        <div class="filter_radio">
 	          <div>
 	            <div>
-	              <input type="radio" id="achats_radio" name="filter_radio" checked>
+	              <input type="radio" id="achats_radio" name="filter_radio" value="1" <c:if test="${radioFilter == 1}">checked</c:if>>
 	              <label for="achats_radio">Achats</label>
 	            </div>
 	            <div class="sous_filter">
 	              <div>
-	                <input type="checkbox" id="ench_open" name="1" value="1"/>
+	                <input type="checkbox" id="ench_open" name="1" value="1" <c:if test="${radioFilter == 2}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[1] != null}">checked</c:if>/>
 	                <label for="ench_open">enchères ouvertes</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="ench_current" name="2" value="2"/>
+	                <input type="checkbox" id="ench_current" name="2" value="2" <c:if test="${radioFilter == 2}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[2] != null}">checked</c:if>/>
 	                <label for="ench_current">mes enchères en cours</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="ench_won" name="3" value="3"/>
+	                <input type="checkbox" id="ench_won" name="3" value="3" <c:if test="${radioFilter == 2}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[3] != null}">checked</c:if>/>
 	                <label for="ench_won">mes enchères remportées</label>
 	              </div>
 	            </div>
 	          </div>
 	          <div>
 	            <div>
-	              <input type="radio" id="ventes_radio" name="filter_radio">
+	              <input type="radio" id="ventes_radio" name="filter_radio" value="2" <c:if test="${radioFilter == 2}">checked</c:if>>
 	              <label for="ventes_radio">Mes ventes</label>
 	            </div>
 	            <div class="sous_filter">
 	              <div>
-	                <input type="checkbox" id="vente_ongoing" disabled="disabled"  name="4" value="4"/>
+	                <input type="checkbox" id="vente_ongoing"  name="4" value="4" <c:if test="${radioFilter == 1}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[4] != null}">checked</c:if>/>
 	                <label for="vente_ongoing">mes ventes en cours</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="vente_not_started" disabled="disabled" name ="5" value="5"/>
+	                <input type="checkbox" id="vente_not_started" name ="5" value="5" <c:if test="${radioFilter == 1}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[5] != null}">checked</c:if>/>
 	                <label for="vente_not_started">ventes non débutées</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="vente_completed" disabled="disabled" name="6" value="6"/>
+	                <input type="checkbox" id="vente_completed" name="6" value="6" <c:if test="${radioFilter == 1}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[6] != null}">checked</c:if>/>
 	                <label for="vente_completed">ventes terminées</label>
 	              </div>
 	            </div>

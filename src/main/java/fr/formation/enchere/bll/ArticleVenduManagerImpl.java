@@ -4,7 +4,8 @@ package fr.formation.enchere.bll;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
-
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -80,104 +81,135 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 	@Override
 	public List<ArticleVendu> searchOffline(String name, String libelle) throws DALException {
 		//Recherche par nom d'article
-		if (!name.equals(null) && libelle.equals("Toutes")) {
+		if (name != null && libelle.equals("Toutes")) {
 			
-			return dao.getByName(name);
+			return dao.getByName(name).stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 			
 		//Recherche par catégorie
-		} else if (name.equals(null) && !libelle.equals("Toutes")) {
+		} else if (name == null && !libelle.equals("Toutes")) {
 			
-			return dao.getByCategorieLibelle(libelle);
+			return dao.getByCategorieLibelle(libelle).stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 			
 		//Recherche par nom et catégorie
-		} else if (!name.equals(null) && !libelle.equals("Toutes")) {
+		} else if (name != null && !libelle.equals("Toutes")) {
 			
-			return dao.getByNameAndCategorie(name, libelle);
+			return dao.getByNameAndCategorie(name, libelle).stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 			
 		} else {
 			
-			return dao.getAll();
+			return dao.getAll().stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 			
 		}
 	}
 
 	@Override
-	public List<ArticleVendu> searchOnline(String name, String libelle, List<String> checkBoxFilter, Utilisateur utilisateur) throws DALException {
+	public List<ArticleVendu> searchOnline(String name, String libelle, List<String> checkBoxFilter, Utilisateur utilisateur, Integer radioFilter) throws DALException {
 		
+		List<ArticleVendu> queryResult = searchOffline(name, libelle);
+		List<ArticleVendu> filteredResult = new ArrayList<ArticleVendu>();
 		List<ArticleVendu> result = new ArrayList<ArticleVendu>();
+		
+		Boolean isFiltered = false;
+		
+		if (radioFilter == 1) {
+			
+			//Achats/Encheres ouvertes 1
+			if (checkBoxFilter.get(1) != null) {
 
-		//Achats/Encheres ouvertes 1
-		if (checkBoxFilter.get(1) != null) {
-			List<ArticleVendu> queryResult = searchOffline(name, libelle);
+				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
+				
+				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
+				
+				isFiltered = true;
+				
+			}
 			
-			queryResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
+			//Achats/mes enchères en cours 2
+			if (checkBoxFilter.get(2) != null) {
+				
+				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
+				
+				filteredResult = filteredResult.stream().filter(article -> !article.getListeEncheres().isEmpty()).collect(Collectors.toList());
+				
+				filteredResult = filteredResult.stream().filter(article -> article.getListeEncheres().get(article.getListeEncheres().size() - 1).getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+				
+				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
+				
+				isFiltered = true;
+				
+			}
 			
-			result = Stream.concat(result.stream(), queryResult.stream()).toList();
+			//Achats/mes enchères remportées 3
+			if (checkBoxFilter.get(3) != null) {
+				
+				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("Enchères terminées") || article.getEtatVente().contains("Retrait effectué")).collect(Collectors.toList());
+				
+				filteredResult = filteredResult.stream().filter(article -> !article.getListeEncheres().isEmpty()).collect(Collectors.toList());
+				
+				filteredResult = filteredResult.stream().filter(article -> article.getListeEncheres().get(article.getListeEncheres().size() - 1).getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+				
+				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
+				
+				isFiltered = true;
+			}
+			
+			if (isFiltered == false) {
+				
+				return queryResult.stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
+				
+			}
 		}
 		
-		//Achats/mes enchères en cours 2
-		if (checkBoxFilter.get(2) != null) {
-			List<ArticleVendu> queryResult = searchOffline(name, libelle);
+		if (radioFilter == 2) {
 			
-			queryResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
+			//Achats/mes ventes en cours 4
+			if (checkBoxFilter.get(4) != null) {
+				
+				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
+							
+				filteredResult = filteredResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+				
+				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
+				
+				isFiltered = true;
+			}
 			
-			queryResult = queryResult.stream().filter(article -> !article.getListeEncheres().isEmpty()).collect(Collectors.toList());
+			//Achats/ventes non débutées 5
+			if (checkBoxFilter.get(5) != null) {
+				
+				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("Créée")).collect(Collectors.toList());
+							
+				filteredResult = filteredResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+				
+				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
+				
+				isFiltered = true;
+			}
 			
-			queryResult = queryResult.stream().filter(article -> article.getListeEncheres().get(article.getListeEncheres().size() - 1).getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+			//Achats/ventes non débutées 6
+			if (checkBoxFilter.get(6) != null) {
+				
+				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("Enchères terminées") || article.getEtatVente().contains("Retrait effectué")).collect(Collectors.toList());
+							
+				filteredResult = filteredResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+				
+				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
+				
+				isFiltered = true;
+			} 
 			
-			result = Stream.concat(result.stream(), queryResult.stream()).toList();
-		}
-		
-		//Achats/mes enchères remportées 3
-		if (checkBoxFilter.get(3) != null) {
-			List<ArticleVendu> queryResult = searchOffline(name, libelle);
-			
-			queryResult = queryResult.stream().filter(article -> article.getEtatVente().contains("Enchères terminées") || article.getEtatVente().contains("Retrait effectué")).collect(Collectors.toList());
-			
-			queryResult = queryResult.stream().filter(article -> !article.getListeEncheres().isEmpty()).collect(Collectors.toList());
-			
-			queryResult = queryResult.stream().filter(article -> article.getListeEncheres().get(article.getListeEncheres().size() - 1).getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
-			
-			result = Stream.concat(result.stream(), queryResult.stream()).toList();
-		}
-		
-		//Achats/mes ventes en cours 4
-		if (checkBoxFilter.get(4) != null) {
-			List<ArticleVendu> queryResult = searchOffline(name, libelle);
-			
-			queryResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
-						
-			queryResult = queryResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
-			
-			result = Stream.concat(result.stream(), queryResult.stream()).toList();
-		}
-		
-		//Achats/ventes non débutées 5
-		if (checkBoxFilter.get(5) != null) {
-			List<ArticleVendu> queryResult = searchOffline(name, libelle);
-			
-			queryResult = queryResult.stream().filter(article -> article.getEtatVente().contains("Créée")).collect(Collectors.toList());
-						
-			queryResult = queryResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
-			
-			result = Stream.concat(result.stream(), queryResult.stream()).toList();
-		}
-		
-		//Achats/ventes non débutées 6
-		if (checkBoxFilter.get(6) != null) {
-			List<ArticleVendu> queryResult = searchOffline(name, libelle);
-			
-			queryResult = queryResult.stream().filter(article -> article.getEtatVente().contains("Enchères terminées") || article.getEtatVente().contains("Retrait effectué")).collect(Collectors.toList());
-						
-			queryResult = queryResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
-			
-			result = Stream.concat(result.stream(), queryResult.stream()).toList();
-		} else {
-			
-			result = searchOffline(name, libelle);
+			if (isFiltered == false) {
+				
+				filteredResult = queryResult.stream().filter(article -> article.getUtilisateur().getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+				
+				return filteredResult.stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
+								
+			}
 			
 		}
-		
-		return result;
+	
+		List<ArticleVendu> result2 = new ArrayList<ArticleVendu>(new HashSet<>(result)); 
+		return result2.stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
+
 	}
 }
