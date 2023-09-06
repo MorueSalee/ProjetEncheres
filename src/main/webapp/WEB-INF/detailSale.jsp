@@ -17,48 +17,58 @@
     <jsp:include page="nav.jsp"/>
     
     <section id="detail_sale" class="container">
-    	<h2>DÃ©tail vente</h2>
+    	<h2>Détail vente</h2>
     	<c:url value="/detailSaleServlet" var="detailUrl">
     		<c:param name="noArticle" value="${param.noArticle}" />
 		</c:url>
 		<div class="panpan_seagal">
         	<p class="replique">
 	        	<i class="fa-solid fa-quote-left"></i>
-	        	Je vais sortir mon porte-feuille trÃ¨s lentement de ma poche, j'ai plein de liquide. A moins que... vous acceptez les cartes de crÃ©dit ?
+	        	Je vais sortir mon porte-feuille très lentement de ma poche, j'ai plein de liquide. A moins que... vous acceptez les cartes de crédit ?
 	        	<i class="fa-solid fa-quote-right"></i>
         	</p>
         	<img src="img/panpan_steven_seagal.png" alt="">
         </div>
         <div class="body_detail">
         	<div>
-        		<p>Nom article:</p>
+        		<p>Nom article :</p>
             	<p>${currentArticle.nomArticle}</p>
             </div>
             <div>
-            	<p>Description:</p>
+            	<p>Description :</p>
                 <p>${currentArticle.description}</p>
             </div>
             <div>
-
-                <p>CatÃ©gorie : ${currentArticle.categorie.libelle}</p>
+				<p>Catégorie : </p>
+                <p>${currentArticle.categorie.libelle}</p>
             </div>
             <div>
-                <p>DÃ©but des enchÃ¨res : ${currentArticle.dateDebutEncheres}</p>
+           		<p>Point de retrait : </p>
+                <p>${currentArticle.retrait.rue}, ${currentArticle.retrait.codePostal} ${currentArticle.retrait.ville}</p>
             </div>
             <div>
-                <p>Fin des enchÃ¨res : ${currentArticle.dateFinEncheres}</p>
+            	<p>Statut : </p>
+                <p>${currentArticle.etatVente}</p>
             </div>
             <div>
-                <p>Point de retrait : ${currentArticle.retrait.rue}</p>
+            	<p>Vendeur : </p>
+                <p>${currentArticle.utilisateur.pseudo}</p>
             </div>
             <div>
-                <p>Vendeur : ${currentArticle.utilisateur.pseudo}</p>
+            	<p>Début des enchères : </p>
+                <p>${currentArticle.dateDebutEncheres}</p>
             </div>
             <div>
-                <p>Prix de dÃ©part : ${currentArticle.prixInitial}</p>
+            	<p>Fin des enchères : </p>
+                <p>${currentArticle.dateFinEncheres}</p>
             </div>
             <div>
-                <p>Meilleure offre : ${currentArticle.prixVente}</p>
+            	<p>Prix de départ : </p>
+                <p>${currentArticle.prixInitial}</p>
+            </div>
+            <div>
+            	<p>Meilleure offre : </p>
+                <p>${currentArticle.prixVente}</p>
 
             </div>
             <c:choose>
@@ -76,7 +86,7 @@
 	            	</form>
 			    </c:when>    
 			    <c:otherwise>
-			        <p class="noconnect">Vous devez Ãªtre connectÃ© pour enchÃ©rir</p>
+			        <p class="noconnect">Vous devez être connecté pour enchérir</p>
 			    </c:otherwise>
 			</c:choose>
 			            

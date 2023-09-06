@@ -8,6 +8,7 @@ import fr.formation.enchere.bll.ArticleVenduManager;
 import fr.formation.enchere.bll.ArticleVenduManagerSing;
 import fr.formation.enchere.bll.CategorieManager;
 import fr.formation.enchere.bll.CategorieManagerSing;
+import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;
@@ -54,9 +55,10 @@ public class EnchereServlet extends HttpServlet {
 		
 
 		//Affiche les encheres
-		
 			try {
-				articleModel.setListArticle(articleManager.searchOffline(request.getParameter("nomArticle"), libelle));
+				List<ArticleVendu> lstArticles = articleManager.searchOffline(request.getParameter("nomArticle"), libelle);
+				articleManager.majEtatVente(lstArticles);
+				articleModel.setListArticle(lstArticles);
 			} catch (DALException e) {
 				e.printStackTrace();
 			}
