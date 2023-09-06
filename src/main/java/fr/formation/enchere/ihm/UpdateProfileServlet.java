@@ -56,8 +56,8 @@ public class UpdateProfileServlet extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
 		String pseudo = request.getParameter("pseudo");
-	    String motDePasse = request.getParameter("motDePasse");
-	    String motDePasse2 = request.getParameter("motDePasse2");
+	    String motDePasse = request.getParameter("motDePasseUpdate");
+	    String motDePasse2 = request.getParameter("motDePasseUpdate2");
 	    String nom = request.getParameter("nom");
 	    String prenom = request.getParameter("prenom");
 	    String email = request.getParameter("email");

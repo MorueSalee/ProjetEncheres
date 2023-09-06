@@ -8,15 +8,12 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import fr.formation.enchere.bll.ArticleVenduManager;
 import fr.formation.enchere.bll.ArticleVenduManagerSing;
 import fr.formation.enchere.bll.EnchereManager;
 import fr.formation.enchere.bll.EnchereManagerSing;
 import fr.formation.enchere.bo.ArticleVendu;
-import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.bo.Enchere;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;

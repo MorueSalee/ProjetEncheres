@@ -35,17 +35,14 @@ public class ProfileServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 	
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-					    		    
-		    if (utilisateur == null) {
-		        response.sendRedirect(request.getContextPath() + "/EnchereServlet");
-		        return;
-		    }
-	
+			
+			request.setAttribute("lstArticleByUtilisateur", utilisateur.getListeArticles());
+
 			request.setAttribute("utilisateur", utilisateur);
 	
 			// envoi a la page monProfil.jsp			
 			request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
-		}
+	}
 
 	
 

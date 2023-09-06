@@ -82,19 +82,20 @@
 	           </div>
 	           <div class="d-flex">
 	               <div class="position">
-	               		<div class="title">
-	                   		<label>Mot de passe *</label>
-	                   		<i class="fa-solid fa-lock"></i>
-	                   	</div>
-	                   <input type="password" value="${sessionScope.utilisateur.motDePasse}" name="motDePasse" required />
-	               </div>
+					    <div class="title">
+					        <label>Mot de passe *</label>
+					        <i class="fa-solid fa-lock"></i>
+					    </div>
+					    <input type="password" name="motDePasseUpdate" required />
+					</div>
 					<div class="position">
-						<div class="title">
-	                   		<label>Confirmation *</label>
-	                   		<i class="fa-solid fa-lock"></i>
-	                   </div>
-	                   <input type="password" name="motDePasse2" required/>
-	               </div>
+					    <div class="title">
+					        <label>Confirmation *</label>
+					        <i class="fa-solid fa-lock"></i>
+					    </div>
+					    <input type="password" name="motDePasseUpdate2" required />
+					</div>
+
 	           </div>
 	           <p class="obligatory">* Champs obligatoire</p>
 	             <!--  CONDITION DE MODIFICATION PROFIL UTILISATEUR -->
