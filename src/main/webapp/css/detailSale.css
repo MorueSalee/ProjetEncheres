@@ -27,6 +27,16 @@
 	width: 500px;
 }
 
+#detail_sale .body_detail > div {
+	display: flex;
+	padding: 5px 0;
+}
+
+#detail_sale .body_detail > div p:first-child {
+	font-weight: normal;
+	padding-right: 5px;
+}
+
 #detail_sale .panpan_seagal {
 	position: fixed;
 	bottom: 0;
@@ -39,6 +49,7 @@
 	display: flex;
 	justify-content: start;
 	left: 0;
+	z-index: -1;
 }
 
 #detail_sale .panpan_seagal img {
@@ -59,4 +70,50 @@
 	width: 300px;
 }
 
+#detail_sale .encherir input {
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background: #3d404b;
+	border-radius: 10px;
+	border: 2px solid gray;
+}
+
+#detail_sale .encherir input[type=number] {
+	content: none;
+}
+
+#detail_sale form {
+	display: flex;
+	align-items: center;
+}
+
+#detail_sale .btn_encherir {
+  background-color: #1d8ef3;
+	width: 200px;
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: 2px solid gray;
+	margin: 16px 10px 0 10px;
+}
+
+
+#detail_sale .title label {
+  font-size: 15px;
+  position: relative;
+  top: 8px;
+  left: 5px;
+  background: linear-gradient(to bottom, #3d404b 55%, #3d404b 45%);
+  padding: 0 5px;
+}
+
+#detail_sale .title i {
+  position: relative;
+  top: 29px;
+  right: 15px;
+}
 

@@ -71,6 +71,7 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 		return result;
 	}
 	
+	
 	@Override
 	public List<ArticleVendu> getByCategorieLibelle(String libelle) throws DALException {
 		List<ArticleVendu> result = dao.getByCategorieLibelle(libelle);
@@ -212,7 +213,7 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 		return result2.stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 
 	}
-
+  
 	@Override
 	public void majEtatVente(List<ArticleVendu> lstArticle) throws DALException {
 		

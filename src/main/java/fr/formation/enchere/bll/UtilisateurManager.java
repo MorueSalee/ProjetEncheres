@@ -1,5 +1,6 @@
 package fr.formation.enchere.bll;
 
+
 import fr.formation.enchere.bll.exception.BusinessException;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.DALException;

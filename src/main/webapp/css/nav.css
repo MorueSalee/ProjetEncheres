@@ -34,8 +34,15 @@ nav ul li {
 	background: linear-gradient(24deg, rgba(39,42,55,1) 0%, rgba(39,42,55,1) 62%, rgba(78,82,94,1) 100%);
 }
 
-.bottom_bar i {
+.bottom_bar .connecter i {
 	color: green;
+	border: 2px solid white;
+	border-radius: 100%;
+	font-size: 11px;
+}
+
+.bottom_bar .deconnecter i {
+	color: red;
 	border: 2px solid white;
 	border-radius: 100%;
 	font-size: 11px;

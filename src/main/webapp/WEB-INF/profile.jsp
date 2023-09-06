@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,6 +51,13 @@
             <a href="${pageContext.request.contextPath}/UpdateProfileServlet">Modifier</button>
         </div>
         <img src="img/regarde_de_braise_steven.png" alt="Image par défault"/>
+        <div class="grid_article">
+    	<c:forEach items="${lstArticleByUtilisateur}" var="articleByUtilisateur">
+	        <div>
+	          <h3>Nom de l'article: ${articleByUtilisateur.nomArticle}</h3>
+	        </div>
+      	</c:forEach>
+    </div>
     </section>
 </body>
 </html>
