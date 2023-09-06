@@ -58,7 +58,6 @@ public class EnchereServlet extends HttpServlet {
 			try {
 				articleModel.setListArticle(articleManager.searchOffline(request.getParameter("nomArticle"), libelle));
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		

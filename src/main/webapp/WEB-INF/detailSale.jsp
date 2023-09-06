@@ -17,14 +17,14 @@
     <jsp:include page="nav.jsp"/>
     
     <section id="detail_sale" class="container">
-    	<h2>DÈtail vente</h2>
+    	<h2>D√©tail vente</h2>
     	<c:url value="/detailSaleServlet" var="detailUrl">
     		<c:param name="noArticle" value="${param.noArticle}" />
 		</c:url>
 		<div class="panpan_seagal">
         	<p class="replique">
 	        	<i class="fa-solid fa-quote-left"></i>
-	        	Je vais sortir mon porte-feuille trËs lentement de ma poche, j'ai plein de liquide. A moins que... vous acceptez les cartes de crÈdit ?
+	        	Je vais sortir mon porte-feuille tr√®s lentement de ma poche, j'ai plein de liquide. A moins que... vous acceptez les cartes de cr√©dit ?
 	        	<i class="fa-solid fa-quote-right"></i>
         	</p>
         	<img src="img/panpan_steven_seagal.png" alt="">
@@ -39,49 +39,51 @@
                 <p>${currentArticle.description}</p>
             </div>
             <div>
-                <p>Libelle:</p>
-                <p>${currentArticle.categorie.libelle}</p>
+
+                <p>Cat√©gorie : ${currentArticle.categorie.libelle}</p>
             </div>
             <div>
-                <p>Prix vente:</p>
-                <p>${currentArticle.prixVente}</p>
+                <p>D√©but des ench√®res : ${currentArticle.dateDebutEncheres}</p>
             </div>
             <div>
-                <p>Date dÈbut:</p>
-                <p>${currentArticle.dateDebutEncheres}</p>
+                <p>Fin des ench√®res : ${currentArticle.dateFinEncheres}</p>
             </div>
             <div>
-                <p>Date fin:</p>
-                <p>${currentArticle.dateFinEncheres}</p>
+                <p>Point de retrait : ${currentArticle.retrait.rue}</p>
             </div>
             <div>
-                <p>Rue:</p>
-                <p>${currentArticle.retrait.rue}</p>
+                <p>Vendeur : ${currentArticle.utilisateur.pseudo}</p>
             </div>
             <div>
-                <p>Pseudo (vendeur):</p>
-                <p>${currentArticle.utilisateur.pseudo}</p>
+                <p>Prix de d√©part : ${currentArticle.prixInitial}</p>
+            </div>
+            <div>
+                <p>Meilleure offre : ${currentArticle.prixVente}</p>
+
             </div>
             <c:choose>
 			    <c:when test="${utilisateur != null}">
 			        <form action="<%=request.getContextPath()%>/DetailSaleServlet?noArticle=${noArticle}" method="post">
+
 			            <div class="encherir">   
 			                <div class="title">
 			                	<label>Ma proposition : </label>
 			                	<i class="fa-solid fa-dollar-sign"></i>
 			                </div>
-			                <input  type="number" value="${currentArticle.prixVente}" name="montant">
+			                <input  type="number" value="${currentArticle.prixVente + 1}" name="montant">
 		                </div>
-		                <input class="btn_encherir" type="submit" value="EnchÈrir" name="encherir"/>
+		                <input class="btn_encherir" type="submit" value="Ench√©rir" name="encherir"/>
 	            	</form>
 			    </c:when>    
 			    <c:otherwise>
-			        <p class="noconnect">Vous devez Ítre connectÈ pour enchÈrir</p>
+			        <p class="noconnect">Vous devez √™tre connect√© pour ench√©rir</p>
 			    </c:otherwise>
 			</c:choose>
 			            
         </div>
-        
+        <div>
+        <p>${message}</p>
+        </div>
     </section>
 </body>
 </html>

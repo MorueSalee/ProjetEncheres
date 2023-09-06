@@ -5,8 +5,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.formation.enchere.bll.UtilisateurManager;
+import fr.formation.enchere.bll.UtilisateurManagerSing;
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
+import fr.formation.enchere.bo.Enchere;
 import fr.formation.enchere.bo.Retrait;
 import fr.formation.enchere.dal.util.ConnectionProvider;
 
@@ -31,10 +34,11 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     		""";
     final String SELECT_BY_ID = """
     		SELECT * FROM ARTICLES_VENDUS
-    		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur
+    		INNER JOIN UTILISATEURS u1 ON ARTICLES_VENDUS.no_utilisateur = u1.no_utilisateur
     		INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
     		INNER JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article
 			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
+			LEFT JOIN UTILISATEURS u2 ON ENCHERES.no_utilisateur = u2.no_utilisateur
     		WHERE ARTICLES_VENDUS.no_article = ?;
     		""";
     final String SELECT_BY_NAME = """
@@ -202,7 +206,14 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						article.setNoArticle(rs.getInt("no_article"));
 					}
 					if (rs.getInt("no_enchere") != 0) {
-						article.addEnchere(EnchereDAOImpl.getEnchere(rs));
+						
+						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
+						
+						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
+						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
+						article.addEnchere(enchere);
+						
 					}
 					article.addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
 					article.addCategorie(CategorieDAOImpl.getCategorie(rs));

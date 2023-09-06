@@ -70,7 +70,7 @@ public class ArticleVendu {
 	
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie,
+			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente,
 			Retrait retrait) {
 		super();
 		this.nomArticle = nomArticle;
@@ -85,7 +85,20 @@ public class ArticleVendu {
 		this.retrait = retrait;
 	}
 
-
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie,
+			Retrait retrait) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.retrait = retrait;
+	}
 
 	public Integer getNoArticle() {
 		return noArticle;
