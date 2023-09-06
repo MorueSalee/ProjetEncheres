@@ -1,6 +1,5 @@
 package fr.formation.enchere.dal;
 
-import java.security.interfaces.RSAKey;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -70,7 +69,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			LEFT JOIN ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article
     		WHERE CATEGORIES.libelle = ?;
     		""";
-
+    
     public static ArticleVendu getArticle(ResultSet rs) throws SQLException {
     	Integer noArticle = rs.getInt("no_article");
         String nomArticle = rs.getString("nom_article");
@@ -162,6 +161,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		return results;
 		
 	}
+	
 
 	@Override
 	public void update(ArticleVendu article) throws DALException {

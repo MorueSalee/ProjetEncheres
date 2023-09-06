@@ -47,7 +47,6 @@ public class DeleteProfileServlet extends HttpServlet {
 			manager.delete(utilisateur.getNoUtilisateur());
 			RequestDispatcher rd = request.getRequestDispatcher("/logout");
 			rd.forward(request, response);
-            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 		} catch (DALException e) {
 			request.setAttribute("message", "Vous ne pouvez pas supprimer ce profil !");
             request.getRequestDispatcher("/WEB-INF/updateProfile.jsp").forward(request, response);

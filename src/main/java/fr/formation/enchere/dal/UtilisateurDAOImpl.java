@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.util.ConnectionProvider;
 
@@ -258,4 +259,5 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		
 		return utilisateur;
 	}
+
 }

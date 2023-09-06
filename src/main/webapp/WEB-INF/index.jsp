@@ -94,6 +94,7 @@
 	          <p><span>Prix:</span> ${article.prixVente}</p>
 	          <fmt:parseDate value="${article.dateFinEncheres}" pattern="yyyy-MM-dd" var="st" type="both"/>
 	          <p><span>Fin de l'enchére:</span> <fmt:formatDate pattern="dd/MM/yyyy" value="${st}" /></p>
+	           <p><span>Catégorie:</span> ${article.categorie.libelle}</p>
 	          <p><span>Vendeur:</span> ${article.utilisateur.pseudo}</p>
 	        </div>
 	      </div>

@@ -23,7 +23,7 @@
 	                   <label>Pseudo *</label>
 	                   <i class="fa-solid fa-id-card-clip"></i>
 	                </div>
-	                <input type="text" name="pseudo" required/>
+	                <input type="text" name="pseudo" value="${empty param.pseudo ? '' : param.pseudo}" required/>
                </div>
                <div class="d-flex">
 	               <div class="position">
@@ -31,14 +31,14 @@
 	                   		<label>Prénom</label>
 	                   		<i class="fa-solid fa-user"></i>
 	                   	</div>
-	                   <input type="text" name="prenom"/>
+	                   <input type="text" name="prenom" value="${empty param.prenom ? '' : param.prenom}"/>
 	               </div>
 	               <div class="position">
 	               		<div class="title">
 		                   <label>Nom</label>
 		                   <i class="fa-solid fa-id-card-clip"></i>
 	                   </div>
-	                   <input type="text" name="nom"/>
+	                   <input type="text" name="nom" value="${empty param.nom ? '' : param.nom}"/>
 	               </div>
 	           </div>
 	           <div class="d-flex">
@@ -47,14 +47,14 @@
 		                   <label>Téléphone</label>
 		                   <i class="fa-solid fa-phone"></i>
 	                   </div>
-	                   <input type="text" name="telephone"/>
+	                   <input type="text" name="telephone" value="${empty param.telephone ? '' : param.telephone}"/>
 	               </div>
 	               <div class="position">
 	               		<div class="title">
 		                   <label>Email *</label>
 		                   <i class="fa-solid fa-envelope"></i>
 	                   </div>
-	                   <input type="text" name="email" required/>
+	                   <input type="text" name="email" required value="${empty param.email ? '' : param.email}"/>
 	               </div>
                </div>
                <div class="d-flex">
@@ -63,21 +63,21 @@
 	                   		<label>Rue</label>
 	                   		<i class="fa-solid fa-street-view"></i>
 	                   </div>
-	                   <input type="text" name="rue"/>
+	                   <input type="text" name="rue" value="${empty param.rue ? '' : param.rue}"/>
 	               </div>
 	               <div class="position">
 	               		<div class="title">
 	                   		<label>Ville</label>
 	                   		<i class="fa-solid fa-city"></i>
 	                   </div>
-	                   <input type="text" name="ville"/>
+	                   <input type="text" name="ville" value="${empty param.ville ? '' : param.ville}"/>
 	               </div>
 	               <div class="position">
 	               		<div class="title">
 	                   		<label>Code postal</label>
 	                   		<i class="fa-solid fa-building"></i>
 	                   </div>
-	                   <input type="text" name="codePostal"/>
+	                   <input type="text" name="codePostal" value="${empty param.codePostal ? '' : param.codePostal}"/>
 	               </div>
 	           </div>
 	           <div class="d-flex">
