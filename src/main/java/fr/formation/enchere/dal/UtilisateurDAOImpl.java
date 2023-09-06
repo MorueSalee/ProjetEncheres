@@ -178,6 +178,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	@Override
 	public Utilisateur findByLoginAndPassword(String identifiant, String motDePasse) throws DALException {
 		Utilisateur utilisateur = null;
+		ArticleVendu article = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_LOGIN_AND_PASSWORD);
@@ -191,11 +192,15 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					}
-					if (rs.getInt("no_enchere") != 0) {
-						utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
+					if (utilisateur.getListeArticles().size() != 0 && rs.getInt("no_article") != utilisateur.getListeArticles().get(utilisateur.getListeArticles().size()-1).getNoArticle()) {
+						article = null;
+					}
+					if (article == null) {
+						article = ArticleVenduDAOImpl.getArticle(rs);
+						utilisateur.addArticle(article);
 					}
 					if (rs.getInt("no_article") != 0) {
-						utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+						utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
 					}
                 }
 			}
