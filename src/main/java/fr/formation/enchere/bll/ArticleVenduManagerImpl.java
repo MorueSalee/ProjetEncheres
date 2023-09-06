@@ -217,5 +217,20 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 	@Override
 	public void majEtatVente(List<ArticleVendu> lstArticle) throws DALException {
 		
+		for (ArticleVendu article : lstArticle) {
+			
+			LocalDate dateDebut = article.getDateDebutEncheres();
+			LocalDate dateFin = article.getDateFinEncheres();
+			
+			if (dateDebut.isAfter(LocalDate.now())) {
+				article.setEtatVente("Créée");
+			} else if ((dateDebut.isBefore(LocalDate.now()) || dateDebut.equals(LocalDate.now())) && (dateFin.isAfter(LocalDate.now()) || dateFin.equals(LocalDate.now()))) {
+				article.setEtatVente("En Cours");
+			} else if (dateFin.isBefore(LocalDate.now())) {
+				article.setEtatVente("Enchères terminées");
+			}
+			update(article);
+		}
+		
 	}
 }
