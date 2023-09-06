@@ -16,7 +16,7 @@ private UtilisateurDAO dao = UtilisateurDAOFact.getUtilisateurDAO();
 			if (!isPseudoUnique(utilisateur.getPseudo()) || !isEmailUnique(utilisateur.getEmail())) {
 			    throw new IllegalArgumentException("Le pseudo ou l'email est déjà utilisé.");
 			} else {
-				if (!utilisateur.getPseudo().matches("^[a-zA-Z0-9]+$")) {
+				if (!utilisateur.getPseudo().matches("^[a-zA-0-9]+$")) {
 			        throw new IllegalArgumentException("Le pseudo ne doit contenir que des caractères alphanumériques.");
 			    } else {
 					dao.insert(utilisateur);

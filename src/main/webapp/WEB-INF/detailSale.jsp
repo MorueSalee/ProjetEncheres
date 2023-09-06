@@ -35,28 +35,31 @@
                 <p>${currentArticle.description}</p>
             </div>
             <div>
-                <p>${currentArticle.categorie.libelle}</p>
+                <p>Catégorie : ${currentArticle.categorie.libelle}</p>
             </div>
             <div>
-                <p>${currentArticle.prixVente}</p>
+                <p>Début des enchères : ${currentArticle.dateDebutEncheres}</p>
             </div>
             <div>
-                <p>${currentArticle.dateDebutEncheres}</p>
+                <p>Fin des enchères : ${currentArticle.dateFinEncheres}</p>
             </div>
             <div>
-                <p>${currentArticle.dateFinEncheres}</p>
+                <p>Point de retrait : ${currentArticle.retrait.rue}</p>
             </div>
             <div>
-                <p>${currentArticle.retrait.rue}</p>
+                <p>Vendeur : ${currentArticle.utilisateur.pseudo}</p>
             </div>
             <div>
-                <p>${currentArticle.utilisateur.pseudo}</p>
+                <p>Prix de départ : ${currentArticle.prixInitial}</p>
+            </div>
+            <div>
+                <p>Meilleure offre : ${currentArticle.prixVente}</p>
             </div>
             <c:choose>
 			    <c:when test="${utilisateur != null}">
 			        <form action="<%=request.getContextPath()%>/DetailSaleServlet?noArticle=${noArticle}" method="post">
 	                <p>Ma proposition : </p>
-	                <input type="number" value="${currentArticle.prixVente}" name="montant">
+	                <input type="number" value="${currentArticle.prixVente + 1}" name="montant">
 	                <input type="submit" value="Enchérir" name="encherir"/>
 	            </form>
 			    </c:when>    
@@ -66,7 +69,9 @@
 			</c:choose>
 			            
         </div>
-        
+        <div>
+        <p>${message}</p>
+        </div>
     </section>
 </body>
 </html>

@@ -31,6 +31,13 @@ public class Enchere {
 		this.noUtilisateur = noUtilisateur;
 	}
 
+	public Enchere(LocalDate dateEnchere, Integer montantEnchere, Integer noUtilisateur) {
+		super();
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.noUtilisateur = noUtilisateur;
+	}
+	
 	public Enchere(LocalDate dateEnchere, Integer montantEnchere, Utilisateur utilisateur) {
 		super();
 		this.dateEnchere = dateEnchere;

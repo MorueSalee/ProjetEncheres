@@ -212,4 +212,9 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 		return result2.stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 
 	}
+
+	@Override
+	public void majEtatVente(List<ArticleVendu> lstArticle) throws DALException {
+		
+	}
 }

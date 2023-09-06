@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.util.ConnectionProvider;
 
@@ -101,6 +103,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	public Utilisateur findById(Integer id) throws DALException {
 
 		Utilisateur utilisateur = null;
+		ArticleVendu article = null;
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_BY_ID);
@@ -113,11 +116,15 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					}
+					if (utilisateur.getListeArticles().size() != 0 && rs.getInt("no_article") != utilisateur.getListeArticles().get(utilisateur.getListeArticles().size()-1).getNoArticle()) {
+						article = null;
+					}
+					if (article == null) {
+						utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
+					}
+					
 					if (rs.getInt("no_enchere") != 0) {
 						utilisateur.addEnchere(EnchereDAOImpl.getEnchere(rs));
-					}
-					if (rs.getInt("no_article") != 0) {
-						utilisateur.addArticle(ArticleVenduDAOImpl.getArticle(rs));
 					}
 				}
 			}
