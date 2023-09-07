@@ -11,7 +11,7 @@
 <nav>
     <h1>
     	<a href="${pageContext.request.contextPath}/EnchereServlet">
-    		<p>Enchère Arnold</p>
+    		<p>Enchères Arnold</p>
 		</a>
 		
 	</h1>

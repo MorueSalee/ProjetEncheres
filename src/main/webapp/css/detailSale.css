@@ -9,6 +9,7 @@
 	height: 100vh;
 	justify-content: center;
 	height: 80vh;
+	margin-top: 50px;
 }
 
 #detail_sale .noconnect {
@@ -67,7 +68,7 @@
 	font-weight: bold;
 	padding-left: 50px;
 	position: relative;
-	width: 300px;
+	top: 410px;
 }
 
 #detail_sale .encherir input {
