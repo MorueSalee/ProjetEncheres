@@ -26,3 +26,4 @@ ventesRadio.addEventListener('change', () => {
     salesNotStartedCheckbox.disabled = false;
     completedSalesCheckbox.disabled = false;
 });
+

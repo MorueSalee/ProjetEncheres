@@ -34,7 +34,7 @@
 	position: relative;
 	top: 8px;
 	left: 5px;
-	background: linear-gradient(to bottom, rgb(39, 42, 55) 55%, #3d404b 45%);
+	background: linear-gradient(to bottom, rgb(39 42 55 / 0%) 55%, #3d404b 45%);
 	padding: 0 5px;
 }
 
@@ -94,7 +94,6 @@
 
 
 .grid_article > a {
-	padding: 10px;
 	color: white;
 	font-size: 15px;
 	font-weight: bold;
@@ -109,7 +108,7 @@
 	border: 2px solid #aeaeae;
 }
 
-.grid_article .card_article {
+.grid_article .body {
 	padding: 20px;
 }
 
@@ -126,8 +125,26 @@
 }
 
 #all_article .imagedivarticle {
-	display: flex;
-	justify-content: center;
+	height: 250px;
 	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius: 10px 10px 0 0;
+
+}
+
+#all_article .imagedivarticle:hover {
+	background-size: 110%;
+	transition: 0.5s;
+	animation: 1s animationImage;
+}
+
+@keyframes animationImage {
+	from {
+		background-size: 100%;
+	} to {
+		background-size: 110%;
+	}
 }
 

@@ -1,3 +1,7 @@
+a:hover, input, button, textarea {
+  cursor: url('../img/petittete4.ico'), auto;;
+}
+
 nav {
 	display: flex;
 	justify-content: space-around;
