@@ -45,15 +45,17 @@ public class DetailSaleServlet extends HttpServlet {
         String noArticleParam = request.getParameter("noArticle");
 
         try {
+        	
             Integer noArticle = Integer.parseInt(noArticleParam);
             ArticleVendu currentArticle = articleManager.getById(noArticle);
             request.setAttribute("currentArticle", currentArticle);
+            
         } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (DALException e) {
             e.printStackTrace();
         }
-            
+          
         request.setAttribute("noArticle", noArticleParam);
 
         request.getRequestDispatcher("/WEB-INF/detailSale.jsp").forward(request, response);

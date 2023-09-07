@@ -117,3 +117,11 @@
   right: 15px;
 }
 
+#detail_sale .win {
+  justify-content: center;
+  width: 100%;
+}
+
+#detail_sale .winp {
+  font-weight: bold !important;
+}
