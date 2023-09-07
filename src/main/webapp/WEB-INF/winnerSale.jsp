@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/winnerSale.css" />
     <link rel="stylesheet" href="css/all.css" />
-    <title>Document</title>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
     <jsp:include page="nav.jsp"/>

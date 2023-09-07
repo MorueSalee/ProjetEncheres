@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <title>S'inscrire</title>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
@@ -108,10 +108,10 @@
         <div class="seagal">
 	        <p>
 	        <i class="fa-solid fa-quote-left"></i>
-	        Mon contact à Washington dit qu'on n'a pas affaire à un élève mais qu'on a affaire au professeur.
+	        Écoute moi bien face de noeud, j'en ai rien à foutre que tu sois un ponte. Si tu nous fait repérer, j'te pète la nuque entre les doigts et j'te laisse crever, alors fait gaffe
 	        <i class="fa-solid fa-quote-right"></i>
 	        </p>
-	        <img src="img/bg_seagal.png" />
+	        <img src="img/predator_arnold.png" />
         </div>
        </div>
      </section>

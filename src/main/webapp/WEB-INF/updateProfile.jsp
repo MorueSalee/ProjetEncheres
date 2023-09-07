@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/updateProfile.css">
     <link rel="stylesheet" href="css/all.css" />
     
-    <title>Mise à jour profil</title>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
