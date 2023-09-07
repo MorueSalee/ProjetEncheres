@@ -8,8 +8,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import fr.formation.enchere.bll.UtilisateurManager;
-import fr.formation.enchere.bll.UtilisateurManagerSing;
 import fr.formation.enchere.bo.Utilisateur;
 
 /**
@@ -17,8 +15,6 @@ import fr.formation.enchere.bo.Utilisateur;
  */
 public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UtilisateurManager manager = UtilisateurManagerSing.getInstance();
-
        
     /**
      * @see HttpServlet#HttpServlet()

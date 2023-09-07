@@ -48,7 +48,7 @@
 	        </div>
         </div>
        	<div class="button_update_profile">
-            <a href="${pageContext.request.contextPath}/UpdateProfileServlet">Modifier</button>
+            <a href="${pageContext.request.contextPath}/UpdateProfileServlet">Modifier</a>
         </div>
         <img src="img/regarde_de_braise_steven.png" alt="Image par défault"/>
         <div class="grid_article">
