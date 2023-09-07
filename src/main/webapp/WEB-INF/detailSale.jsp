@@ -30,6 +30,17 @@
         	<img src="img/panpan_steven_seagal.png" alt="">
         </div>
         <div class="body_detail">
+        	<c:if test="${currentArticle.etatVente == 'Enchères terminées' }">
+        		<div class="win">
+        		 	<c:forEach var="encheres" items="${currentArticle.listeEncheres}" varStatus="status">
+       					<c:if test="${status.last}">
+           					<p class="winp">${encheres.utilisateur.pseudo} a remporté l'enchère !</p>
+       					</c:if>
+        		 	</c:forEach>
+        		 </div>
+        		 </br>
+       		</c:if>
+        	
         	<div>
         		<p>Nom article :</p>
             	<p>${currentArticle.nomArticle}</p>
@@ -89,10 +100,9 @@
 			        <p class="noconnect">Vous devez être connecté pour enchérir</p>
 			    </c:otherwise>
 			</c:choose>
-			            
-        </div>
-        <div>
-        <p>${message}</p>
+			<div>
+        		<p>${message}</p>
+        	</div>			            
         </div>
     </section>
 </body>
