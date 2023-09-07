@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/connection.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <title>Document</title>
+	<jsp:include page="head.jsp"/>
 </head>
 <body>
     <jsp:include page="nav.jsp"/>
@@ -35,18 +35,13 @@
                         <input type="checkbox">
                         <a>Se souvenir de moi</label>
                     </div>
-                    <a href="#">Mot de passe oublié</a>
+                    <a href="#">Mot de passe oubliÃ©</a>
                 </div>
 				<input class="btn_connection" type="submit" value="Connexion"/> 
             </div>
         </form>
         <p>${message}</p>
-        <p class="replique">
-        	<i class="fa-solid fa-quote-left"></i>
-        	Ils ont pas voulu de moi en enfer, c'est pas faute d'avoir essayé
-	        <i class="fa-solid fa-quote-right"></i>
-        </p>
-        <img src="img/steven_seagal_debout.png" />
+        <img src="img/sourire.png" />
     </section>
 </body>
 </html>

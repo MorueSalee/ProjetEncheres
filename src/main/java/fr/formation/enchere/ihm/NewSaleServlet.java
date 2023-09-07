@@ -94,7 +94,9 @@ public class NewSaleServlet extends HttpServlet {
 			categorie = manager2.getById(categorieId);
 			
 			Retrait retrait = new Retrait(rue, ville, codePostale);
+
 			ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,prixVente, utilisateur, categorie, retrait, imageUrl);
+
 		    
 		    manager.add(article);
 		    response.sendRedirect("EnchereServlet");

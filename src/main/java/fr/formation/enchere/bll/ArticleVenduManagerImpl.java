@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import fr.formation.enchere.bll.exception.BusinessException;
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
+import fr.formation.enchere.bo.Retrait;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.ArticleVenduDAO;
 import fr.formation.enchere.dal.ArticleVenduDAOFact;
@@ -21,14 +23,26 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 
 private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 	
-	public void add(ArticleVendu article) throws DALException {
+	public void add(ArticleVendu article) throws DALException, IllegalArgumentException {
 	    LocalDate now = LocalDate.now();
-	    if (article.getDateDebutEncheres().equals(now)) {
-	        article.setEtatVente("En cours");
-	    } else {
-	        article.setEtatVente("Créée");
+	    
+	    
+	    try {
+	        if (!isPrixInitialValid(article.getPrixInitial())) {
+	            throw new IllegalArgumentException("Le prix doit être un chiffre !");
+	        } else if (article.getDateDebutEncheres().isEqual(now)) {
+	            article.setEtatVente("En cours");
+	        } else {
+	            article.setEtatVente("Créée");
+	        }
+	        dao.insert(article);
+	    } catch (DALException e) {
+	        e.printStackTrace();
 	    }
-	    dao.insert(article);
+	}
+	
+	private boolean isPrixInitialValid(Integer prixInitial) {
+	    return prixInitial != null && prixInitial >= 0;
 	}
 
 	@Override

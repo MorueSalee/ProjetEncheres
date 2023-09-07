@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/newSale.css">
     <link rel="stylesheet" href="css/all.css" />
     
-    <title>Document</title>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
