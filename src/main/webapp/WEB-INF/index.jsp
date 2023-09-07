@@ -14,7 +14,7 @@
 <body>
   <jsp:include page="nav.jsp"/>
   <section id="lst_enchere" class="container">
-  	<h2 >Liste des enchéres</h2>
+  	<h2 >Liste des enchères</h2>
     <form action="EnchereServlet" method="post" class="section_search">
       <div class="filter">
         <div>
@@ -45,15 +45,15 @@
 	            <div class="sous_filter">
 	              <div>
 	                <input type="checkbox" id="ench_open" name="1" value="1" <c:if test="${radioFilter == 2}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[1] != null}">checked</c:if>/>
-	                <label for="ench_open">enchéres ouvertes</label>
+	                <label for="ench_open">enchères ouvertes</label>
 	              </div>
 	              <div>
 	                <input type="checkbox" id="ench_current" name="2" value="2" <c:if test="${radioFilter == 2}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[2] != null}">checked</c:if>/>
-	                <label for="ench_current">mes enchéres en cours</label>
+	                <label for="ench_current">mes enchères en cours</label>
 	              </div>
 	              <div>
 	                <input type="checkbox" id="ench_won" name="3" value="3" <c:if test="${radioFilter == 2}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[3] != null}">checked</c:if>/>
-	                <label for="ench_won">mes enchéres remportées</label>
+	                <label for="ench_won">mes enchères remportées</label>
 	              </div>
 	            </div>
 	          </div>
@@ -69,7 +69,7 @@
 	              </div>
 	              <div>
 	                <input type="checkbox" id="vente_not_started" name ="5" value="5" <c:if test="${radioFilter == 1}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[5] != null}">checked</c:if>/>
-	                <label for="vente_not_started">ventes non débutés</label>
+	                <label for="vente_not_started">ventes non débutées</label>
 	              </div>
 	              <div>
 	                <input type="checkbox" id="vente_completed" name="6" value="6" <c:if test="${radioFilter == 1}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[6] != null}">checked</c:if>/>
@@ -90,8 +90,8 @@
     	<a href="DetailSaleServlet?noArticle=${article.noArticle}">
 	      <div class="card_article">
 	        <c:if test="${article.imageUrl != null}">
-	          	<div class="imagedivarticle" style="background-image: url('${article.imageUrl}')">
-	          		
+	          	<div class="imagedivarticle" style="background-image: url('${article.imageUrl}?random=${article.noArticle}')">
+	          		<img />
 	          	</div>
            	 </c:if>
 	        <div class="body">
