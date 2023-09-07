@@ -125,3 +125,13 @@
 #detail_sale .winp {
   font-weight: bold !important;
 }
+
+#detail_sale .photoArticle {
+	width: 450px;
+}
+
+#detail_sale .imagedivarticle {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}

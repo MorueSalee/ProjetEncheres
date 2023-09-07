@@ -84,6 +84,7 @@ public class NewSaleServlet extends HttpServlet {
 		    Integer prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
 		    Integer prixVente =    Integer.parseInt(request.getParameter("prixInitial"));
 		    Integer categorieId = Integer.parseInt(request.getParameter("categorie"));
+		    String imageUrl = request.getParameter("imageUrl");
 		    
 		    // Retrait
 		    String rue = request.getParameter("rue");
@@ -93,7 +94,7 @@ public class NewSaleServlet extends HttpServlet {
 			categorie = manager2.getById(categorieId);
 			
 			Retrait retrait = new Retrait(rue, ville, codePostale);
-			ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,prixVente, utilisateur, categorie, retrait);
+			ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,prixVente, utilisateur, categorie, retrait, imageUrl);
 		    
 		    manager.add(article);
 		    response.sendRedirect("EnchereServlet");

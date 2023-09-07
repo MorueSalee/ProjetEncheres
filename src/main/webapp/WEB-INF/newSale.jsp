@@ -49,7 +49,7 @@
                     	<label>Photo de l'article :</label>
                     	<i class="fa-solid fa-image"></i>
                     </div>
-                    <input type="file" >
+                    <input type="file" name="imageUrl">
                 </div>
                 <div class="position">
                 	<div class="title">

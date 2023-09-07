@@ -91,6 +91,12 @@
 	      <div class="card_article">
 	        <img src="" alt="">
 	        <div>
+	          <c:if test="${article.imageUrl != null}">
+	          	<div class="imagedivarticle">
+	          		<img src="${article.imageUrl}" alt="${article.description}" class="photoArticle">
+	          	</div>
+	          	</br>
+           	  </c:if>
 	          <h3>${article.nomArticle}</h3>
 	          <p><span>Prix:</span> ${article.prixVente}</p>
 	          <fmt:parseDate value="${article.dateFinEncheres}" pattern="yyyy-MM-dd" var="st" type="both"/>
