@@ -39,7 +39,12 @@
         		 </div>
         		 </br>
        		</c:if>
-        	
+        	<c:if test="${currentArticle.imageUrl != null}">
+	          	<div class="imagedivarticle">
+	          		<img src="${currentArticle.imageUrl}" alt="${arcurrentArticleticle.description}" class="photoArticle">
+	          	</div>
+	          	</br>
+           	  </c:if>
         	<div>
         		<p>Nom article :</p>
             	<p>${currentArticle.nomArticle}</p>

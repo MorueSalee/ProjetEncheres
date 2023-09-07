@@ -90,8 +90,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
         Integer prixInitial = rs.getInt("prix_initial");
         Integer prixVente = rs.getInt("prix_vente");
         String etatVente = rs.getString("etat_vente");
+        
+        String imageUrl = rs.getString("image_url");
 
-        ArticleVendu a = new ArticleVendu(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, etatVente);
+        ArticleVendu a = new ArticleVendu(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, etatVente, imageUrl);
         
         return a;
     }

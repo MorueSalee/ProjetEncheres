@@ -17,6 +17,7 @@ public class ArticleVendu {
 	private List<Enchere> listeEncheres = new ArrayList<>();
 	private String etatVente;
 	private Retrait retrait;
+	private String imageUrl;
 	
 	public ArticleVendu() {
 	}
@@ -24,7 +25,7 @@ public class ArticleVendu {
 	
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, String etatVente) {
+			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, String etatVente, String imageUrl) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -34,11 +35,12 @@ public class ArticleVendu {
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.imageUrl = imageUrl;
 	}
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie,
-			List<Enchere> listeEncheres, String etatVente) {
+			List<Enchere> listeEncheres, String etatVente, String imageUrl) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -50,12 +52,13 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.listeEncheres = listeEncheres;
 		this.etatVente = etatVente;
+		this.imageUrl = imageUrl;
 	}
 	
 	
 	
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer prixInitial, Utilisateur utilisateur, Categorie categorie, String etatVente) {
+			Integer prixInitial, Utilisateur utilisateur, Categorie categorie, String etatVente, String imageUrl) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -65,13 +68,14 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		this.categorie = categorie;
 		this.etatVente = etatVente;
+		this.imageUrl = imageUrl;
 	}
 	
 	
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente,
-			Retrait retrait) {
+			Retrait retrait, String imageUrl) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -83,11 +87,12 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.etatVente = etatVente;
 		this.retrait = retrait;
+		this.imageUrl = imageUrl;
 	}
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie,
-			Retrait retrait) {
+			Retrait retrait, String imageUrl) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -98,6 +103,7 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		this.categorie = categorie;
 		this.retrait = retrait;
+		this.imageUrl = imageUrl;
 	}
 
 	public Integer getNoArticle() {
@@ -218,6 +224,20 @@ public class ArticleVendu {
 	public void setRetrait(Retrait retrait) {
 		this.retrait = retrait;
 	}
+	
+	
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 
 
 	@Override

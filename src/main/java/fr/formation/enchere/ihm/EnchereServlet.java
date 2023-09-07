@@ -59,6 +59,7 @@ public class EnchereServlet extends HttpServlet {
 				List<ArticleVendu> lstArticles = articleManager.searchOffline(request.getParameter("nomArticle"), libelle);
 				articleManager.majEtatVente(lstArticles);
 				articleModel.setListArticle(lstArticles);
+				//System.out.println(articleModel.getListArticle().get(0).getImage_url());
 			} catch (DALException e) {
 				e.printStackTrace();
 			}
