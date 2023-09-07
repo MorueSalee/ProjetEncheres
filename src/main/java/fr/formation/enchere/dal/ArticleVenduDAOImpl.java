@@ -75,11 +75,18 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     		""";
     
     public static ArticleVendu getArticle(ResultSet rs) throws SQLException {
+    	LocalDate dateDebutEncheres = null;
+    	LocalDate dateFinEncheres = null;
+    	
     	Integer noArticle = rs.getInt("no_article");
         String nomArticle = rs.getString("nom_article");
         String description = rs.getString("description");
-        LocalDate dateDebutEncheres = rs.getDate("date_debut_encheres").toLocalDate();
-        LocalDate dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
+        
+       if (rs.getDate("date_debut_encheres") != null &&  rs.getDate("date_fin_encheres") != null ) {
+    	 dateDebutEncheres = rs.getDate("date_debut_encheres").toLocalDate();
+         dateFinEncheres = rs.getDate("date_fin_encheres").toLocalDate();
+       }
+        
         Integer prixInitial = rs.getInt("prix_initial");
         Integer prixVente = rs.getInt("prix_vente");
         String etatVente = rs.getString("etat_vente");
@@ -148,7 +155,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						results.add(article);
 					}
 					if (rs.getInt("no_enchere") != 0) {
-						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
+						
+						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
+						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
+						results.get(results.size() - 1).addEnchere(enchere);
 					}
 					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
 					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
@@ -247,7 +259,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						results.add(article);
 					}
 					if (rs.getInt("no_enchere") != 0) {
-						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
+						
+						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
+						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
+						results.get(results.size() - 1).addEnchere(enchere);
 					}
 					
 					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
@@ -283,7 +300,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						results.add(article);
 					}
 					if (rs.getInt("no_enchere") != 0) {
-						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
+						
+						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
+						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
+						results.get(results.size() - 1).addEnchere(enchere);
 					}
 					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
 					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
@@ -319,7 +341,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						results.add(article);
 					}
 					if (rs.getInt("no_enchere") != 0) {
-						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
+						
+						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
+						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
+						results.get(results.size() - 1).addEnchere(enchere);
 					}
 					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
 					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));
@@ -354,7 +381,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						results.add(article);
 					}
 					if (rs.getInt("no_enchere") != 0) {
-						results.get(results.size() - 1).addEnchere(EnchereDAOImpl.getEnchere(rs));
+						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
+						
+						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
+						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
+						results.get(results.size() - 1).addEnchere(enchere);
 					}
 					results.get(results.size() - 1).addUtilisateur(UtilisateurDAOImpl.getUtilisateur(rs));
 					results.get(results.size() - 1).addCategorie(CategorieDAOImpl.getCategorie(rs));

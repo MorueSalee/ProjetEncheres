@@ -22,8 +22,12 @@ public class EnchereDAOImpl implements EnchereDAO {
 			""";
 	
 	public static Enchere getEnchere(ResultSet rs) throws SQLException {
+		LocalDate dateEnchere = null;
+		
     	Integer noEnchere = rs.getInt("no_enchere");
-    	LocalDate dateEnchere = rs.getDate("date_enchere").toLocalDate();
+    	if (rs.getDate("date_enchere") != null) {
+        	dateEnchere = rs.getDate("date_enchere").toLocalDate();
+    	}
     	Integer montantEnchere = rs.getInt("montant_enchere");
     	Integer noUtilisateur = rs.getInt("no_utilisateur");
     	
