@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/all.css" />
 
-    <title>Document</title>
+   <jsp:include page="head.jsp"/>
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
@@ -50,14 +50,8 @@
        	<div class="button_update_profile">
             <a href="${pageContext.request.contextPath}/UpdateProfileServlet">Modifier</button>
         </div>
-        <img src="img/regarde_de_braise_steven.png" alt="Image par défault"/>
-        <div class="grid_article">
-    	<c:forEach items="${lstArticleByUtilisateur}" var="articleByUtilisateur">
-	        <div>
-	          <h3>Nom de l'article: ${articleByUtilisateur.nomArticle}</h3>
-	        </div>
-      	</c:forEach>
-    </div>
+        <img src="img/bg.png" alt="Image par défault"/>
+   
     </section>
 </body>
 </html>

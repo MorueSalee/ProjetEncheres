@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/detailSale.css">
     <link rel="stylesheet" href="css/all.css" />
-    
-    <title>Document</title>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
 
@@ -24,10 +23,10 @@
 		<div class="panpan_seagal">
         	<p class="replique">
 	        	<i class="fa-solid fa-quote-left"></i>
-	        	Je vais sortir mon porte-feuille très lentement de ma poche, j'ai plein de liquide. A moins que... vous acceptez les cartes de crédit ?
+	        	Sarah Connor ?
 	        	<i class="fa-solid fa-quote-right"></i>
         	</p>
-        	<img src="img/panpan_steven_seagal.png" alt="">
+        	<img src="img/panpan_arnold.png" alt="">
         </div>
         <div class="body_detail">
         	<div>

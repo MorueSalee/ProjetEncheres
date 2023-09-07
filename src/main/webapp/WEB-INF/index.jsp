@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-  <title>Enchères</title>
+  <jsp:include page="head.jsp"/>
   <link rel="stylesheet" href="css/index.css" />
   <link rel="stylesheet" href="css/all.css" />
   
@@ -82,7 +82,7 @@
       </div>
       <input class="search" type="submit" name="btnRechercher" value="Rechercher">
     </form>
-    <img src="img/steven-suit.png" />
+    <img src="img/aladin.png" />
   </section>
   <section id="all_article" class="container">
     <div class="grid_article">
