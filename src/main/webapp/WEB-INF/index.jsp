@@ -68,7 +68,7 @@
 	                <label for="vente_ongoing">mes ventes en cours</label>
 	              </div>
 	              <div>
-	                <input type="checkbox" id="vente_not_started" name ="5" value="5" <c:if test="${radioFilter == 1}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[5] != null}">checked</c:if>/>
+	               <input type="checkbox" id="vente_not_started" name ="5" value="5" <c:if test="${radioFilter == 1}">disabled="disabled"</c:if> <c:if test="${lstCheckBoxFilter[5] != null}">checked</c:if>/>
 	                <label for="vente_not_started">ventes non débutées</label>
 	              </div>
 	              <div>

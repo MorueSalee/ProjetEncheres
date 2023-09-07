@@ -28,7 +28,7 @@
                <div class="d-flex">
 	               <div class="position">
 	               		<div class="title">
-	                   		<label>Pr�nom</label>
+	                   		<label>Prénom</label>
 	                   		<i class="fa-solid fa-user"></i>
 	                   	</div>
 	                   <input type="text" name="prenom" value="${empty param.prenom ? '' : param.prenom}"/>
@@ -44,7 +44,7 @@
 	           <div class="d-flex">
 	               <div class="position">
 	               		<div class="title">
-		                   <label>T�l�phone</label>
+		                   <label>Téléphone</label>
 		                   <i class="fa-solid fa-phone"></i>
 	                   </div>
 	                   <input type="text" name="telephone" value="${empty param.telephone ? '' : param.telephone}"/>
@@ -108,7 +108,7 @@
         <div class="seagal">
 	        <p>
 	        <i class="fa-solid fa-quote-left"></i>
-	        Ecoute moi bien face de noeud, j'en ai rien � foutre que tu sois un ponte. Si tu nous fait rep�rer, j'te p�te la nuque entre les doigts et j'te laisse crever, alors fait gaffe
+	        Ecoute moi bien face de noeud, j'en ai rien à foutre que tu sois un ponte. Si tu nous fait repérer, j'te pète la nuque entre les doigts et j'te laisse crever, alors fait gaffe
 	        <i class="fa-solid fa-quote-right"></i>
 	        </p>
 	        <img src="img/predator_arnold.png" />
