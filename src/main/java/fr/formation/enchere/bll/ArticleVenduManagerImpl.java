@@ -87,13 +87,11 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 			return dao.getByName(name).stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 			
 		//Recherche par catégorie
-		} else if (name == null && !libelle.equals("Toutes")) {
-			
+		} else if ((name == null || name.equals(""))  && !libelle.equals("Toutes")) {
 			return dao.getByCategorieLibelle(libelle).stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 			
 		//Recherche par nom et catégorie
 		} else if (name != null && !libelle.equals("Toutes")) {
-			
 			return dao.getByNameAndCategorie(name, libelle).stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
 			
 		} else {
@@ -221,11 +219,10 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 			
 			LocalDate dateDebut = article.getDateDebutEncheres();
 			LocalDate dateFin = article.getDateFinEncheres();
-			
 			if (dateDebut.isAfter(LocalDate.now())) {
 				article.setEtatVente("Créée");
 			} else if ((dateDebut.isBefore(LocalDate.now()) || dateDebut.equals(LocalDate.now())) && (dateFin.isAfter(LocalDate.now()) || dateFin.equals(LocalDate.now()))) {
-				article.setEtatVente("En Cours");
+				article.setEtatVente("En cours");
 			} else if (dateFin.isBefore(LocalDate.now())) {
 				article.setEtatVente("Enchères terminées");
 			}

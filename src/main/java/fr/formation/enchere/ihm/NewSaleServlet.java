@@ -96,7 +96,7 @@ public class NewSaleServlet extends HttpServlet {
 			ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,prixVente, utilisateur, categorie, retrait);
 		    
 		    manager.add(article);
-			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		    response.sendRedirect("EnchereServlet");
 		} catch (DALException e) {
 			request.setAttribute("message", "Veuillez remplir tout les champs !");
 			request.getRequestDispatcher("/WEB-INF/newSale.jsp").forward(request, response);

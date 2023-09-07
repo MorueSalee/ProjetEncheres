@@ -29,6 +29,7 @@
             <label>Catégories : </label>
           </div>
             <select name="categorie" id="">
+            	<option>Toutes</option>
               <c:forEach items="${lstCategories}" var="categorie" >
                 <option <c:if test="${searchCategorie == categorie.libelle}">selected</c:if>>${categorie.libelle}</option>
               </c:forEach>
@@ -96,6 +97,7 @@
 	          <p><span>Fin de l'enchére:</span> <fmt:formatDate pattern="dd/MM/yyyy" value="${st}" /></p>
 	           <p><span>Catégorie:</span> ${article.categorie.libelle}</p>
 	          <p><span>Vendeur:</span> ${article.utilisateur.pseudo}</p>
+	          <p><span>Etat vente:</span> ${article.etatVente}</p>
 	        </div>
 	      </div>
 	      </a>

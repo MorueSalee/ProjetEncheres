@@ -75,51 +75,13 @@ public class DetailSaleServlet extends HttpServlet {
 				
 				ArticleVendu currentArticle = articleManager.getById(Integer.parseInt(noArticleParam));
 				Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-				
-				//Verif si une enchere existe
-				if (currentArticle.getListeEncheres().isEmpty()) {
-					
-					//Verif si l'enchere a été créé par l'utilisateur
-					if (utilisateur.getNoUtilisateur() != currentArticle.getUtilisateur().getNoUtilisateur()) {
+				// Vérif si article en cours
+				if (currentArticle.getEtatVente().equals("En cours")) {
+					//Verif si une enchere existe
+					if (currentArticle.getListeEncheres().isEmpty()) {
 						
-						//Verif si le montant est correct
-						if (Integer.parseInt(request.getParameter("montant")) > currentArticle.getPrixVente()) {
-							
-							//Verif si l'utilisateur a assez de crédit
-							if (utilisateur.getCredit() >= Integer.parseInt(request.getParameter("montant"))) {
-								
-								Enchere enchere = new Enchere(LocalDate.now(), Integer.parseInt(request.getParameter("montant")), utilisateur);
-								
-								currentArticle.addEnchere(enchere);
-								currentArticle.setPrixVente(enchere.getMontantEnchere());
-								utilisateur.setCredit(utilisateur.getCredit() - enchere.getMontantEnchere());
-								
-								enchereManager.add(enchere);
-								utilisateurManager.update(utilisateur);
-								articleManager.update(currentArticle);
-								
-								message = "Bravo votre enchère a été acceptée !";
-								
-							} else {
-								message = "Vous n'avez pas assez de crédit !";
-							}
-							
-						} else {
-							message = "Le montant de votre enchère est insuffisant !";
-						}						
-					} else {
-						message = "Vous ne pouvez pas enchérir sur votre propre vente !";
-					}
-					
-				} else {
-					
-					Enchere derniereEnchere = currentArticle.getListeEncheres().get(currentArticle.getListeEncheres().size() - 1);
-					
-					//Verif si l'enchere a été créé par l'utilisateur
-					if (utilisateur.getNoUtilisateur() != currentArticle.getUtilisateur().getNoUtilisateur()) {
-						
-						//Verif si la derniere enchere est celle de l'utilisateur
-						if (utilisateur.getNoUtilisateur() != derniereEnchere.getUtilisateur().getNoUtilisateur()) {
+						//Verif si l'enchere a été créé par l'utilisateur
+						if (utilisateur.getNoUtilisateur() != currentArticle.getUtilisateur().getNoUtilisateur()) {
 							
 							//Verif si le montant est correct
 							if (Integer.parseInt(request.getParameter("montant")) > currentArticle.getPrixVente()) {
@@ -127,18 +89,14 @@ public class DetailSaleServlet extends HttpServlet {
 								//Verif si l'utilisateur a assez de crédit
 								if (utilisateur.getCredit() >= Integer.parseInt(request.getParameter("montant"))) {
 									
-									Utilisateur encherisseurPrecedant = derniereEnchere.getUtilisateur();
-									Integer encherePrecedante = derniereEnchere.getMontantEnchere();
 									Enchere enchere = new Enchere(LocalDate.now(), Integer.parseInt(request.getParameter("montant")), utilisateur);
 									
-									encherisseurPrecedant.setCredit(encherisseurPrecedant.getCredit() + encherePrecedante);
 									currentArticle.addEnchere(enchere);
 									currentArticle.setPrixVente(enchere.getMontantEnchere());
 									utilisateur.setCredit(utilisateur.getCredit() - enchere.getMontantEnchere());
 									
 									enchereManager.add(enchere);
 									utilisateurManager.update(utilisateur);
-									utilisateurManager.update(encherisseurPrecedant);
 									articleManager.update(currentArticle);
 									
 									message = "Bravo votre enchère a été acceptée !";
@@ -146,17 +104,62 @@ public class DetailSaleServlet extends HttpServlet {
 								} else {
 									message = "Vous n'avez pas assez de crédit !";
 								}
+								
 							} else {
 								message = "Le montant de votre enchère est insuffisant !";
 							}						
-						}else {
-							message = "Vous ne pouvez pas enchérir sur votre propre enchère !";
+						} else {
+							message = "Vous ne pouvez pas enchérir sur votre propre vente !";
 						}
+						
 					} else {
-						message = "Vous ne pouvez pas enchérir sur votre propre vente !";
+						
+						Enchere derniereEnchere = currentArticle.getListeEncheres().get(currentArticle.getListeEncheres().size() - 1);
+						
+						//Verif si l'enchere a été créé par l'utilisateur
+						if (utilisateur.getNoUtilisateur() != currentArticle.getUtilisateur().getNoUtilisateur()) {
+							
+							//Verif si la derniere enchere est celle de l'utilisateur
+							if (utilisateur.getNoUtilisateur() != derniereEnchere.getUtilisateur().getNoUtilisateur()) {
+								
+								//Verif si le montant est correct
+								if (Integer.parseInt(request.getParameter("montant")) > currentArticle.getPrixVente()) {
+									
+									//Verif si l'utilisateur a assez de crédit
+									if (utilisateur.getCredit() >= Integer.parseInt(request.getParameter("montant"))) {
+										
+										Utilisateur encherisseurPrecedant = derniereEnchere.getUtilisateur();
+										Integer encherePrecedante = derniereEnchere.getMontantEnchere();
+										Enchere enchere = new Enchere(LocalDate.now(), Integer.parseInt(request.getParameter("montant")), utilisateur);
+										
+										encherisseurPrecedant.setCredit(encherisseurPrecedant.getCredit() + encherePrecedante);
+										currentArticle.addEnchere(enchere);
+										currentArticle.setPrixVente(enchere.getMontantEnchere());
+										utilisateur.setCredit(utilisateur.getCredit() - enchere.getMontantEnchere());
+										
+										enchereManager.add(enchere);
+										utilisateurManager.update(utilisateur);
+										utilisateurManager.update(encherisseurPrecedant);
+										articleManager.update(currentArticle);
+										
+										message = "Bravo votre enchère a été acceptée !";
+										
+									} else {
+										message = "Vous n'avez pas assez de crédit !";
+									}
+								} else {
+									message = "Le montant de votre enchère est insuffisant !";
+								}						
+							}else {
+								message = "Vous avez déjà enchéri sur cette enchère !";
+							}
+						} else {
+							message = "Vous ne pouvez pas enchérir sur votre propre vente !";
+						}
 					}
+				} else {
+					message = "La vente n'est plus en cours !";
 				}
-
 				request.setAttribute("currentArticle", currentArticle);
 				request.setAttribute("message", message);
 				
