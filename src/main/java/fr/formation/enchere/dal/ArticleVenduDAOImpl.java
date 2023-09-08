@@ -160,7 +160,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
 						
 						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
-						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setNoUtilisateur(rs.getInt(31));
 						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
 						results.get(results.size() - 1).addEnchere(enchere);
 					}
@@ -224,7 +224,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
 						
 						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
-						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setNoUtilisateur(rs.getInt(31));
 						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
 						article.addEnchere(enchere);
 						
@@ -234,6 +234,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 					article.addRetrait(RetraitDAOImpl.getRetrait(rs));
 				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException(e.getMessage());
@@ -264,7 +265,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
 						
 						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
-						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setNoUtilisateur(rs.getInt(31));
 						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
 						results.get(results.size() - 1).addEnchere(enchere);
 					}
@@ -305,7 +306,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
 						
 						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
-						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setNoUtilisateur(rs.getInt(31));
 						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
 						results.get(results.size() - 1).addEnchere(enchere);
 					}
@@ -346,7 +347,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
 						
 						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
-						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setNoUtilisateur(rs.getInt(31));
 						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
 						results.get(results.size() - 1).addEnchere(enchere);
 					}
@@ -386,7 +387,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 						UtilisateurManager manager = UtilisateurManagerSing.getInstance();
 						
 						Enchere enchere = EnchereDAOImpl.getEnchere(rs);
-						enchere.setNoUtilisateur(rs.getInt(30));
+						enchere.setNoUtilisateur(rs.getInt(31));
 						enchere.setUtilisateur(manager.findById(enchere.getNoUtilisateur()));
 						results.get(results.size() - 1).addEnchere(enchere);
 					}

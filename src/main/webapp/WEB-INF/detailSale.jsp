@@ -97,7 +97,7 @@
 			                </div>
 			                <input  type="number" value="${currentArticle.prixVente + 1}" name="montant">
 		                </div>
-		                <input class="btn_encherir" type="submit" value="Enchérir" name="encherir"/>
+		                <input class="btn_encherir" type="submit" value="Encherir" name="encherir"/>
 	            	</form>
 			    </c:when>    
 			    <c:otherwise>
@@ -105,7 +105,7 @@
 			    </c:otherwise>
 			</c:choose>
 			<div>
-        		<p>${message}</p>
+        		<p class="noconnect">${message}</p>
         	</div>			            
         </div>
     </section>

@@ -46,6 +46,7 @@ public class ConnectionServlet extends HttpServlet {
 
 	        try {
 	            utilisateur = manager.check(identifiant, motDePasse);
+	            
 	        } catch (BusinessException e) {
 	            e.printStackTrace();
 	            request.setAttribute("message", "Erreur lors de la vérification de l'utilisateur");
