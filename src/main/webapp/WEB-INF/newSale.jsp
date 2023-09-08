@@ -101,6 +101,7 @@
                     <input class="btn_new_sale" type="submit" value="Enregistrer">
                 </div>
             </div>
+            <p>${message}</p>
         </form>
     </section>
 </body>

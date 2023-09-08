@@ -15,6 +15,9 @@ import fr.formation.enchere.bll.ArticleVenduManager;
 import fr.formation.enchere.bll.ArticleVenduManagerSing;
 import fr.formation.enchere.bll.CategorieManager;
 import fr.formation.enchere.bll.CategorieManagerSing;
+import fr.formation.enchere.bll.RetraitManager;
+import fr.formation.enchere.bll.RetraitManagerSing;
+import fr.formation.enchere.bll.exception.BusinessException;
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
 import fr.formation.enchere.bo.Retrait;
@@ -28,6 +31,7 @@ public class NewSaleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleVenduManager manager = ArticleVenduManagerSing.getInstance();
 	private CategorieManager manager2 = CategorieManagerSing.getInstance();
+	private RetraitManager manager3 = RetraitManagerSing.getInstance();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -79,8 +83,13 @@ public class NewSaleServlet extends HttpServlet {
 			String nomArticle = request.getParameter("nomArticle");
 		    String description = request.getParameter("description");
 		    DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		    
 			LocalDate dateDebutEncheres =(LocalDate.parse(request.getParameter("dateDebutEncheres"),dtf2));
 			LocalDate dateFinEncheres=(LocalDate.parse(request.getParameter("dateFinEncheres"),dtf2));
+			if (dateDebutEncheres.isAfter(dateFinEncheres) || dateDebutEncheres.isEqual(dateFinEncheres)) {
+				request.setAttribute("message", "La date de fin doit être après la date de debut !");
+				request.getRequestDispatcher("/WEB-INF/newSale.jsp").forward(request, response);
+			}
 		    Integer prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
 		    Integer prixVente =    Integer.parseInt(request.getParameter("prixInitial"));
 		    Integer categorieId = Integer.parseInt(request.getParameter("categorie"));
@@ -89,22 +98,32 @@ public class NewSaleServlet extends HttpServlet {
 		    // Retrait
 		    String rue = request.getParameter("rue");
 		    String ville = request.getParameter("ville");
-		    String codePostale = request.getParameter("codePostale");
-		    
-			categorie = manager2.getById(categorieId);
-			
-			Retrait retrait = new Retrait(rue, ville, codePostale);
+		    String codePostale = null;
+		    if (manager3.isCodePostalValid(request.getParameter("codePostale"))) {
+		    	codePostale = request.getParameter("codePostale");
 
-			ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,prixVente, utilisateur, categorie, retrait, imageUrl);
+				categorie = manager2.getById(categorieId);
+				
+				Retrait retrait = new Retrait(rue, ville, codePostale);
+				
+				ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial,prixVente, utilisateur, categorie, retrait, imageUrl);
 
-		    
-		    manager.add(article);
-		    response.sendRedirect("EnchereServlet");
+			    manager.add(article);
+			    response.sendRedirect("EnchereServlet");
+		    } else {
+				request.setAttribute("message", "Le code postal n'est pas valide !");
+				request.getRequestDispatcher("/WEB-INF/newSale.jsp").forward(request, response);
+	            response.sendRedirect("NewSaleServlet");
+		    }
+		   
 		} catch (DALException e) {
 			request.setAttribute("message", "Veuillez remplir tout les champs !");
 			request.getRequestDispatcher("/WEB-INF/newSale.jsp").forward(request, response);
+		} catch (BusinessException e) {
+			e.printStackTrace();
 		}
 	    
 	}
+	
 
 }

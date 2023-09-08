@@ -90,10 +90,10 @@ public class UpdateProfileServlet extends HttpServlet {
 	            request.getRequestDispatcher("/WEB-INF/updateProfile.jsp").forward(request, response);
 	        } catch (DALException e) {
 	            request.setAttribute("message", "Le pseudo ou l'email est déjà utilisé.");
-	            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+	            request.getRequestDispatcher("/WEB-INF/updateProfile.jsp").forward(request, response);
 	        } catch (IllegalArgumentException e) {
 	            request.setAttribute("message", e.getMessage());
-	            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+	            request.getRequestDispatcher("/WEB-INF/updateProfile.jsp").forward(request, response);
 	        }
 	    }
 	}
