@@ -104,9 +104,8 @@
 	                <a href="${pageContext.request.contextPath}/deleteProfile"><i class="fa-solid fa-trash"></i></a>
 	            </div>
             </div>
-            
+            <p class="message">${message}</p>
         </form>
-        ${message}
       </section>
 </body>
 </html>

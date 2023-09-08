@@ -3,12 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <jsp:include page="head.jsp"/>
+    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1">
+    
 </head>
 <body>
       <jsp:include page="nav.jsp"/>
@@ -28,7 +30,7 @@
                <div class="d-flex">
 	               <div class="position">
 	               		<div class="title">
-	                   		<label>Prénom</label>
+	                   		<label>Prenom</label>
 	                   		<i class="fa-solid fa-user"></i>
 	                   	</div>
 	                   <input type="text" name="prenom" value="${empty param.prenom ? '' : param.prenom}"/>
@@ -44,7 +46,7 @@
 	           <div class="d-flex">
 	               <div class="position">
 	               		<div class="title">
-		                   <label>Téléphone</label>
+		                   <label>Telephone</label>
 		                   <i class="fa-solid fa-phone"></i>
 	                   </div>
 	                   <input type="text" name="telephone" value="${empty param.telephone ? '' : param.telephone}"/>
@@ -108,7 +110,7 @@
         <div class="seagal">
 	        <p>
 	        <i class="fa-solid fa-quote-left"></i>
-	        Ecoute moi bien face de noeud, j'en ai rien à foutre que tu sois un ponte. Si tu nous fait repérer, j'te pète la nuque entre les doigts et j'te laisse crever, alors fait gaffe
+	        Ecoute moi bien face de noeud, j'en ai rien a foutre que tu sois un ponte. Si tu nous fait reperer, j'te pete la nuque entre les doigts et j'te laisse crever, alors fait gaffe
 	        <i class="fa-solid fa-quote-right"></i>
 	        </p>
 	        <img src="img/predator_arnold.png" />

@@ -33,8 +33,6 @@ private UtilisateurDAO dao = UtilisateurDAOFact.getUtilisateurDAO();
 	    }    
 	}
 	
-	
-	
 	public Utilisateur check(String identifiant, String motDePasse) throws BusinessException, DALException {
 		return dao.findByLoginAndPassword(identifiant, motDePasse);
 	}
@@ -84,12 +82,21 @@ private UtilisateurDAO dao = UtilisateurDAOFact.getUtilisateurDAO();
 	}
 	
 	public void update(Utilisateur utilisateur) throws DALException {
-		dao.update(utilisateur);
+		try {
+			if (!isPostalCodeValid(utilisateur.getCodePostal())) {
+			    throw new IllegalArgumentException("Le code postal n'est pas valide.");
+			} else if (!isAlphaNumeric(utilisateur.getPseudo())) {
+			    throw new IllegalArgumentException("Le pseudo ne doit contenir que des caractères alphanumériques.");
+			} else {
+				dao.update(utilisateur);			
+			}
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void delete(Integer id) throws DALException {
 		dao.delete(id);
 	}
 		
-
 }

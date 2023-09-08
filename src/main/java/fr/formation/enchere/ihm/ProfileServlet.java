@@ -32,6 +32,11 @@ public class ProfileServlet extends HttpServlet {
 	
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 			
+			if (utilisateur == null) {
+		        response.sendRedirect(request.getContextPath() + "/EnchereServlet");
+		        return;
+		    }
+			
 			request.setAttribute("lstArticleByUtilisateur", utilisateur.getListeArticles());
 
 			request.setAttribute("utilisateur", utilisateur);

@@ -35,7 +35,7 @@
                         <input type="checkbox">
                         <a>Se souvenir de moi</label>
                     </div>
-                    <a href="#">Mot de passe oublié</a>
+                    <a href="#">Mot de passe oublie</a>
                 </div>
 				<input class="btn_connection" type="submit" value="Connexion"/> 
             </div>
