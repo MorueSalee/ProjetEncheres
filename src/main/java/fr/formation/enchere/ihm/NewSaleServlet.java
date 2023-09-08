@@ -92,7 +92,13 @@ public class NewSaleServlet extends HttpServlet {
 			}
 		    Integer prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
 		    Integer prixVente =    Integer.parseInt(request.getParameter("prixInitial"));
-		    Integer categorieId = Integer.parseInt(request.getParameter("categorie"));
+		    Integer categorieId = null;
+		    if (request.getParameter("categorie") != null) {
+		    	categorieId = Integer.parseInt(request.getParameter("categorie"));
+		    } else {
+		    	categorieId = 2;
+		    }
+		    
 		    String imageUrl = request.getParameter("imageUrl");
 		    
 		    // Retrait
