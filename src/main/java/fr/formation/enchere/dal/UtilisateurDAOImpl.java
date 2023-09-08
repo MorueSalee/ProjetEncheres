@@ -65,7 +65,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         Integer credit = rs.getInt("credit");
         Boolean administrateur = rs.getBoolean("administrateur");        
          
-        Utilisateur u = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+        Utilisateur u = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone,
+        		rue, codePostal, ville, motDePasse, credit, administrateur);
         
         return u;
     }
@@ -117,7 +118,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					}
-					if (utilisateur.getListeArticles().size() != 0 && rs.getInt("no_article") != utilisateur.getListeArticles().get(utilisateur.getListeArticles().size()-1).getNoArticle()) {
+					if (utilisateur.getListeArticles().size() != 0 
+							&& rs.getInt("no_article") != utilisateur.getListeArticles()
+							.get(utilisateur.getListeArticles().size()-1).getNoArticle()) {
 						article = null;
 					}
 					if (article == null) {
@@ -191,6 +194,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 					if (utilisateur == null) {
 						utilisateur = getUtilisateur(rs);
 						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+						
 					}
 					if (utilisateur.getListeArticles().size() != 0 && rs.getInt("no_article") != utilisateur.getListeArticles().get(utilisateur.getListeArticles().size()-1).getNoArticle()) {
 						article = null;

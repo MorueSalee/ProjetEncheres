@@ -109,14 +109,13 @@ public class EnchereServlet extends HttpServlet {
 					
 					if (request.getParameter("filter_radio").equals("1")) {
 						
-						articleModel.setListArticle(articleManager.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur, 1));
-					
+						articleModel.setListArticle(articleManager
+								.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur, 1));					
 					} else {
 
-						articleModel.setListArticle(articleManager.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur, 2));
-					
+						articleModel.setListArticle(articleManager
+								.searchOnline(request.getParameter("nomArticle"), request.getParameter("categorie"), lstCheckBoxFilter, utilisateur, 2));
 					}
-
 				} catch (DALException e) {
 					e.printStackTrace();
 				}

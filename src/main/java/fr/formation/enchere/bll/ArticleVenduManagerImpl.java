@@ -10,10 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import fr.formation.enchere.bll.exception.BusinessException;
 import fr.formation.enchere.bo.ArticleVendu;
 import fr.formation.enchere.bo.Categorie;
-import fr.formation.enchere.bo.Retrait;
 import fr.formation.enchere.bo.Utilisateur;
 import fr.formation.enchere.dal.ArticleVenduDAO;
 import fr.formation.enchere.dal.ArticleVenduDAOFact;
@@ -129,7 +127,9 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 			//Achats/Encheres ouvertes 1
 			if (checkBoxFilter.get(1) != null) {
 
-				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
+				filteredResult = queryResult.stream()
+						.filter(article -> article.getEtatVente().contains("En cours"))
+						.collect(Collectors.toList());
 				
 				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
 				
@@ -140,11 +140,16 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 			//Achats/mes enchères en cours 2
 			if (checkBoxFilter.get(2) != null) {
 				
-				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours")).collect(Collectors.toList());
+				filteredResult = queryResult.stream().filter(article -> article.getEtatVente().contains("En cours"))
+						.collect(Collectors.toList());
 				
-				filteredResult = filteredResult.stream().filter(article -> !article.getListeEncheres().isEmpty()).collect(Collectors.toList());
+				filteredResult = filteredResult.stream().filter(article -> !article.getListeEncheres()
+						.isEmpty())
+						.collect(Collectors.toList());
 				
-				filteredResult = filteredResult.stream().filter(article -> article.getListeEncheres().get(article.getListeEncheres().size() - 1).getNoUtilisateur().equals(utilisateur.getNoUtilisateur())).collect(Collectors.toList());
+				filteredResult = filteredResult.stream().filter(article -> article.getListeEncheres()
+						.get(article.getListeEncheres().size() - 1).getNoUtilisateur().equals(utilisateur.getNoUtilisateur()))
+						.collect(Collectors.toList());
 				
 				result = Stream.concat(result.stream(), filteredResult.stream()).toList();
 				
@@ -222,7 +227,9 @@ private ArticleVenduDAO dao = ArticleVenduDAOFact.getArticleVenduDAO();
 		}
 	
 		List<ArticleVendu> result2 = new ArrayList<ArticleVendu>(new HashSet<>(result)); 
-		return result2.stream().sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed()).collect(Collectors.toList());
+		return result2.stream()
+				.sorted(Comparator.comparing(ArticleVendu::getDateDebutEncheres).reversed())
+				.collect(Collectors.toList());
 
 	}
   
